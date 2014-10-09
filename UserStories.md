@@ -16,7 +16,7 @@
 <td>I want to post pictures and videos in the Meditation board I am subscribed to so I can post related pictures and videos to share with my group members</td><td>Instructor / Student</td><td>3</td>
 </tr>
 <tr>
-<td>I want to be able to edit the messages that I post</td><td><Instructor / Student/td><td>2</td>
+<td>I want to be able to edit the messages that I post</td><td>Instructor / Student</td><td>2</td>
 </tr>
 <tr>
 <td>I want to be able to delete my own messages</td><td>Instructor / Student</td><td>2</td>
