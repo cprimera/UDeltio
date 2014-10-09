@@ -36,7 +36,7 @@ Today there exist many applications that provide similar functionality. However,
 
 ## Personas
 
-[Katriona Lalange](Personas/Katriona Lalange.md)
+[Katriona Lalage](Personas/Katriona Lalage.md)
 
 [Tiburtius Camilo](Personas/Tiburtius Camilo.md)
 
