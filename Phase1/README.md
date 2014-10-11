@@ -60,27 +60,26 @@ UDeltio will be a web application, allowing users to access the bulletin board f
 
 ### User stories to be implemented in first release
 
-| User Stories |
+| User Stories |Role
 |------------------------------------------------------------------------|
-| I want to create a new board for rock-climbing to find new friends     |
-| I want to create a new board for a class I will be teaching            |
-| I want to post texts and links in the Meditation board I am subscribed to so that I can tell group members about upcoming sessions                 |
-| I want to participate in the class discussion board without sharing my private information with a third-party so that i can participate in the class discussions without feeling like my privacy has been violated            |
-| I want to view messages in a specific board so that it’s easy to find the messages I want to view                                                  |
-| I want to be able to subscribe to a board to get notifications of any new messages                                                                 |
+| I want to create a new board.| Instructor / Student|
+| I want to be able to subscribe to the board.|Instructor / Student|
+| I want to post texts and links in the board I am subscribed to.|Instructor / Student|
+| I want to participate in the class discussion board without sharing my private information with a third-party so that i can participate in the class discussions without feeling like my privacy has been violated|Student|
+| I want to be able to search for a specific board so that it’s easy to find the messages I want to view.|Instructor / Student|
 
-The reason for us to select these user stories for our first release is because they cover the core functionality ofthe system. Consequentially, they have the highest priority in our journal containing user stories. 
+The reason for us to select these user stories for our first release is because they cover the core functionality of the system. Consequentially, they have the highest priority in our journal containing user stories. 
 
 ### 3 user-stories excluded from first release:
 * I want to be able to group my classes and my extra-curriculars into separate sections on the message board so that I can keep my school work and recreational activities separate
- * This is a nice feature, but it is not required for a core functionality
-* I want to get push notification for new messages from subscribed boards
- * None of the team members are familiar with the details of implementation of this feature. It is not required for the core functionality, so it could be postponed to a moment once we actually have a working prototype and can work on features.
+ * This is a nice feature, but it is not required for a core functionality.
+* I want to mark some posts as important. For example, the post saying the exam room is changed should be marked as important.
+ * This feature could be added later on. At the initial stages of the project, core functionality of the product will not be affected if all posts have equal priority.
 * I want to be able to flag inappropriate posts so that I’m not subjected to offensive messages
  * This feature is not important for the core functionality of the application. 
 
 ### User stories to implement in the first iteration
-The team is not planning to implement any user stories over the first iteration. Instead, the team will focus on setting up the back-end, create API, and getting familiarized with front-end components we plan on using.
+The team is not planning to implement any user stories over the first iteration. Instead, the team will focus on setting up the back-end, creating API, thinking through UI, and getting familiarized with front-end components we plan on using.
 
 
 ## CRC Cards
