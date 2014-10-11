@@ -16,12 +16,13 @@ __Yasith Vidanaarachchi__
 
 ---
 __Yuliya Cherenkova__
-<!--- fill this in -->
+
+I am a fourth year Computer Science student at the University of Toronto, interested in algorithms, web development, and security. I know Python, Java, and C, in terms of web development: HTML, CSS, and JavaScript. The projects I have worked on include [Skvallra](http://www.github.com/cprimera/skvallra) and [PCRS](https://mcs.utm.utoronto.ca/~peters43/crs/). The latter is currently used by the University of Toronto for introductory CS courses.
 
 ---
 __Chris Primerano__
 
-I'm a fourth year at the University of Toronto working towards an HBSc Computer Science Specialist degree with an interest in security, mobile development and low-level programming/embedded systems. I also have a Computer Systems Technician - Software Engineering diploma from Sheridan College. I have experience in many programming language including C, Objective-C, Swift, Java, Python and assembly as well as HTML, CSS, Javascript and PHP for web development. I have worked on many projects both for hackathons and for school, such as [Skvallra](http://www.github.com/cprimera/skvallra), and [Toronto Bixi Finder](https://github.com/cprimera/BixiBike) which was a finalist in the Toronto LinkedIn Hackday.
+I'm a fourth year at the University of Toronto working towards an HBSc Computer Science Specialist degree with an interest in security, mobile development and low-level programming/embedded systems. I also have a Computer Systems Technician - Software Engineering diploma from Sheridan College. I have experience in many programming languages including C, Objective-C, Swift, Java, Python and assembly as well as HTML, CSS, Javascript and PHP for web development. I have worked on many projects both for hackathons and for school, such as [Skvallra](http://www.github.com/cprimera/skvallra), and [Toronto Bixi Finder](https://github.com/cprimera/BixiBike) which was a finalist in the Toronto LinkedIn Hackday.
 
 ---
 
