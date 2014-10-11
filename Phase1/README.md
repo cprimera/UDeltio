@@ -20,7 +20,8 @@ __Yuliya Cherenkova__
 
 ---
 __Chris Primerano__
-<!--- fill this in -->
+
+I'm a fourth year at the University of Toronto working towards an HBSc Computer Science Specialist degree with an interest in security, mobile development and low-level programming/embedded systems. I also have a Computer Systems Technician - Software Engineering diploma from Sheridan College. I have experience in many programming language including C, Objective-C, Swift, Java, Python and assembly as well as HTML, CSS, Javascript and PHP for web development. I have worked on many projects both for hackathons and for school, such as [Skvallra](http://www.github.com/cprimera/skvallra), and [Toronto Bixi Finder](https://github.com/cprimera/BixiBike) which was a finalist in the Toronto LinkedIn Hackday.
 
 ---
 
