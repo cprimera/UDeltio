@@ -69,6 +69,8 @@ UDeltio will have mobile apps, allowing users to access the bulletin board from 
 | I want to view messages in a specific board so that it’s easy to find the messages I want to view                                                  |
 | I want to be able to subscribe to a board to get notifications of any new messages                                                                 |
 
+The reason for us to select these user stories for our first release is because they cover the core functionality ofthe system. Consequentially, they have the highest priority in our journal containing user stories. 
+
 ### 3 user-stories excluded from first release:
 * I want to be able to group my classes and my extra-curriculars into separate sections on the message board so that I can keep my school work and recreational activities separate
  * This is a nice feature, but it is not required for a core functionality
