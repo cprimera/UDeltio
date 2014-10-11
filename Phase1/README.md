@@ -84,4 +84,4 @@ The team is not planning to implement any user stories over the first iteration.
 
 ## CRC Cards
 
-[Example](CRC Cards/example.md)
+[CRC Cards](CRC Cards/CRC Cards.md)
