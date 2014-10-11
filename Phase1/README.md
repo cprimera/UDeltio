@@ -61,7 +61,7 @@ UDeltio will be a web application, allowing users to access the bulletin board f
 ### User stories to be implemented in first release
 
 | User Stories |Role|
-|------------------------------------------------------------------------|
+|-------------------------------------------|-----------------------------|
 | I want to create a new board.| Instructor / Student|
 | I want to be able to subscribe to the board.|Instructor / Student|
 | I want to post texts and links in the board I am subscribed to.|Instructor / Student|
