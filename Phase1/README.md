@@ -53,7 +53,7 @@ UDeltio allows members of the community to start and join bulletin boards. Allow
 
 For private sub-communities inside the University, you can have private boards. Where only the members can see the posted notices.
 
-UDeltio will be a web application, allowing users to access the bulletin board from any where they want to. They will also receive push notifications for boards they have subscribed to.
+UDeltio will be a web application, allowing users to access the bulletin board from any where they want to. They will also receive notifications for boards they have subscribed to.
 
 
 ## Release & Iteration Planning
