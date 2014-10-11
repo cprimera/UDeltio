@@ -43,7 +43,7 @@ Today there exist many applications that provide similar functionality. However,
 
 ## User Stories
 
-[Example](User Stories/example.md)
+[Example](User Stories/UserStories.md)
 
 ## MVP
 
