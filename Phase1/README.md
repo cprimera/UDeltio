@@ -8,6 +8,7 @@ __Leo Wong__
 
 ---
 __Will Armstrong__
+
 After years of slogging his drums through shady bars, playing Motown at weddings, and teaching Ontario's disgruntled youth to vent their frustrations by bashing drums with reckless abandon, Will Armstrong returned to school to pursue a career in software engineering.   Three years later, with references from the Harvard Smithsonian Center for Astrophysics, Toronto startup WaveDNA,  and plenty of computer genius friends, Will is interviewing at companies like Google and is well on his way to landing a 'real job' in spite of everything that Johnny at the St. Regis Tavern told him not to do.  Will is currently in his 4th year, rocking a 3.5 gpa, pursuing a HBSc Computer Science Specialist degree at The University of Toronto, and is planning on graduating in May 2015.  Take that drummer jokes! For more information please view [armstrongwill.com](armstrongwill.com)
 
 ---
