@@ -12,8 +12,9 @@ __Will Armstrong__
 After years of slogging his drums through shady bars, playing Motown at weddings, and teaching Ontario's disgruntled youth to vent their frustrations by bashing drums with reckless abandon, Will Armstrong returned to school to pursue a career in software engineering.   Three years later, with references from the Harvard Smithsonian Center for Astrophysics, Toronto startup WaveDNA,  and plenty of computer genius friends, Will is interviewing at companies like Google and is well on his way to landing a 'real job' in spite of everything that Johnny at the St. Regis Tavern told him not to do.  Will is currently in his 4th year, rocking a 3.5 gpa, pursuing a HBSc Computer Science Specialist degree at The University of Toronto, and is planning on graduating in May 2015.  Take that drummer jokes! For more information please view [armstrongwill.com](http://www.armstrongwill.com) For screenshots of [recent projects](http://armstrongwill.com/recentprojects.html). Main Programming languages: Java, Python, C.  Familiar with JavaScript, RDBMS (ie SQL), and assembly.
 
 ---
-__Yasith Vidanaarachchi__
-<!--- fill this in -->
+__[Yasith Vidanaarachchi](http://tuxv.net)__
+
+I'm a fouth year Computer Science student. My current focus is mainly on Android development. Some projects I've completed are [Mississauga Bus Times](https://play.google.com/store/apps/details?id=net.tuxv.mississaugabusses), [Skvallra](http://www.github.com/yasith/skvallra), [Digital Flyers](https://github.com/yasith/DigitalFlyers) and [Toronto Bixi Finder](https://github.com/yasith/BixiBikes). I'm also very interested in algorithms and problem solving, I have represented UofT in 2 [ACM-ICPC](http://icpc.baylor.edu/) tournaments. In my spare time, I enjoy hacking on new project ideas, and consuming unhealthy amounts of Netflix.
 
 ---
 __Yuliya Cherenkova__
