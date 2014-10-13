@@ -4,6 +4,7 @@
 
 ---
 __Leo Wong__
+
 Although formerly an accounting student at the University of Waterloo, I am now a third year computer science student aspiring to graduate with a degree in Information Technology Specialist and hopefully find myself a comfortable place in the industry. I haven't done much in computer science yet but I look forward to working on many more projects in the future. 
 
 ---
