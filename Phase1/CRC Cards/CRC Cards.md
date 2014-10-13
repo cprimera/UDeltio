@@ -79,3 +79,17 @@ Unsubscribe a user from the board given username and board id |
 |------------------|---------------|
 takes a instance of a class which implements a DAO | DAO
 overrides the DAO's get method to lazily call database |
+
+### Scenarios
+
+#### I want to create a new board
+- Get the details about the board from the user
+- Use DAO to create a new Board object with the given details
+
+#### I want to create a post in a new board
+- Get the board's unique identifier from Board object
+- Use DAO to create new Post object with the given details
+
+#### I want boards to have tags
+- Retrieve existing tag, or create new tag using DAO
+- When creating boards add the tag to the Board object
