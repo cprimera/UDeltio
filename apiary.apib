@@ -1,0 +1,621 @@
+FORMAT: 1A
+
+# UDeltio API
+UDeltio API is a message board service
+
+# UDeltio API Root [/api/v1.0/]
+
+
+# Group Post
+
+## Post [/posts/{id}]
+A single Post object.
+
+The Post resource has the following attributes:
+
+- id
+- user
+- board
+- creation_date
+- subject
+- content
+- important
+
+The states *id* and *creation_date* are assigned by the UDeltio API at the moment of creation.
+
+
++ Parameters
+    + id (required, Number, `30`) ... ID of the Post
+
++ Model (application/json)
+
+    JSON representation of Post Resource.
+
+    + Body
+
+            {
+                "id": 30,
+                "user": 1,
+                "board": 1,
+                "creation_date": "2014-10-12T10:17:00Z",
+                "subject": "Test Message",
+                "content": "This is just a test message.",
+                "important": true
+            }
+    
+    + Schema
+    
+            {
+                "type": "object",
+                "required": true,
+                "properties": {
+                    "id": {
+                        "type": "number",
+                        "required": true
+                    },
+                    "user": {
+                        "type": "number",
+                        "required": true
+                    },
+                    "board": {
+                        "type": "number",
+                        "required": true
+                    },
+                    "creation_date": {
+                        "type": "string",
+                        "required": true
+                    },
+                    "subject": {
+                        "type": "string",
+                        "required": true
+                    },
+                    "content": {
+                        "type": "string",
+                        "required": true
+                    },
+                    "important": {
+                        "type": "boolean",
+                        "required": true
+                    }
+                }
+            }
+
+### Get Post [GET]
++ Response 200
+
+    [Post][]
+
+### Update Post [POST]
++ Request (application/json)
+
+        {
+            "id": 30,
+            "user": 1,
+            "board": 1,
+            "creation_date": "2014-10-12T10:17:00Z",
+            "subject": "Test Message",
+            "content": "This is just a test message.",
+            "important": true
+        }
+
++ Response 200
+
+    [Post][]
+
+### Delete Post [DELETE]
++ Response 204
+
+
+
+## Posts Collection [/posts]
+Collection of all Posts.
+
++ Model (application/json)
+
+    + Body
+
+            {
+                "posts": [
+                    {
+                        "id": 30,
+                        "user": 1,
+                        "board": 1,
+                        "creation_date": "2014-10-12T10:17:00Z",
+                        "subject": "Test Message",
+                        "content": "This is just a test message.",
+                        "important": true
+                    }
+                ]
+            }
+
+    + Schema
+    
+            {
+                "type": "object",
+                "required": true,
+                "properties": {
+                    "posts": {
+                        "type": "array",
+                        "required": true,
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "number",
+                                    "required": true
+                                },
+                                "user": {
+                                    "type": "number",
+                                    "required": true
+                                },
+                                "board": {
+                                    "type": "number",
+                                    "required": true
+                                },
+                                "creation_date": {
+                                    "type": "string",
+                                    "required": true
+                                },
+                                "subject": {
+                                    "type": "string",
+                                    "required": true
+                                },
+                                "content": {
+                                    "type": "string",
+                                    "required": true
+                                },
+                                "important": {
+                                    "type": "boolean",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+
+### List All Posts [GET]
++ Response 200
+
+    [Posts Collection][]
+
+### Create a Post [POST]
++ Request (application/json)
+
+        {
+            "board": 1,
+            "subject": "Test Message",
+            "content": "This is just a test message.",
+            "important": true
+        }
+
++ Response 201
+
+    [Post][]
+
+
+
+
+# Group Board
+
+## Board [/boards/{id}]
+A single Board object.
+
+The Board resource has the following attributes:
+
+- id
+- name
+- public
+- subscribers
+- tags
+
+The *id* state is assigned by the UDeltio API at the moment of creation.
+
+
++ Parameters
+    + id (required, Number, `10`) ... ID of the Board
+
++ Model (application/json)
+
+    + Body
+
+            {
+                "id": 10,
+                "name": "Rock Climbing",
+                "public": true,
+                "subscribers": [1, 2, 3],
+                "tags": [12, 42, 85]
+            }
+
+    + Schema
+        
+            {
+                "type": "object",
+                "required": true,
+                "properties": {
+                    "id": {
+                        "type": "number",
+                        "required": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "required": true
+                    },
+                    "public": {
+                        "type": "boolean",
+                        "required": true
+                    },
+                    "subscribers": {
+                        "type": "array",
+                        "required": true
+                    },
+                    "tags": {
+                        "type": "array",
+                        "required": true
+                    }
+                }
+            }
+
+### Get Board [GET]
++ Response 200
+
+    [Board][]
+
+
+### Update Board [POST]
++ Request (application/json)
+
+        {
+            "id": 10,
+            "name": "Rock Climbing",
+            "public": true,
+            "subscribers": [1, 2, 3],
+            "tags": [12, 42, 85]
+        }
+
++ Response 200
+
+    [Board][]
+
+
+### Delete Board [DELETE]
++ Response 204
+
+## Boards Collection [/boards]
+Collection of all Boards.
+
++ Model (application/json)
+
+    + Body
+
+            {
+                "boards": [
+                    {
+                        "id": 10,
+                        "name": "Rock Climbing",
+                        "public": true,
+                        "subscribers": [1, 2, 3],
+                        "tags": [12, 42, 85]
+                    }
+                ]
+            }
+
+    + Schema
+        
+            {
+                "type": "object",
+                "required": true,
+                "properties": {
+                    "boards": {
+                        "type": "array",
+                        "required": true,
+                        "items": {
+                            "id": {
+                                "type": "number",
+                                "required": true
+                            },
+                            "name": {
+                                "type": "string",
+                                "required": true
+                            },
+                            "public": {
+                                "type": "boolean",
+                                "required": true
+                            },
+                            "subscribers": {
+                                "type": "array",
+                                "required": true
+                            },
+                            "tags": {
+                                "type": "array",
+                                "required": true
+                            }
+                        }
+                    }
+                }
+            }
+
+### List all Boards [GET]
++ Response 200
+
+    [Boards Collection][]
+
+### Create a Board [POST]
++ Request (application/json)
+
+        {
+            "name": "Rock Climbing",
+            "public": true
+        }
+
++ Response 201
+
+    [Board][]
+
+
+
+# Group User
+
+## User [/users/{id}]
+A single User object.
+
+The User resource has the following attributes:
+
+- id
+- username
+- first_name
+- last_name
+- email
+
+The *id* state is assigned by the UDeltio API at the moment of creation.
+
++ Parameters
+    + id (required, Number, `30`) ... ID of the User
+
++ Model (application/json)
+
+    JSON representation of User Resource.
+
+    + Body
+
+            {
+                "id": 30,
+                "username": "cprimera",
+                "first_name": "Christopher",
+                "last_name": "Primerano",
+                "email": "chris.primerano@mail.utoronto.ca"
+            }
+
+    + Schema
+        
+            {
+                "type": "object",
+                "required": true,
+                "properties": {
+                    "id": {
+                        "type": "number",
+                        "required": true
+                    },
+                    "username": {
+                        "type": "string",
+                        "required": true
+                    },
+                    "first_name": {
+                        "type": "string",
+                        "required": true
+                    },
+                    "last_name": {
+                        "type": "string",
+                        "required": true
+                    },
+                    "email": {
+                        "type": "string",
+                        "required": true
+                    }
+                }
+            }
+
+### Get User [GET]
++ Response 200
+
+    [User][]
+
+### Update User [POST]
++ Request (application/json)
+        
+        {
+            "id": 30,
+            "username": "cprimera",
+            "first_name": "Christopher",
+            "last_name": "Primerano",
+            "email": "chris.primerano@mail.utoronto.ca"
+        }
+
++ Response 200
+    
+    [User][]
+
+### Delete User [DELETE]
++ Response 204
+
+
+## User Collection [/users]
+Collection of all Users.
+
++ Model (application/json)
+
+    + Body
+
+            {
+                "users": [
+                    {
+                        "id": 30,
+                        "username": "cprimera",
+                        "first_name": "Christopher",
+                        "last_name": "Primerano",
+                        "email": "chris.primerano@mail.utoronto.ca"
+                    }
+                ]
+            }
+
+    + Schema
+        
+            {
+                "type": "object",
+                "required": true,
+                "properties": {
+                    "users": {
+                        "type": "array",
+                        "required": true,
+                        "items": {
+                            "id": {
+                                "type": "number",
+                                "required": true
+                            },
+                            "username": {
+                                "type": "string",
+                                "required": true
+                            },
+                            "first_name": {
+                                "type": "string",
+                                "required": true
+                            },
+                            "last_name": {
+                                "type": "string",
+                                "required": true
+                            },
+                            "email": {
+                                "type": "string",
+                                "required": true
+                            }
+                        }
+                    }
+                }
+            }
+
+### Retrieve All Users [GET]
++ Response 200
+
+    [User Collection][]
+
+### Create new User [POST]
++ Request (application/json)
+
+        {
+            "username": "cprimera",
+            "first_name": "Christopher",
+            "last_name": "Primerano",
+            "email": "chris.primerano@mail.utoronto.ca"
+        }
+
++ Response 201
+
+    [User][]
+
+
+# Group Tag
+
+## Tag [/tag/{id}]
+A single Tag object.
+
+The Tag resource has the following attributes:
+
+- id
+- name
+
+The *id* state is assigned by the UDeltio API at the moment of creation.
+
++ Parameters
+    + id (required, Number, `30`) ... ID of the Tag
+
++ Model (application/json)
+
+    JSON representation of Tag Resource.
+
+    + Body
+
+            {
+                "id": 30,
+                "name": "adventure"
+            }
+
+    + Schema
+        
+            {
+                "type": "object",
+                "required": true,
+                "properties": {
+                    "id": {
+                        "type": "number",
+                        "required": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "required": true
+                    }
+                }
+            }
+
+### Get Tag [GET]
++ Response 200
+
+    [Tag][]
+
+### Delete Tag [DELETE]
++ Response 204
+
+## Tag Collection [/tag]
+Collection of all Tags.
+
++ Model (application/json)
+
+    + Body
+
+            {
+                "tags": [
+                    {
+                        "id": 30,
+                        "name": "adventure"
+                    }
+                ]
+            }
+
+    + Schema
+        
+            {
+                "type": "object",
+                "required": true,
+                "properties": {
+                    "tags": {
+                        "type": "array",
+                        "required": true,
+                        "items": {
+                            "id": {
+                                "type": "number",
+                                "required": true
+                            },
+                            "name": {
+                                "type": "string",
+                                "required": true
+                            }
+                        }
+                    }
+                }
+            }
+
+### Retrieve All Tags [GET]
++ Response 200
+
+    [Tag Collection][]
+
+### Create new Tag [POST]
++ Request (application/json)
+
+        {
+            "name": "adventure"
+        }
+
++ Response 201
+
+    [Tag][]
