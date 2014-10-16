@@ -282,6 +282,83 @@ The *id* state is assigned by the UDeltio API at the moment of creation.
 ### Delete Board [DELETE]
 + Response 204
 
+
+## Board's Posts [/boards/{id}/posts]
+Collection of Posts belonging to a Board.
+
++ Parameters
+    + id (required, Number, `1`) ... ID of the Board
+
++ Model (application/json)
+
+    + Body
+
+            {
+                "posts": [
+                    {
+                        "id": 30,
+                        "user": 1,
+                        "board": 1,
+                        "creation_date": "2014-10-12T10:17:00Z",
+                        "subject": "Test Message",
+                        "content": "This is just a test message.",
+                        "important": true
+                    }
+                ]
+            }
+
+    + Schema
+    
+            {
+                "type": "object",
+                "required": true,
+                "properties": {
+                    "posts": {
+                        "type": "array",
+                        "required": true,
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "number",
+                                    "required": true
+                                },
+                                "user": {
+                                    "type": "number",
+                                    "required": true
+                                },
+                                "board": {
+                                    "type": "number",
+                                    "required": true
+                                },
+                                "creation_date": {
+                                    "type": "string",
+                                    "required": true
+                                },
+                                "subject": {
+                                    "type": "string",
+                                    "required": true
+                                },
+                                "content": {
+                                    "type": "string",
+                                    "required": true
+                                },
+                                "important": {
+                                    "type": "boolean",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+
+### List All Posts [GET]
++ Response 200
+
+    [Board's Posts][]
+
 ## Boards Collection [/boards]
 Collection of all Boards.
 
@@ -438,6 +515,83 @@ The *id* state is assigned by the UDeltio API at the moment of creation.
 
 ### Delete User [DELETE]
 + Response 204
+
+
+## User's Posts [/users/{id}/posts]
+Collection of Posts belonging to a Board.
+
++ Parameters
+    + id (required, Number, `1`) ... ID of the Board
+
++ Model (application/json)
+
+    + Body
+
+            {
+                "posts": [
+                    {
+                        "id": 30,
+                        "user": 1,
+                        "board": 1,
+                        "creation_date": "2014-10-12T10:17:00Z",
+                        "subject": "Test Message",
+                        "content": "This is just a test message.",
+                        "important": true
+                    }
+                ]
+            }
+
+    + Schema
+    
+            {
+                "type": "object",
+                "required": true,
+                "properties": {
+                    "posts": {
+                        "type": "array",
+                        "required": true,
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "number",
+                                    "required": true
+                                },
+                                "user": {
+                                    "type": "number",
+                                    "required": true
+                                },
+                                "board": {
+                                    "type": "number",
+                                    "required": true
+                                },
+                                "creation_date": {
+                                    "type": "string",
+                                    "required": true
+                                },
+                                "subject": {
+                                    "type": "string",
+                                    "required": true
+                                },
+                                "content": {
+                                    "type": "string",
+                                    "required": true
+                                },
+                                "important": {
+                                    "type": "boolean",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+
+### List All Posts [GET]
++ Response 200
+
+    [User's Posts][]
 
 
 ## User Collection [/users]
