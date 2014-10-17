@@ -11,7 +11,7 @@ class BaseSerializer(object):
 	def __init__(self):
 		super(BaseSerializer, self).__init__()
 
-	def serialize(self, obj, many=False, pretty=False):
+	def serialize(self, obj, many=False):
 		out = ""
 		if many:
 			out += "["
