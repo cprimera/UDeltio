@@ -10,6 +10,7 @@ db = SQLAlchemy(app)
 
 if __name__ == '__main__':
 	from models import *
+	from views import *
 	app.debug = True
 	app.secret_key = '***REMOVED***'
 	app.run(host='0.0.0.0', port=80)
