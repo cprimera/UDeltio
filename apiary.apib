@@ -25,7 +25,7 @@ The states *id* and *creation_date* are assigned by the UDeltio API at the momen
 
 
 + Parameters
-    + id (required, Number, `30`) ... ID of the Post
+    + id (required, Number, `1`) ... ID of the Post
 
 + Model (application/json)
 
@@ -34,7 +34,7 @@ The states *id* and *creation_date* are assigned by the UDeltio API at the momen
     + Body
 
             {
-                "id": 30,
+                "id": 1,
                 "user": 1,
                 "board": 1,
                 "creation_date": "2014-10-12T10:17:00Z",
@@ -87,11 +87,11 @@ The states *id* and *creation_date* are assigned by the UDeltio API at the momen
 
     [Post][]
 
-### Update Post [POST]
+### Update Post [PUT]
 + Request (application/json)
 
         {
-            "id": 30,
+            "id": 1,
             "user": 1,
             "board": 1,
             "creation_date": "2014-10-12T10:17:00Z",
@@ -118,7 +118,7 @@ Collection of all Posts.
 
             [
                 {
-                    "id": 30,
+                    "id": 1,
                     "user": 1,
                     "board": 1,
                     "creation_date": "2014-10-12T10:17:00Z",
@@ -208,14 +208,14 @@ The *id* state is assigned by the UDeltio API at the moment of creation.
 
 
 + Parameters
-    + id (required, Number, `10`) ... ID of the Board
+    + id (required, Number, `1`) ... ID of the Board
 
 + Model (application/json)
 
     + Body
 
             {
-                "id": 10,
+                "id": 1,
                 "name": "Rock Climbing",
                 "public": true,
                 "subscribers": [1, 2, 3],
@@ -259,11 +259,11 @@ The *id* state is assigned by the UDeltio API at the moment of creation.
     [Board][]
 
 
-### Update Board [POST]
+### Update Board [PUT]
 + Request (application/json)
 
         {
-            "id": 10,
+            "id": 1,
             "name": "Rock Climbing",
             "public": true,
             "subscribers": [1, 2, 3],
@@ -283,7 +283,7 @@ The *id* state is assigned by the UDeltio API at the moment of creation.
 Collection of Posts belonging to a Board.
 
 + Parameters
-    + id (required, Number, `10`) ... ID of the Board
+    + id (required, Number, `1`) ... ID of the Board
 
 + Model (application/json)
 
@@ -291,7 +291,7 @@ Collection of Posts belonging to a Board.
 
             [
                 {
-                    "id": 30,
+                    "id": 1,
                     "user": 1,
                     "board": 1,
                     "creation_date": "2014-10-12T10:17:00Z",
@@ -356,7 +356,7 @@ Collection of all Boards.
 
             [
                 {
-                    "id": 10,
+                    "id": 1,
                     "name": "Rock Climbing",
                     "public": true,
                     "subscribers": [1, 2, 3],
@@ -432,7 +432,7 @@ The User resource has the following attributes:
 The *id* state is assigned by the UDeltio API at the moment of creation.
 
 + Parameters
-    + id (required, Number, `30`) ... ID of the User
+    + id (required, Number, `1`) ... ID of the User
 
 + Model (application/json)
 
@@ -441,7 +441,7 @@ The *id* state is assigned by the UDeltio API at the moment of creation.
     + Body
 
             {
-                "id": 30,
+                "id": 1,
                 "username": "cprimera",
                 "first_name": "Christopher",
                 "last_name": "Primerano",
@@ -484,11 +484,11 @@ The *id* state is assigned by the UDeltio API at the moment of creation.
 
     [User][]
 
-### Update User [POST]
+### Update User [PUT]
 + Request (application/json)
         
         {
-            "id": 30,
+            "id": 1,
             "username": "cprimera",
             "first_name": "Christopher",
             "last_name": "Primerano",
@@ -507,7 +507,7 @@ The *id* state is assigned by the UDeltio API at the moment of creation.
 Collection of Posts belonging to a Board.
 
 + Parameters
-    + id (required, Number, `30`) ... ID of the Board
+    + id (required, Number, `1`) ... ID of the Board
 
 + Model (application/json)
 
@@ -515,7 +515,7 @@ Collection of Posts belonging to a Board.
 
             [
                 {
-                    "id": 30,
+                    "id": 1,
                     "user": 1,
                     "board": 1,
                     "creation_date": "2014-10-12T10:17:00Z",
@@ -581,7 +581,7 @@ Collection of all Users.
 
             [
                 {
-                    "id": 30,
+                    "id": 1,
                     "username": "cprimera",
                     "first_name": "Christopher",
                     "last_name": "Primerano",
@@ -655,7 +655,7 @@ The Tag resource has the following attributes:
 The *id* state is assigned by the UDeltio API at the moment of creation.
 
 + Parameters
-    + id (required, Number, `30`) ... ID of the Tag
+    + id (required, Number, `1`) ... ID of the Tag
 
 + Model (application/json)
 
@@ -664,7 +664,7 @@ The *id* state is assigned by the UDeltio API at the moment of creation.
     + Body
 
             {
-                "id": 30,
+                "id": 1,
                 "name": "adventure"
             }
 
@@ -704,7 +704,7 @@ Collection of all Tags.
 
             [
                 {
-                    "id": 30,
+                    "id": 1,
                     "name": "adventure"
                 }
             ]
