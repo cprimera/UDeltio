@@ -3,6 +3,39 @@ from flask import Flask
 import json
 
 
+class ApiRouter():
+
+	def __init__(self, app=None, api_version="", base_url="/api"):
+		self.api_version = api_version
+		self.base_url = base_url
+		if app is not None:
+			self.app = app
+			self.init_app(app)
+		else:
+			self.app = None
+
+	def init_app(self, app):
+		self.app = app
+
+	def route(self, route, **options):
+		if self.base_url[-1] == "/":
+			self.base_url = self.base_url[:-1]
+		if self.api_version[-1] == "/":
+			self.api_version = self.api_version[:-1]
+		r = ""
+		if self.api_version != "" and self.api_version is not None:
+			r = self.base_url + "/" + self.api_version + route
+		else:
+			r = self.base_url + route
+
+
+		def decorated_function(f):
+			endpoint = options.pop('endpoint', None)
+			self.app.add_url_rule(r, endpoint, f, **options)
+			return f
+		return decorated_function
+
+
 
 class BaseSerializer(object):
 	fields = []
