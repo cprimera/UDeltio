@@ -23,7 +23,7 @@ class TagSerializer(BaseSerializer):
 	model = Tag
 
 class SubscribersSerializer(BaseSerializer):
-	fields = ['id', 'user', 'board', 'read', 'write', 'admin', 'notify']
+	fields = ['id', 'user', 'board', 'read', 'write', 'admin', 'notify', 'favorite']
 	model = Subscribers
 
 class AssignedTagsSerializer(BaseSerializer):

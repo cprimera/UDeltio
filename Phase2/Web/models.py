@@ -147,13 +147,16 @@ class Subscribers(db.Model):
 
 	notify = db.Column(db.Boolean)
 
-	def __init__(self, board, user, read, write, admin, notify):
+	favorite = db.Column(db.Boolean)
+
+	def __init__(self, board, user, read, write, admin, notify, favorite):
 		self.board = board
 		self.user = user
 		self.read = read
 		self.write = write
 		self.admin = admin
 		self.notify = notify
+		self.favorite = favorite
 
 	def save(self, **kwargs):
 		pass
