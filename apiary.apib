@@ -114,64 +114,55 @@ Collection of all Posts.
 
     + Body
 
-            {
-                "posts": [
-                    {
-                        "id": 30,
-                        "user": 1,
-                        "board": 1,
-                        "creation_date": "2014-10-12T10:17:00Z",
-                        "subject": "Test Message",
-                        "content": "This is just a test message.",
-                        "important": true
-                    }
-                ]
-            }
+            [
+                {
+                    "id": 30,
+                    "user": 1,
+                    "board": 1,
+                    "creation_date": "2014-10-12T10:17:00Z",
+                    "subject": "Test Message",
+                    "content": "This is just a test message.",
+                    "important": true
+                }
+            ]
 
     + Schema
     
             {
-                "type": "object",
+                "type": "array",
                 "required": true,
-                "properties": {
-                    "posts": {
-                        "type": "array",
-                        "required": true,
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "id": {
-                                    "type": "number",
-                                    "required": true
-                                },
-                                "user": {
-                                    "type": "number",
-                                    "required": true
-                                },
-                                "board": {
-                                    "type": "number",
-                                    "required": true
-                                },
-                                "creation_date": {
-                                    "type": "string",
-                                    "required": true
-                                },
-                                "subject": {
-                                    "type": "string",
-                                    "required": true
-                                },
-                                "content": {
-                                    "type": "string",
-                                    "required": true
-                                },
-                                "important": {
-                                    "type": "boolean",
-                                    "required": true
-                                }
-                            }
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "number",
+                            "required": true
+                        },
+                        "user": {
+                            "type": "number",
+                            "required": true
+                        },
+                        "board": {
+                            "type": "number",
+                            "required": true
+                        },
+                        "creation_date": {
+                            "type": "string",
+                            "required": true
+                        },
+                        "subject": {
+                            "type": "string",
+                            "required": true
+                        },
+                        "content": {
+                            "type": "string",
+                            "required": true
+                        },
+                        "important": {
+                            "type": "boolean",
+                            "required": true
                         }
                     }
-
                 }
             }
 
@@ -293,64 +284,55 @@ Collection of Posts belonging to a Board.
 
     + Body
 
-            {
-                "posts": [
-                    {
-                        "id": 30,
-                        "user": 1,
-                        "board": 1,
-                        "creation_date": "2014-10-12T10:17:00Z",
-                        "subject": "Test Message",
-                        "content": "This is just a test message.",
-                        "important": true
-                    }
-                ]
-            }
+            [
+                {
+                    "id": 30,
+                    "user": 1,
+                    "board": 1,
+                    "creation_date": "2014-10-12T10:17:00Z",
+                    "subject": "Test Message",
+                    "content": "This is just a test message.",
+                    "important": true
+                }
+            ]
 
     + Schema
     
             {
-                "type": "object",
+                "type": "array",
                 "required": true,
-                "properties": {
-                    "posts": {
-                        "type": "array",
-                        "required": true,
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "id": {
-                                    "type": "number",
-                                    "required": true
-                                },
-                                "user": {
-                                    "type": "number",
-                                    "required": true
-                                },
-                                "board": {
-                                    "type": "number",
-                                    "required": true
-                                },
-                                "creation_date": {
-                                    "type": "string",
-                                    "required": true
-                                },
-                                "subject": {
-                                    "type": "string",
-                                    "required": true
-                                },
-                                "content": {
-                                    "type": "string",
-                                    "required": true
-                                },
-                                "important": {
-                                    "type": "boolean",
-                                    "required": true
-                                }
-                            }
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "number",
+                            "required": true
+                        },
+                        "user": {
+                            "type": "number",
+                            "required": true
+                        },
+                        "board": {
+                            "type": "number",
+                            "required": true
+                        },
+                        "creation_date": {
+                            "type": "string",
+                            "required": true
+                        },
+                        "subject": {
+                            "type": "string",
+                            "required": true
+                        },
+                        "content": {
+                            "type": "string",
+                            "required": true
+                        },
+                        "important": {
+                            "type": "boolean",
+                            "required": true
                         }
                     }
-
                 }
             }
 
@@ -366,49 +348,41 @@ Collection of all Boards.
 
     + Body
 
-            {
-                "boards": [
-                    {
-                        "id": 10,
-                        "name": "Rock Climbing",
-                        "public": true,
-                        "subscribers": [1, 2, 3],
-                        "tags": [12, 42, 85]
-                    }
-                ]
-            }
+            [
+                {
+                    "id": 10,
+                    "name": "Rock Climbing",
+                    "public": true,
+                    "subscribers": [1, 2, 3],
+                    "tags": [12, 42, 85]
+                }
+            ]
 
     + Schema
         
             {
-                "type": "object",
+                "type": "array",
                 "required": true,
-                "properties": {
-                    "boards": {
+                "items": {
+                    "id": {
+                        "type": "number",
+                        "required": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "required": true
+                    },
+                    "public": {
+                        "type": "boolean",
+                        "required": true
+                    },
+                    "subscribers": {
                         "type": "array",
-                        "required": true,
-                        "items": {
-                            "id": {
-                                "type": "number",
-                                "required": true
-                            },
-                            "name": {
-                                "type": "string",
-                                "required": true
-                            },
-                            "public": {
-                                "type": "boolean",
-                                "required": true
-                            },
-                            "subscribers": {
-                                "type": "array",
-                                "required": true
-                            },
-                            "tags": {
-                                "type": "array",
-                                "required": true
-                            }
-                        }
+                        "required": true
+                    },
+                    "tags": {
+                        "type": "array",
+                        "required": true
                     }
                 }
             }
@@ -527,64 +501,55 @@ Collection of Posts belonging to a Board.
 
     + Body
 
-            {
-                "posts": [
-                    {
-                        "id": 30,
-                        "user": 1,
-                        "board": 1,
-                        "creation_date": "2014-10-12T10:17:00Z",
-                        "subject": "Test Message",
-                        "content": "This is just a test message.",
-                        "important": true
-                    }
-                ]
-            }
+            [
+                {
+                    "id": 30,
+                    "user": 1,
+                    "board": 1,
+                    "creation_date": "2014-10-12T10:17:00Z",
+                    "subject": "Test Message",
+                    "content": "This is just a test message.",
+                    "important": true
+                }
+            ]
 
     + Schema
     
             {
-                "type": "object",
+                "type": "array",
                 "required": true,
-                "properties": {
-                    "posts": {
-                        "type": "array",
-                        "required": true,
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "id": {
-                                    "type": "number",
-                                    "required": true
-                                },
-                                "user": {
-                                    "type": "number",
-                                    "required": true
-                                },
-                                "board": {
-                                    "type": "number",
-                                    "required": true
-                                },
-                                "creation_date": {
-                                    "type": "string",
-                                    "required": true
-                                },
-                                "subject": {
-                                    "type": "string",
-                                    "required": true
-                                },
-                                "content": {
-                                    "type": "string",
-                                    "required": true
-                                },
-                                "important": {
-                                    "type": "boolean",
-                                    "required": true
-                                }
-                            }
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "number",
+                            "required": true
+                        },
+                        "user": {
+                            "type": "number",
+                            "required": true
+                        },
+                        "board": {
+                            "type": "number",
+                            "required": true
+                        },
+                        "creation_date": {
+                            "type": "string",
+                            "required": true
+                        },
+                        "subject": {
+                            "type": "string",
+                            "required": true
+                        },
+                        "content": {
+                            "type": "string",
+                            "required": true
+                        },
+                        "important": {
+                            "type": "boolean",
+                            "required": true
                         }
                     }
-
                 }
             }
 
@@ -601,49 +566,41 @@ Collection of all Users.
 
     + Body
 
-            {
-                "users": [
-                    {
-                        "id": 30,
-                        "username": "cprimera",
-                        "first_name": "Christopher",
-                        "last_name": "Primerano",
-                        "email": "chris.primerano@mail.utoronto.ca"
-                    }
-                ]
-            }
+            [
+                {
+                    "id": 30,
+                    "username": "cprimera",
+                    "first_name": "Christopher",
+                    "last_name": "Primerano",
+                    "email": "chris.primerano@mail.utoronto.ca"
+                }
+            ]
 
     + Schema
         
             {
-                "type": "object",
+                "type": "array",
                 "required": true,
-                "properties": {
-                    "users": {
-                        "type": "array",
-                        "required": true,
-                        "items": {
-                            "id": {
-                                "type": "number",
-                                "required": true
-                            },
-                            "username": {
-                                "type": "string",
-                                "required": true
-                            },
-                            "first_name": {
-                                "type": "string",
-                                "required": true
-                            },
-                            "last_name": {
-                                "type": "string",
-                                "required": true
-                            },
-                            "email": {
-                                "type": "string",
-                                "required": true
-                            }
-                        }
+                "items": {
+                    "id": {
+                        "type": "number",
+                        "required": true
+                    },
+                    "username": {
+                        "type": "string",
+                        "required": true
+                    },
+                    "first_name": {
+                        "type": "string",
+                        "required": true
+                    },
+                    "last_name": {
+                        "type": "string",
+                        "required": true
+                    },
+                    "email": {
+                        "type": "string",
+                        "required": true
                     }
                 }
             }
@@ -726,34 +683,26 @@ Collection of all Tags.
 
     + Body
 
-            {
-                "tags": [
-                    {
-                        "id": 30,
-                        "name": "adventure"
-                    }
-                ]
-            }
+            [
+                {
+                    "id": 30,
+                    "name": "adventure"
+                }
+            ]
 
     + Schema
         
             {
-                "type": "object",
+                "type": "array",
                 "required": true,
-                "properties": {
-                    "tags": {
-                        "type": "array",
-                        "required": true,
-                        "items": {
-                            "id": {
-                                "type": "number",
-                                "required": true
-                            },
-                            "name": {
-                                "type": "string",
-                                "required": true
-                            }
-                        }
+                "items": {
+                    "id": {
+                        "type": "number",
+                        "required": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "required": true
                     }
                 }
             }
