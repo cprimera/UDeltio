@@ -58,6 +58,16 @@ class Board(db.Model):
 	def __repr__(self):
 		return '%s' % self.name
 
+	def get_subscribers(self, field):
+		subscribers = Subscribers.query.filter_by(board=self.id).all()
+		user_ids = [x.user for x in subscribers]
+		return user_ids
+
+	def get_tags(self, field):
+		tags = AssignedTags.query.filter_by(board=self.id).all()
+		tag_ids = [x.tag for x in tags]
+		return tag_ids
+
 
 
 class Post(db.Model):
