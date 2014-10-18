@@ -28,7 +28,7 @@ class BaseSerializer(object):
 	def _serialize(self, obj):
 		out = "{"
 		if obj != None and len(self.fields) > 0:
-			for field in self.fields[:-1]:
+			for field in self.fields:
 				try:
 					func = self.__getattribute__(field)
 					if isinstance(func, BaseSerializer):
@@ -67,7 +67,7 @@ class BaseSerializer(object):
 								new_val.append(v)
 						str_val = json.dumps(new_val)
 
-				if field == self.fields[:-1]:
+				if field == self.fields[-1]:
 					out += '"' + field + '":' + str_val
 				else:
 					out += '"' + field + '":' + str_val + ', '
