@@ -50,34 +50,36 @@ The states *id* and *creation_date* are assigned by the UDeltio API at the momen
                 "required": true,
                 "properties": {
                     "id": {
-                        "type": "number",
-                        "required": true
+                        "type": "number"
                     },
                     "user": {
-                        "type": "number",
-                        "required": true
+                        "type": "number"
                     },
                     "board": {
-                        "type": "number",
-                        "required": true
+                        "type": "number"
                     },
                     "creation_date": {
-                        "type": "string",
-                        "required": true
+                        "type": "string"
                     },
                     "subject": {
-                        "type": "string",
-                        "required": true
+                        "type": "string"
                     },
                     "content": {
-                        "type": "string",
-                        "required": true
+                        "type": "string"
                     },
                     "important": {
-                        "type": "boolean",
-                        "required": true
+                        "type": "boolean"
                     }
-                }
+                },
+                "required": [
+                    "id",
+                    "user",
+                    "board",
+                    "creation_date",
+                    "subject",
+                    "content",
+                    "important"
+                ]
             }
 
 ### Get Post [GET]
@@ -130,39 +132,40 @@ Collection of all Posts.
     
             {
                 "type": "array",
-                "required": true,
                 "items": {
                     "type": "object",
                     "properties": {
                         "id": {
-                            "type": "number",
-                            "required": true
+                            "type": "number"
                         },
                         "user": {
-                            "type": "number",
-                            "required": true
+                            "type": "number"
                         },
                         "board": {
-                            "type": "number",
-                            "required": true
+                            "type": "number"
                         },
                         "creation_date": {
-                            "type": "string",
-                            "required": true
+                            "type": "string"
                         },
                         "subject": {
-                            "type": "string",
-                            "required": true
+                            "type": "string"
                         },
                         "content": {
-                            "type": "string",
-                            "required": true
+                            "type": "string"
                         },
                         "important": {
-                            "type": "boolean",
-                            "required": true
+                            "type": "boolean"
                         }
-                    }
+                    },
+                    "required": [
+                        "id",
+                        "user",
+                        "board",
+                        "creation_date",
+                        "subject",
+                        "content",
+                        "important"
+                    ]
                 }
             }
 
@@ -226,26 +229,28 @@ The *id* state is assigned by the UDeltio API at the moment of creation.
                 "required": true,
                 "properties": {
                     "id": {
-                        "type": "number",
-                        "required": true
+                        "type": "number"
                     },
                     "name": {
-                        "type": "string",
-                        "required": true
+                        "type": "string"
                     },
                     "public": {
-                        "type": "boolean",
-                        "required": true
+                        "type": "boolean"
                     },
                     "subscribers": {
-                        "type": "array",
-                        "required": true
+                        "type": "array"
                     },
                     "tags": {
-                        "type": "array",
-                        "required": true
+                        "type": "array"
                     }
-                }
+                },
+                "required": [
+                    "id",
+                    "name",
+                    "public",
+                    "subscribers",
+                    "tags"
+                ]
             }
 
 ### Get Board [GET]
@@ -278,7 +283,7 @@ The *id* state is assigned by the UDeltio API at the moment of creation.
 Collection of Posts belonging to a Board.
 
 + Parameters
-    + id (required, Number, `1`) ... ID of the Board
+    + id (required, Number, `10`) ... ID of the Board
 
 + Model (application/json)
 
@@ -300,39 +305,40 @@ Collection of Posts belonging to a Board.
     
             {
                 "type": "array",
-                "required": true,
                 "items": {
                     "type": "object",
                     "properties": {
                         "id": {
-                            "type": "number",
-                            "required": true
+                            "type": "number"
                         },
                         "user": {
-                            "type": "number",
-                            "required": true
+                            "type": "number"
                         },
                         "board": {
-                            "type": "number",
-                            "required": true
+                            "type": "number"
                         },
                         "creation_date": {
-                            "type": "string",
-                            "required": true
+                            "type": "string"
                         },
                         "subject": {
-                            "type": "string",
-                            "required": true
+                            "type": "string"
                         },
                         "content": {
-                            "type": "string",
-                            "required": true
+                            "type": "string"
                         },
                         "important": {
-                            "type": "boolean",
-                            "required": true
+                            "type": "boolean"
                         }
-                    }
+                    },
+                    "required": [
+                        "id",
+                        "user",
+                        "board",
+                        "creation_date",
+                        "subject",
+                        "content",
+                        "important"
+                    ]
                 }
             }
 
@@ -362,28 +368,32 @@ Collection of all Boards.
         
             {
                 "type": "array",
-                "required": true,
                 "items": {
-                    "id": {
-                        "type": "number",
-                        "required": true
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "number"
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "public": {
+                            "type": "boolean"
+                        },
+                        "subscribers": {
+                            "type": "array"
+                        },
+                        "tags": {
+                            "type": "array"
+                        }
                     },
-                    "name": {
-                        "type": "string",
-                        "required": true
-                    },
-                    "public": {
-                        "type": "boolean",
-                        "required": true
-                    },
-                    "subscribers": {
-                        "type": "array",
-                        "required": true
-                    },
-                    "tags": {
-                        "type": "array",
-                        "required": true
-                    }
+                    "required": [
+                        "id",
+                        "name",
+                        "public",
+                        "subscribers",
+                        "tags"
+                    ]
                 }
             }
 
@@ -445,26 +455,28 @@ The *id* state is assigned by the UDeltio API at the moment of creation.
                 "required": true,
                 "properties": {
                     "id": {
-                        "type": "number",
-                        "required": true
+                        "type": "number"
                     },
                     "username": {
-                        "type": "string",
-                        "required": true
+                        "type": "string"
                     },
                     "first_name": {
-                        "type": "string",
-                        "required": true
+                        "type": "string"
                     },
                     "last_name": {
-                        "type": "string",
-                        "required": true
+                        "type": "string"
                     },
                     "email": {
-                        "type": "string",
-                        "required": true
+                        "type": "string"
                     }
-                }
+                },
+                "required": [
+                    "id",
+                    "username",
+                    "first_name",
+                    "last_name",
+                    "email"
+                ]
             }
 
 ### Get User [GET]
@@ -495,7 +507,7 @@ The *id* state is assigned by the UDeltio API at the moment of creation.
 Collection of Posts belonging to a Board.
 
 + Parameters
-    + id (required, Number, `1`) ... ID of the Board
+    + id (required, Number, `30`) ... ID of the Board
 
 + Model (application/json)
 
@@ -517,39 +529,40 @@ Collection of Posts belonging to a Board.
     
             {
                 "type": "array",
-                "required": true,
                 "items": {
                     "type": "object",
                     "properties": {
                         "id": {
-                            "type": "number",
-                            "required": true
+                            "type": "number"
                         },
                         "user": {
-                            "type": "number",
-                            "required": true
+                            "type": "number"
                         },
                         "board": {
-                            "type": "number",
-                            "required": true
+                            "type": "number"
                         },
                         "creation_date": {
-                            "type": "string",
-                            "required": true
+                            "type": "string"
                         },
                         "subject": {
-                            "type": "string",
-                            "required": true
+                            "type": "string"
                         },
                         "content": {
-                            "type": "string",
-                            "required": true
+                            "type": "string"
                         },
                         "important": {
-                            "type": "boolean",
-                            "required": true
+                            "type": "boolean"
                         }
-                    }
+                    },
+                    "required": [
+                        "id",
+                        "user",
+                        "board",
+                        "creation_date",
+                        "subject",
+                        "content",
+                        "important"
+                    ]
                 }
             }
 
@@ -580,28 +593,32 @@ Collection of all Users.
         
             {
                 "type": "array",
-                "required": true,
                 "items": {
-                    "id": {
-                        "type": "number",
-                        "required": true
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "number"
+                        },
+                        "username": {
+                            "type": "string"
+                        },
+                        "first_name": {
+                            "type": "string"
+                        },
+                        "last_name": {
+                            "type": "string"
+                        },
+                        "email": {
+                            "type": "string"
+                        }
                     },
-                    "username": {
-                        "type": "string",
-                        "required": true
-                    },
-                    "first_name": {
-                        "type": "string",
-                        "required": true
-                    },
-                    "last_name": {
-                        "type": "string",
-                        "required": true
-                    },
-                    "email": {
-                        "type": "string",
-                        "required": true
-                    }
+                    "required": [
+                        "id",
+                        "username",
+                        "first_name",
+                        "last_name",
+                        "email"
+                    ]
                 }
             }
 
@@ -658,14 +675,16 @@ The *id* state is assigned by the UDeltio API at the moment of creation.
                 "required": true,
                 "properties": {
                     "id": {
-                        "type": "number",
-                        "required": true
+                        "type": "number"
                     },
                     "name": {
-                        "type": "string",
-                        "required": true
+                        "type": "string"
                     }
-                }
+                },
+                "required": [
+                    "id",
+                    "name"
+                ]
             }
 
 ### Get Tag [GET]
@@ -694,16 +713,20 @@ Collection of all Tags.
         
             {
                 "type": "array",
-                "required": true,
                 "items": {
-                    "id": {
-                        "type": "number",
-                        "required": true
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "number"
+                        },
+                        "name": {
+                            "type": "string"
+                        }
                     },
-                    "name": {
-                        "type": "string",
-                        "required": true
-                    }
+                    "required": [
+                        "id",
+                        "name"
+                    ]
                 }
             }
 
