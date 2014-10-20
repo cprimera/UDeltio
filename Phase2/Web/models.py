@@ -4,6 +4,8 @@ from flask.ext.sqlalchemy import SQLAlchemy
 
 from udeltio import app, db
 
+from datetime import datetime
+
 
 
 class User(db.Model):
@@ -95,6 +97,7 @@ class Post(db.Model):
 		self.subject = subject
 		self.content = content
 		self.important = important
+		self.creation_date = datetime.utcnow()
 
 	def save(self, **kwargs):
 		self.user = kwargs.get('user', self.user)
