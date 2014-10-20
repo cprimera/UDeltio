@@ -107,7 +107,7 @@ class Post(db.Model):
 		self.important = kwargs.get('important', self.important)
 
 	def __repr__(self):
-		return '%s %s' % (self.user.username, self.subject)
+		return '%s %s' % (User.query.filter_by(id=self.user).first().username, self.subject)
 
 
 
