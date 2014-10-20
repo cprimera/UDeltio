@@ -6,8 +6,8 @@ import json
 class ApiRouter():
 
 	def __init__(self, app=None, api_version="", base_url="/api"):
-		self.api_version = api_version
-		self.base_url = base_url
+		self.api_version = api_version if api_version != None else ""
+		self.base_url = base_url if base_url != None else ""
 		if app is not None:
 			self.app = app
 			self.init_app(app)
@@ -18,16 +18,11 @@ class ApiRouter():
 		self.app = app
 
 	def route(self, route, **options):
-		if self.base_url[-1] == "/":
-			self.base_url = self.base_url[:-1]
-		if self.api_version[-1] == "/":
-			self.api_version = self.api_version[:-1]
-		r = ""
-		if self.api_version != "" and self.api_version is not None:
-			r = self.base_url + "/" + self.api_version + route
-		else:
-			r = self.base_url + route
+		self.api_version =  '/' + self.api_version.replace('/', '')
+		self.base_url = '/' + self.base_url.replace('/', '')
+		route = '/' + (route if route[0] != '/' else route[1:])
 
+		r = self.base_url + (self.api_version if self.api_version != '/' else '') + route
 
 		def decorated_function(f):
 			endpoint = options.pop('endpoint', None)
