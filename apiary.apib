@@ -6,188 +6,6 @@ UDeltio API is a message board service
 # UDeltio API Root [/api/v1.0/]
 
 
-# Group Post
-
-## Post [/posts/{id}]
-A single Post object.
-
-The Post resource has the following attributes:
-
-- id
-- user
-- board
-- creation_date
-- subject
-- content
-- important
-
-The states *id* and *creation_date* are assigned by the UDeltio API at the moment of creation.
-
-
-+ Parameters
-    + id (required, Number, `1`) ... ID of the Post
-
-+ Model (application/json)
-
-    JSON representation of Post Resource.
-
-    + Body
-
-            {
-                "id": 1,
-                "user": 1,
-                "board": 1,
-                "creation_date": "2014-10-12T10:17:00Z",
-                "subject": "Test Message",
-                "content": "This is just a test message.",
-                "important": true
-            }
-    
-    + Schema
-    
-            {
-                "type": "object",
-                "required": true,
-                "properties": {
-                    "id": {
-                        "type": "number"
-                    },
-                    "user": {
-                        "type": "number"
-                    },
-                    "board": {
-                        "type": "number"
-                    },
-                    "creation_date": {
-                        "type": "string"
-                    },
-                    "subject": {
-                        "type": "string"
-                    },
-                    "content": {
-                        "type": "string"
-                    },
-                    "important": {
-                        "type": "boolean"
-                    }
-                },
-                "required": [
-                    "id",
-                    "user",
-                    "board",
-                    "creation_date",
-                    "subject",
-                    "content",
-                    "important"
-                ]
-            }
-
-### Get Post [GET]
-+ Response 200
-
-    [Post][]
-
-### Update Post [PUT]
-+ Request (application/json)
-
-        {
-            "id": 1,
-            "user": 1,
-            "board": 1,
-            "creation_date": "2014-10-12T10:17:00Z",
-            "subject": "Test Message",
-            "content": "This is just a test message.",
-            "important": true
-        }
-
-+ Response 200
-
-    [Post][]
-
-### Delete Post [DELETE]
-+ Response 204
-
-
-
-## Posts Collection [/posts]
-Collection of all Posts.
-
-+ Model (application/json)
-
-    + Body
-
-            [
-                {
-                    "id": 1,
-                    "user": 1,
-                    "board": 1,
-                    "creation_date": "2014-10-12T10:17:00Z",
-                    "subject": "Test Message",
-                    "content": "This is just a test message.",
-                    "important": true
-                }
-            ]
-
-    + Schema
-    
-            {
-                "type": "array",
-                "items": {
-                    "type": "object",
-                    "properties": {
-                        "id": {
-                            "type": "number"
-                        },
-                        "user": {
-                            "type": "number"
-                        },
-                        "board": {
-                            "type": "number"
-                        },
-                        "creation_date": {
-                            "type": "string"
-                        },
-                        "subject": {
-                            "type": "string"
-                        },
-                        "content": {
-                            "type": "string"
-                        },
-                        "important": {
-                            "type": "boolean"
-                        }
-                    },
-                    "required": [
-                        "id",
-                        "user",
-                        "board",
-                        "creation_date",
-                        "subject",
-                        "content",
-                        "important"
-                    ]
-                }
-            }
-
-### List All Posts [GET]
-+ Response 200
-
-    [Posts Collection][]
-
-### Create a Post [POST]
-+ Request (application/json)
-
-        {
-            "board": 1,
-            "subject": "Test Message",
-            "content": "This is just a test message.",
-            "important": true
-        }
-
-+ Response 201
-
-    [Post][]
-
 
 
 
@@ -640,6 +458,194 @@ Collection of all Users.
 + Response 201
 
     [User][]
+
+
+
+
+# Group Post
+
+## Post [/posts/{id}]
+A single Post object.
+
+The Post resource has the following attributes:
+
+- id
+- user
+- board
+- creation_date
+- subject
+- content
+- important
+
+The states *id* and *creation_date* are assigned by the UDeltio API at the moment of creation.
+
+
++ Parameters
+    + id (required, Number, `1`) ... ID of the Post
+
++ Model (application/json)
+
+    JSON representation of Post Resource.
+
+    + Body
+
+            {
+                "id": 1,
+                "user": 1,
+                "board": 1,
+                "creation_date": "2014-10-12T10:17:00Z",
+                "subject": "Test Message",
+                "content": "This is just a test message.",
+                "important": true
+            }
+    
+    + Schema
+    
+            {
+                "type": "object",
+                "required": true,
+                "properties": {
+                    "id": {
+                        "type": "number"
+                    },
+                    "user": {
+                        "type": "number"
+                    },
+                    "board": {
+                        "type": "number"
+                    },
+                    "creation_date": {
+                        "type": "string"
+                    },
+                    "subject": {
+                        "type": "string"
+                    },
+                    "content": {
+                        "type": "string"
+                    },
+                    "important": {
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "id",
+                    "user",
+                    "board",
+                    "creation_date",
+                    "subject",
+                    "content",
+                    "important"
+                ]
+            }
+
+### Get Post [GET]
++ Response 200
+
+    [Post][]
+
+### Update Post [PUT]
++ Request (application/json)
+
+        {
+            "id": 1,
+            "user": 1,
+            "board": 1,
+            "creation_date": "2014-10-12T10:17:00Z",
+            "subject": "Test Message",
+            "content": "This is just a test message.",
+            "important": true
+        }
+
++ Response 200
+
+    [Post][]
+
+### Delete Post [DELETE]
++ Response 204
+
+
+
+## Posts Collection [/posts]
+Collection of all Posts.
+
++ Model (application/json)
+
+    + Body
+
+            [
+                {
+                    "id": 1,
+                    "user": 1,
+                    "board": 1,
+                    "creation_date": "2014-10-12T10:17:00Z",
+                    "subject": "Test Message",
+                    "content": "This is just a test message.",
+                    "important": true
+                }
+            ]
+
+    + Schema
+    
+            {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "number"
+                        },
+                        "user": {
+                            "type": "number"
+                        },
+                        "board": {
+                            "type": "number"
+                        },
+                        "creation_date": {
+                            "type": "string"
+                        },
+                        "subject": {
+                            "type": "string"
+                        },
+                        "content": {
+                            "type": "string"
+                        },
+                        "important": {
+                            "type": "boolean"
+                        }
+                    },
+                    "required": [
+                        "id",
+                        "user",
+                        "board",
+                        "creation_date",
+                        "subject",
+                        "content",
+                        "important"
+                    ]
+                }
+            }
+
+### List All Posts [GET]
++ Response 200
+
+    [Posts Collection][]
+
+### Create a Post [POST]
++ Request (application/json)
+
+        {
+            "board": 1,
+            "subject": "Test Message",
+            "content": "This is just a test message.",
+            "important": true
+        }
+
++ Response 201
+
+    [Post][]
+
+
+
 
 
 # Group Tag
