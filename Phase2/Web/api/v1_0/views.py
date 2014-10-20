@@ -64,6 +64,10 @@ def boards(id):
 		return Response(BoardSerializer().serialize(board), mimetype='application/json')
 	elif request.method == 'DELETE':
 		board = Board.query.filter_by(id=id).first_or_404()
+		posts = Post.query.filter_by(board=board.id).all()
+		for p in posts:
+			db.session.delete(p)
+		db.session.commit()
 		db.session.delete(board)
 		db.session.commit()
 		return Response(status=204)
