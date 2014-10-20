@@ -17,6 +17,7 @@ def posts_collection():
 	elif request.method == 'POST':
 		if 'id' not in session:
 			abort(401)
+		request.json['user'] = session['id']
 		post = Post(**(request.json))
 		db.session.add(post)
 		db.session.commit()
