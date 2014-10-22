@@ -2,6 +2,7 @@ from flask import Flask, render_template
 
 from udeltio import app, db
 from api.v1_0.views import *
+from oauth2.views import *
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')

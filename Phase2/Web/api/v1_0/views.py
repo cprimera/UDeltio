@@ -5,25 +5,27 @@ from udeltio import app, db
 from models import *
 from serializers import *
 from utils import ApiRouter
+from oauth2.utils import *
 
 router = ApiRouter(app, api_version='v1.0')
 
 
 
 @router.route('/posts', methods=['GET', 'POST'])
+@oauth_required
 def posts_collection():
+	user = user_from_oauth()
 	if request.method == 'GET':
 		return Response(PostSerializer().serialize(Post.query.all(), many=True), mimetype='application/json')
 	elif request.method == 'POST':
-		if 'id' not in session:
-			abort(401)
-		request.json['user'] = session['id']
+		request.json['user'] = user.id
 		post = Post(**(request.json))
 		db.session.add(post)
 		db.session.commit()
 		return Response(PostSerializer().serialize(post), status=201, mimetype='application/json')
 
 @router.route('/posts/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+@oauth_required
 def posts(id):
 	if request.method == 'GET':
 		post = Post.query.filter_by(id=id).first_or_404()
@@ -43,6 +45,7 @@ def posts(id):
 
 
 @router.route('/boards', methods=['GET', 'POST'])
+@oauth_required
 def boards_collection():
 	if request.method == 'GET':
 		return Response(BoardSerializer().serialize(Board.query.all(), many=True), mimetype='application/json')
@@ -53,6 +56,7 @@ def boards_collection():
 		return Response(BoardSerializer().serialize(board), status=201, mimetype='application/json')
 
 @router.route('/boards/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+@oauth_required
 def boards(id):
 	if request.method == 'GET':
 		board = Board.query.filter_by(id=id).first_or_404()
@@ -73,6 +77,7 @@ def boards(id):
 		return Response(status=204)
 
 @router.route('/boards/<int:id>/posts', methods=['GET'])
+@oauth_required
 def boards_posts(id):
 	if request.method == 'GET':
 		board = Board.query.filter_by(id=id).first_or_404()
@@ -83,6 +88,7 @@ def boards_posts(id):
 
 
 @router.route('/users', methods=['GET', 'POST'])
+@oauth_required
 def users_collection():
 	if request.method == 'GET':
 		return Response(UserSerializer().serialize(User.query.all(), many=True), mimetype='application/json')
@@ -93,6 +99,7 @@ def users_collection():
 		return Response(UserSerializer().serialize(user), status=201, mimetype='application/json')
 
 @router.route('/users/<int:id>', methods=['GET', 'PUT', 'DELETE'])
+@oauth_required
 def users(id):
 	if request.method == 'GET':
 		user = User.query.filter_by(id=id).first_or_404()
@@ -109,6 +116,7 @@ def users(id):
 		return Response(status=204)
 
 @router.route('/users/<int:id>/posts', methods=['GET'])
+@oauth_required
 def users_posts(id):
 	if request.method == 'GET':
 		user = User.query.filter_by(id=id).first_or_404()
@@ -119,6 +127,7 @@ def users_posts(id):
 
 
 @router.route('/tags', methods=['GET', 'POST'])
+@oauth_required
 def tags_collection():
 	if request.method == 'GET':
 		return Response(TagSerializer().serialize(Tag.query.all(), many=True), mimetype='application/json')
@@ -129,6 +138,7 @@ def tags_collection():
 		return Response(TagSerializer().serialize(tag), status=201, mimetype='application/json')
 
 @router.route('/tags/<int:id>', methods=['GET', 'DELETE'])
+@oauth_required
 def tags(id):
 	if request.method == 'GET':
 		tag = Tag.query.filter_by(id=id).first_or_404()
