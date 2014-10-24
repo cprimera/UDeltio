@@ -2,11 +2,9 @@
 
 Our product UDeltio is a bulletin board for University communities. Deltio stands for Bulletin in Greek.
 
-UDeltio allows members of the community to start and join bulletin boards. Allowing them to post notices and get notifications for bulletin boards they're a member of.
+UDeltio allows members of the community to start and join bulletin boards, as well as post notices and get notifications for bulletin boards they are a member of. For private sub-communities inside the University, such as clubs, you can have private boards, where only the members can see the posted notices.
 
-For private sub-communities inside the University, you can have private boards. Where only the members can see the posted notices.
-
-Today there exist many applications that provide similar functionality. However, while our university is using some external products to fill this niche, some students are unhappy that they must provide their personal information to a third party.
+Today there exist many applications that provide similar functionality. However, while our university is using some external products to fill this niche, some students are unhappy that they must share their personal information to a third party.
 
 ## The API
 
@@ -20,4 +18,4 @@ UDeltio uses [SQLAlchemy](http://www.sqlalchemy.org) as an [ORM](http://en.wikip
 
 ## The Web Frontend
 
-The web frontend for UDeltio is built to work perfectly with our RESTful API. By using [Angular.js](https://angularjs.org) along with [Restangular](https://github.com/mgonto/restangular) we are able to leverage the power behind [MVC](http://en.wikipedia.org/wiki/Model–view–controller) to easily build a clean and coherent interface that is not hard tied into a model. This along with the frontend interface being completely written in Javascript allows for an offline mode to be added to it later which can be useful for mobile users.
+The web frontend for UDeltio is built to work with our RESTful API. By using [Angular.js](https://angularjs.org) along with [Restangular](https://github.com/mgonto/restangular), we are able to leverage the power behind [MVC](http://en.wikipedia.org/wiki/Model–view–controller) to easily build a clean and coherent interface that is not hard tied into a model. This, along with the frontend interface being completely written in JavaScript, allows for an offline mode to be added to it later which can be useful for mobile users.
