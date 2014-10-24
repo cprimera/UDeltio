@@ -21,3 +21,7 @@
   float: right;
   width: 75%;
 }
+
+input.board-name[type="text"] {
+  width: 50%;
+}

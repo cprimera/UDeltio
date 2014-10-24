@@ -1,15 +1,14 @@
 <div ng-controller="MenuCtrl">
 	<div class="menu">
-	<!-- TODO: place actual logo here  -->
+	<!-- TODO: place logo here  -->
 	<div>UDeltio</div>
-
+	<button ng-click="go('/create_board')">New board</button>
 	<div>
       <input id="search" type="text"/><label for="search">Search</label>
     </div>
 
     <div><a href="#/profile">Profile</a></div>
 
-    <!-- Support display of this by controller -->
     <div>Logout</div>
   </div>
 </div>
