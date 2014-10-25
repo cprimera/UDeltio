@@ -6,12 +6,37 @@ UDeltio API is a message board service
 # UDeltio API Root [/api/v1.0/]
 
 
+# Group OAuth
 
+## Access Token [/oauth2/access_token]
+
++ Model (application/json)
+    
+    + Body
+
+            {
+                "access_token": "168eac76a49d0b1bd02b6f0f4893996142135e5f"
+            }
+
+### Get Access Token [POST]
++ Request (application/json)
+
+        {
+            "client_id": "***REMOVED***",
+            "client_secret": "***REMOVED***",
+            "grant_type": "password",
+            "username": "cprimera",
+            "password": "password"
+        }
+
++ Response 200
+    
+    [Access Token][]
 
 
 # Group Board
 
-## Board [/boards/{id}]
+## Board [/api/v1.0/boards/{id}]
 A single Board object.
 
 The Board resource has the following attributes:
@@ -97,7 +122,7 @@ The *id* state is assigned by the UDeltio API at the moment of creation.
 + Response 204
 
 
-## Board's Posts [/boards/{id}/posts]
+## Board's Posts [/api/v1.0/boards/{id}/posts]
 Collection of Posts belonging to a Board.
 
 + Parameters
@@ -165,7 +190,7 @@ Collection of Posts belonging to a Board.
 
     [Board's Posts][]
 
-## Boards Collection [/boards]
+## Boards Collection [/api/v1.0/boards]
 Collection of all Boards.
 
 + Model (application/json)
@@ -236,7 +261,7 @@ Collection of all Boards.
 
 # Group User
 
-## User [/users/{id}]
+## User [/api/v1.0/users/{id}]
 A single User object.
 
 The User resource has the following attributes:
@@ -250,7 +275,7 @@ The User resource has the following attributes:
 The *id* state is assigned by the UDeltio API at the moment of creation.
 
 + Parameters
-    + id (required, Number, `1`) ... ID of the User
+    + id (required, Number, `2`) ... ID of the User
 
 + Model (application/json)
 
@@ -259,7 +284,7 @@ The *id* state is assigned by the UDeltio API at the moment of creation.
     + Body
 
             {
-                "id": 1,
+                "id": 2,
                 "username": "cprimera",
                 "first_name": "Christopher",
                 "last_name": "Primerano",
@@ -306,7 +331,7 @@ The *id* state is assigned by the UDeltio API at the moment of creation.
 + Request (application/json)
         
         {
-            "id": 1,
+            "id": 2,
             "username": "cprimera",
             "first_name": "Christopher",
             "last_name": "Primerano",
@@ -321,7 +346,7 @@ The *id* state is assigned by the UDeltio API at the moment of creation.
 + Response 204
 
 
-## User's Posts [/users/{id}/posts]
+## User's Posts [/api/v1.0/users/{id}/posts]
 Collection of Posts belonging to a Board.
 
 + Parameters
@@ -390,7 +415,7 @@ Collection of Posts belonging to a Board.
     [User's Posts][]
 
 
-## User Collection [/users]
+## User Collection [/api/v1.0/users]
 Collection of all Users.
 
 + Model (application/json)
@@ -399,7 +424,7 @@ Collection of all Users.
 
             [
                 {
-                    "id": 1,
+                    "id": 2,
                     "username": "cprimera",
                     "first_name": "Christopher",
                     "last_name": "Primerano",
@@ -464,7 +489,7 @@ Collection of all Users.
 
 # Group Post
 
-## Post [/posts/{id}]
+## Post [/api/v1.0/posts/{id}]
 A single Post object.
 
 The Post resource has the following attributes:
@@ -565,7 +590,7 @@ The states *id* and *creation_date* are assigned by the UDeltio API at the momen
 
 
 
-## Posts Collection [/posts]
+## Posts Collection [/api/v1.0/posts]
 Collection of all Posts.
 
 + Model (application/json)
@@ -650,7 +675,7 @@ Collection of all Posts.
 
 # Group Tag
 
-## Tag [/tags/{id}]
+## Tag [/api/v1.0/tags/{id}]
 A single Tag object.
 
 The Tag resource has the following attributes:
@@ -701,7 +726,7 @@ The *id* state is assigned by the UDeltio API at the moment of creation.
 ### Delete Tag [DELETE]
 + Response 204
 
-## Tag Collection [/tags]
+## Tag Collection [/api/v1.0/tags]
 Collection of all Tags.
 
 + Model (application/json)
