@@ -1,4 +1,5 @@
 #!/usr/bin/env python2
+
 from flask import Flask, g
 from flask.ext.sqlalchemy import SQLAlchemy
 from settings import DATABASE
@@ -13,4 +14,4 @@ if __name__ == '__main__':
 	from views import *
 	app.debug = True
 	app.secret_key = '***REMOVED***'
-	app.run(host='0.0.0.0', port=80)
+	app.run(host='0.0.0.0', port=8080)
