@@ -31,7 +31,7 @@ uDeltio.config(['$routeProvider', function($routeProvider, $scope) {
 }]);
 
 uDeltio.config(function(RestangularProvider) {
-    RestangularProvider.setBaseUrl('http://private-72330-***REMOVED***.apiary-mock.com');
+    RestangularProvider.setBaseUrl('http://private-df2e0-udeltio.apiary-mock.com/api/v1.0');
 })
 
 
