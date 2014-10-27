@@ -8,6 +8,10 @@ BoardCtrl.controller('BoardCtrl', ['$scope', 'Restangular', '$routeParams', func
     Restangular.one('boards', $routeParams['id']).get().then(function (board) {
         $scope.board = board;
     });
+
+    Restangular.one('boards', $routeParams['id']).getList('posts').then(function (posts) {
+        $scope.posts = posts;
+    });
 }])
 
 
