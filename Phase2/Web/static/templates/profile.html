@@ -1,6 +1,6 @@
 <ng-include src="submenu_template"></ng-include>
 <div class="content">
-	This is the partial for Profile.
-	</br>
-	<div><a href="#/board/1">Board</a></div>
+	<div ng-repeat="board in boards">
+        <a href="#/board/{{board.id}}">{{board.name}}</a>
+  </div>
 </div>
