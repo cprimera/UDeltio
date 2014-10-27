@@ -3,9 +3,13 @@
 		<div>Mute all boards</div>
 		<div>Change display name</div>
 	</div>
-    <div class="animate-switch" ng-switch-when="board">
-    	<div>Add post</div>
-    	<button ng-click="go('/board_settings')">Board Settings</button>
+    <div class="list-group" ng-switch-when="board">
+        <a href="#" class="list-group-item list-group-item-success active">
+            New Post
+        </a>
+    	<a href="" class="list-group-item" ng-click="go('/board_settings')">
+            Settings
+        </a>
     </div>
     <div class="animate-switch" ng-switch-when="create_board">
     	<div>Create board</div>
