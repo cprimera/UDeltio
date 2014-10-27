@@ -1,2 +1,5 @@
 # Compiled Python files
 *.py[cod]
+.idea/
+node_modules/
+bower_components/

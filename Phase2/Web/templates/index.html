@@ -8,12 +8,16 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="static/css/app.css">
 
-	<!-- In production use:
-	<script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
-	-->
-	<script src="static/js/angular/angular.min.js"></script>
-	<script src="static/js/angular/angular-route.min.js"></script>
+	<script src="static/bower_components/angular/angular.js"></script>
+	<script src="static/bower_components/angular-route/angular-route.js"></script>
+    <script src="static/bower_components/restangular/dist/restangular.js"></script>
+    <script src="static/bower_components/lodash/dist/lodash.js"></script>
 	<script src="static/js/app.js"></script>
+    <!-- TODO: Use Bower to compile JS files -->
+    <script src="static/js/controllers/Main.js"></script>
+    <script src="static/js/controllers/Board.js"></script>
+    <script src="static/js/controllers/Profile.js"></script>
+    <script src="static/js/controllers/Menu.js"></script>
 </head>
 <body ng-controller="MainCtrl">
 	<ng-include src="menu_template"></ng-include>
