@@ -1,15 +1,13 @@
-from flask import Flask, request, Response, abort, session
+from flask import Flask, request, Response, abort, session, Blueprint
 
 from udeltio import app, db
 
 from models import *
 from serializers import *
-from utils import ApiRouter
 from oauth2.utils import *
 
-router = ApiRouter(app, api_version='v1.0')
 
-
+router = Blueprint('apiRouter', __name__)
 
 @router.route('/posts', methods=['GET', 'POST'])
 @oauth_required
@@ -148,3 +146,6 @@ def tags(id):
 		db.session.delete(tag)
 		db.session.commit()
 		return Response(status=204)
+
+
+app.register_blueprint(router, url_prefix='/api/v1.0')
