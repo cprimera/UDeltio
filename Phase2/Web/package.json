@@ -1,17 +1,23 @@
 {
-    "version": "0.0.1",
-    "name": "udeltio",
-    "description": "UDeltio is a message board app for universities",
+	"version": "0.0.1",
+	"name": "udeltio",
+	"description": "UDeltio is a message board app for universities",
+	"repository" : {
+		"type": "git",
+		"url": "https://github.com/csc301-fall2014/Proj-UTM-Team3-repo.git"
+	},
 
 
-    "devDependencies": {
-        "bower": "^1.3.2"
-    },
+	"devDependencies": {
+		"bower": "^1.3.2",
+		"gavel": "marcelogo/gavel.js",
+		"dredd": "^0.3.14"
+	},
 
-    "scripts": {
-        "postinstall": "bower install",
+	"scripts": {
+		"postinstall": "cd node_modules/dredd && npm link ../gavel; cd ../../ && bower install",
 
-        "prestart": "npm install",
-        "start": "./udeltio.py"
-    }
+		"prestart": "npm install",
+		"start": "./udeltio.py"
+	}
 }
