@@ -4,6 +4,8 @@ from flask import Flask, g
 from flask.ext.sqlalchemy import SQLAlchemy
 from settings import DATABASE
 
+import sys
+
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE['ENGINE'] + '://' + DATABASE['USER'] + ':' + DATABASE['PASSWORD'] + '@' + DATABASE['HOST'] + '/' + DATABASE['NAME']
@@ -14,4 +16,9 @@ if __name__ == '__main__':
 	from views import *
 	app.debug = True
 	app.secret_key = '***REMOVED***'
-	app.run(host='0.0.0.0', port=8080)
+
+	port = 80
+	if len(sys.argv) > 1:
+		port = int(sys.argv[1])
+
+	app.run(host='0.0.0.0', port=port)
