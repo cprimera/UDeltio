@@ -2,6 +2,30 @@ from flask import Flask
 
 import json
 
+from functools import wraps
+
+
+def addCORS(f):
+	@addHeaders({"Access-Control-Allow-Origin": "*"})
+	def decorated_function(*args, **kwargs):
+		return f(*args, **kwargs)
+	return decorated_function
+
+def addHeaders(headers={}):
+	def inner(f):
+		@wraps(f)
+		def decorated_function(*args, **kwargs):
+			response = f(*args, **kwargs)
+			print response.headers
+			h = response.headers
+			for k,v in headers.items():
+				h[k] = v
+			print response.headers
+			return response
+		return decorated_function
+	return inner
+
+
 class BaseSerializer(object):
 	fields = []
 	model = None
