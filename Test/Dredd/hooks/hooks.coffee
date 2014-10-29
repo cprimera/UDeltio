@@ -24,6 +24,15 @@ before "Board > Board > Delete Board", (transaction) ->
 before "Board > Board's Posts > List All Posts", (transaction) ->
 	transaction.request.headers.Authorization = token
 
+before "Board > Board Favourited > Get Favourited", (transaction) ->
+	transaction.request.headers.Authorization = token
+
+before "Board > Board Favourited > Make Favourite", (transaction) ->
+	transaction.request.headers.Authorization = token
+
+before "Board > Board Favourited > Remove Favourite", (transaction) ->
+	transaction.request.headers.Authorization = token
+
 before "Board > Boards Collection > List all Boards", (transaction) ->
 	transaction.request.headers.Authorization = token
 

@@ -7,6 +7,8 @@ from serializers import *
 from oauth2.utils import *
 from utils import addHeaders, addCORS
 
+import json
+
 
 router = Blueprint('apiRouter', __name__)
 
@@ -74,7 +76,11 @@ def boards(id):
 		posts = Post.query.filter_by(board=board.id).all()
 		for p in posts:
 			db.session.delete(p)
+		subscribers = Subscribers.query.filter_by(board=id).all()
+		for s in subscribers:
+			db.session.delete(s)
 		db.session.commit()
+
 		db.session.delete(board)
 		db.session.commit()
 		return Response(status=204)
@@ -88,7 +94,29 @@ def boards_posts(id):
 		posts = Post.query.filter_by(board=board.id).all()
 		return Response(PostSerializer().serialize(posts, many=True), mimetype='application/json')
 
-
+@router.route('/boards/<int:id>/favourite', methods=['GET', 'POST', 'DELETE'])
+@oauth_required
+@addCORS
+def boards_favorite(id):
+	if request.method == 'GET':
+		subscriber = Subscribers.query.filter_by(board=id, user=user_from_oauth().id).first_or_404()
+		isFavorite = subscriber.favorite
+		return Response(json.dumps({'favourite': isFavorite}), mimetype='application/json')
+	elif request.method == 'POST':
+		subscriber = Subscribers.query.filter_by(board=id, user=user_from_oauth().id).first()
+		if subscriber is not None:
+			subscriber.favorite = True
+			db.session.commit()
+		else:
+			subscriber = Subscribers(board=id, user=user_from_oauth().id, read=False, write=False, admin=False, notify=False, favorite=True)
+			db.session.add(subscriber)
+			db.session.commit()
+		return Response(json.dumps({'favourite': True}), status=201, mimetype='application/json')
+	elif request.method == 'DELETE':
+		subscriber = Subscribers.query.filter_by(board=id, user=user_from_oauth().id).first()
+		if subscriber is not None:
+			subscriber.favorite = False
+		return Response(status=204)
 
 
 @router.route('/users', methods=['GET', 'POST'])
