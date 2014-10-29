@@ -17,11 +17,9 @@ def addHeaders(headers={}):
 		@wraps(f)
 		def decorated_function(*args, **kwargs):
 			response = f(*args, **kwargs)
-			print response.headers
 			h = response.headers
 			for k,v in headers.items():
 				h[k] = v
-			print response.headers
 			return response
 		return decorated_function
 	return inner
