@@ -12,13 +12,23 @@ BoardCtrl.controller('BoardCtrl', ['$scope', 'Restangular', '$routeParams', func
     Restangular.one('boards', $routeParams['id']).getList('posts').then(function (posts) {
         $scope.posts = posts;
     });
-}])
+
+    $scope.save_post = function() {
+    	console.log($scope.newPost);
+    	$scope.newPost.important = false;
+    	$scope.newPost.board = $scope.board.id;
+		Restangular.all('posts').post('posts', $scope.newPost).then(function(postedData) {
+		    console.log("Success");
+		})
+    };
+
+}]);
 
 
 BoardCtrl.controller('BoardSettingsCtrl', ['$scope', function($scope) {
     $scope.cname = "board_settings";
-}])
+}]);
 
 BoardCtrl.controller('CreateBoardCtrl', ['$scope', function($scope) {
     $scope.cname = "create_board";
-}])
+}]);
