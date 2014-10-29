@@ -6,6 +6,7 @@ from functools import wraps
 
 
 def addCORS(f):
+	@wraps(f)
 	@addHeaders({"Access-Control-Allow-Origin": "*"})
 	def decorated_function(*args, **kwargs):
 		return f(*args, **kwargs)
