@@ -19,6 +19,6 @@
 		"postinstall": "cd node_modules/dredd && npm link ../gavel; cd ../../ && bower install",
 
 		"prestart": "npm install",
-		"start": "./udeltio.py"
+		"start": "./udeltio.py 8080"
 	}
 }
