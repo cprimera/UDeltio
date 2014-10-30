@@ -177,6 +177,9 @@ class Subscribers(db.Model):
 	def __repr__(self):
 		return '%s %s' % (self.user.username, self.board.name)
 
+	def get_user_id(self, field):
+		return self.user
+
 	def get_username(self, field):
 		return User.query.filter_by(id=self.user).first().username
 

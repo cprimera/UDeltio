@@ -27,9 +27,10 @@ class SubscribersSerializer(BaseSerializer):
 	model = Subscribers
 
 class PermissionsSerializer(BaseSerializer):
-	fields = ['username', 'read', 'write', 'admin']
+	fields = ['id', 'username', 'read', 'write', 'admin']
 	model = Subscribers
 
+	id = 'get_user_id'
 	username = 'get_username'
 
 class AssignedTagsSerializer(BaseSerializer):
