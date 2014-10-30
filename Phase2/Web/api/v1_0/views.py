@@ -5,7 +5,6 @@ from udeltio import app, db
 from models import *
 from serializers import *
 from oauth2.utils import *
-from utils import addHeaders, addCORS
 
 import json
 
@@ -14,7 +13,6 @@ router = Blueprint('apiRouter', __name__)
 
 @router.route('/posts', methods=['GET', 'POST'])
 @oauth_required
-@addCORS
 def posts_collection():
 	user = user_from_oauth()
 	if request.method == 'GET':
@@ -28,7 +26,6 @@ def posts_collection():
 
 @router.route('/posts/<int:id>', methods=['GET', 'PUT', 'DELETE'])
 @oauth_required
-@addCORS
 def posts(id):
 	if request.method == 'GET':
 		post = Post.query.filter_by(id=id).first_or_404()
@@ -49,7 +46,6 @@ def posts(id):
 
 @router.route('/boards', methods=['GET', 'POST'])
 @oauth_required
-@addCORS
 def boards_collection():
 	if request.method == 'GET':
 		return Response(BoardSerializer().serialize(Board.query.all(), many=True), mimetype='application/json')
@@ -61,7 +57,6 @@ def boards_collection():
 
 @router.route('/boards/<int:id>', methods=['GET', 'PUT', 'DELETE'])
 @oauth_required
-@addCORS
 def boards(id):
 	if request.method == 'GET':
 		board = Board.query.filter_by(id=id).first_or_404()
@@ -87,7 +82,6 @@ def boards(id):
 
 @router.route('/boards/<int:id>/posts', methods=['GET'])
 @oauth_required
-@addCORS
 def boards_posts(id):
 	if request.method == 'GET':
 		board = Board.query.filter_by(id=id).first_or_404()
@@ -96,7 +90,6 @@ def boards_posts(id):
 
 @router.route('/boards/<int:id>/favourite', methods=['GET', 'POST', 'DELETE'])
 @oauth_required
-@addCORS
 def boards_favorite(id):
 	if request.method == 'GET':
 		subscriber = Subscribers.query.filter_by(board=id, user=user_from_oauth().id).first_or_404()
@@ -121,7 +114,6 @@ def boards_favorite(id):
 
 @router.route('/users', methods=['GET', 'POST'])
 @oauth_required
-@addCORS
 def users_collection():
 	if request.method == 'GET':
 		return Response(UserSerializer().serialize(User.query.all(), many=True), mimetype='application/json')
@@ -133,7 +125,6 @@ def users_collection():
 
 @router.route('/users/<int:id>', methods=['GET', 'PUT', 'DELETE'])
 @oauth_required
-@addCORS
 def users(id):
 	if request.method == 'GET':
 		user = User.query.filter_by(id=id).first_or_404()
@@ -151,7 +142,6 @@ def users(id):
 
 @router.route('/users/<int:id>/posts', methods=['GET'])
 @oauth_required
-@addCORS
 def users_posts(id):
 	if request.method == 'GET':
 		user = User.query.filter_by(id=id).first_or_404()
@@ -163,7 +153,6 @@ def users_posts(id):
 
 @router.route('/tags', methods=['GET', 'POST'])
 @oauth_required
-@addCORS
 def tags_collection():
 	if request.method == 'GET':
 		return Response(TagSerializer().serialize(Tag.query.all(), many=True), mimetype='application/json')
@@ -175,7 +164,6 @@ def tags_collection():
 
 @router.route('/tags/<int:id>', methods=['GET', 'DELETE'])
 @oauth_required
-@addCORS
 def tags(id):
 	if request.method == 'GET':
 		tag = Tag.query.filter_by(id=id).first_or_404()
