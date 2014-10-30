@@ -16,8 +16,7 @@ BoardCtrl.controller('BoardCtrl', ['$scope', 'Restangular', '$routeParams', func
 	$scope.save_post = function() {
 		$scope.newPost.important = false;
 		$scope.newPost.board = $scope.board.id;
-		Restangular.all('posts').post('posts', $scope.newPost).then(function(postedData) {
-			console.log("Success");
+		Restangular.one('posts').customPOST($scope.newPost, '', {}).then(function(postedData) {
 			$scope.newPost.subject = "";
 			$scope.newPost.content = "";
 		});
