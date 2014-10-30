@@ -9,9 +9,36 @@ BoardCtrl.controller('BoardCtrl', ['$scope', 'Restangular', '$routeParams', func
 		$scope.board = board;
 	});
 
-	Restangular.one('boards', $routeParams['id']).getList('posts').then(function (posts) {
-		$scope.posts = posts;
-	});
+    Restangular.one('boards', $routeParams['id']).getList('posts').then(function (posts) {
+        $scope.posts = posts;
+    });
+
+    Restangular.one('boards', $routeParams['id']).getList('users').then(function (users) {
+    	$scope.users = users;
+    });
+
+    $scope.toggle = function(user, item) {
+        user[item] = !user[item];
+    }
+
+    $scope.saveBoard = function() {
+    	$scope.board.put().then(function (data) {
+            for(var i = 0; i < $scope.users.length; i++) {
+                var u = $scope.users[i];
+                u.put();
+            }
+            $('#boardModal').modal('toggle');
+    	});
+    }
+
+    $scope.newuser = {'username': '', 'read': false, 'write': false, 'admin': false};
+
+    $scope.saveUser = function() {
+        return Restangular.one('boards', $routeParams['id']).customPOST($scope.newuser, 'users').then(function(data) {
+            $scope.users.push(data);
+            $scope.newuser = {'username': '', 'read': false, 'write': false, 'admin': false};
+        });
+    };
 
 	$scope.save_post = function() {
 		$scope.newPost.important = false;
