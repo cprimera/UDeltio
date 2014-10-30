@@ -4,9 +4,9 @@
 		<div>Change display name</div>
 	</div>
     <div class="list-group" ng-switch-when="board">
-        <a href="#" class="list-group-item list-group-item-success active">
+        <div class="list-group-item list-group-item-success active" ng-click="add_post()">
             New Post
-        </a>
+        </div>
     	<a href="" class="list-group-item" ng-click="go('/board_settings')">
             Settings
         </a>
