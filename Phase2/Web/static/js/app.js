@@ -1,3 +1,4 @@
+/*global $:false jQUery:false */
 'use strict';
 
 // Declare app level module which depends on views, and components
@@ -7,7 +8,8 @@ var uDeltio = angular.module('UDeltio', [
     'MainCtrl',
     'BoardCtrl',
     'ProfileCtrl',
-    'MenuCtrl'
+    'MenuCtrl',
+    'ngCookies'
 ]);
 
 uDeltio.config(['$routeProvider', function($routeProvider, $scope) {
@@ -30,18 +32,16 @@ uDeltio.config(['$routeProvider', function($routeProvider, $scope) {
     $routeProvider.otherwise({redirectTo: '/profile'});
 }]);
 
+uDeltio.run(function run($http, $cookies) {
+
+    var token = $cookies.token;//'7a5535ed99be264884fb41287b0a925a20f39984';
+    console.log("Cookies working");
+    console.log($cookies.token); // Using Jquery because we can't access the $cookie service in config blocks
+
+    $http.defaults.headers.common['Authorization']  = 'Bearer ' + token;
+
+});
+
 uDeltio.config(function(RestangularProvider) {
-    //RestangularProvider.setBaseUrl('http://private-df2e0-udeltio.apiary-mock.com/api/v1.0');
-
-    var token = '7a5535ed99be264884fb41287b0a925a20f39984';
-
     RestangularProvider.setBaseUrl('http://udeltio.com/api/v1.0');
-    RestangularProvider.addFullRequestInterceptor(function(element, operation, route, url, headers, params) {
-        return {
-            element: element,
-            params: params,
-            headers: _.extend(headers, {Authorization: 'Bearer ' + token})
-        };
-    });
-
 });
