@@ -214,6 +214,148 @@ Whether the Board has been favourited.
 ### Remove Favourite [DELETE]
 + Response 204
 
+## Board Permissions [/api/v1.0/boards/{id}/users]
+The User Permissions on a Board
+
++ Parameters
+    + id (required, Number, `1`) ... ID of the Board
+
++ Model (application/json)
+
+    + Body
+
+            [
+                {
+                    "id": 1,
+                    "username": "cprimera",
+                    "read": true,
+                    "write": true,
+                    "admin":true
+                }
+            ]
+
+    + Schema
+
+            {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "number"
+                        },
+                        "username": {
+                            "type": "string"
+                        },
+                        "read": {
+                            "type": "boolean"
+                        },
+                        "write": {
+                            "type": "boolean"
+                        },
+                        "admin": {
+                            "type": "boolean"
+                        }
+                    },
+                    "required": [
+                        "id",
+                        "username",
+                        "read",
+                        "write",
+                        "admin"
+                    ]
+                }
+            }
+
+### Get Permissions [GET]
++ Response 200
+
+    [Board Permissions][]
+
+### Add new Permission [POST]
++ Request (application/json)
+
+        {
+            "username": "cprimera",
+            "read": true,
+            "write": true,
+            "admin": true
+        }
+
++ Response 201
+
+    [Board Permissions][]
+
+## Board Permission User [/api/v1.0/boards/{id}/users/{userid}]
+A specific User Permissions on a Board
+
++ Parameters
+    + id (required, Number, `1`) ... ID of the Board
+    + userid (required, Number, `1`) ... ID of the User
+
++ Model (application/json)
+
+    + Body
+
+            {
+                "id": 1,
+                "username": "cprimera",
+                "read": true,
+                "write": true,
+                "admin":true
+            }
+
+    + Schema
+
+            {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "number"
+                    },
+                    "username": {
+                        "type": "string"
+                    },
+                    "read": {
+                        "type": "boolean"
+                    },
+                    "write": {
+                        "type": "boolean"
+                    },
+                    "admin": {
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "id",
+                    "username",
+                    "read",
+                    "write",
+                    "admin"
+                ]
+            }
+
+### Get Permission [GET]
++ Response 200
+
+    [Board Permission User][]
+
+### Update Permission [PUT]
++ Request (application/json)
+
+        {
+            "id": 1,
+            "username": "cprimera",
+            "read": true,
+            "write": true,
+            "admin": true
+        }
+
++ Response 200
+
+    [Board Permission User][]
+
+
 ## Board [/api/v1.0/boards/{id}]
 A single Board object.
 
