@@ -1,22 +1,26 @@
 <div class="left animate-switch-container" ng-switch on="cname">
-    <div class="animate-switch" ng-switch-when="profile">
-		<div>Mute all boards</div>
-		<div>Change display name</div>
+	<div class="list-group" ng-switch-when="profile">
+        <a class="list-group-item">
+            Mute all boards
+		</a>
+		<a class="list-group-item" ng-click="go('/board_settings')">
+            Change Display Name
+		</a>
 	</div>
-    <div class="list-group" ng-switch-when="board">
-        <a href="#" class="list-group-item list-group-item-success active">
-            New Post
-        </a>
-    	<a href="" class="list-group-item" ng-click="go('/board_settings')">
-            Settings
-        </a>
-    </div>
-    <div class="animate-switch" ng-switch-when="create_board">
-    	<div>Create board</div>
-    </div>
-    <div class="animate-switch" ng-switch-when="board_settings">
-    	<div>Save changes</div>
-        <div>Add post</div>
-    </div>
-    <div class="animate-switch" ng-switch-default></div>
+	<div class="list-group" ng-switch-when="board">
+		<a class="list-group-item new-post-btn" data-toggle="modal" data-target="#newPostModal">
+			New Post
+		</a>
+		<a href="" class="list-group-item" ng-click="go('/board_settings')">
+			Settings
+		</a>
+	</div>
+	<div class="animate-switch" ng-switch-when="create_board">
+		<div>Create board</div>
+	</div>
+	<div class="animate-switch" ng-switch-when="board_settings">
+		<div>Save changes</div>
+		<div>Add post</div>
+	</div>
+	<div class="animate-switch" ng-switch-default></div>
 </div>

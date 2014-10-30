@@ -32,7 +32,10 @@ class User(db.Model):
 		self.email = email
 
 	def save(self, **kwargs):
-		pass
+		self.username = kwargs.get('username', self.username)
+		self.first_name = kwargs.get('first_name', self.first_name)
+		self.last_name = kwargs.get('last_name', self.last_name)
+		self.email = kwargs.get('email', self.email)
 
 	def __repr__(self):
 		return '%s %s' % (self.first_name, self.last_name)
@@ -55,7 +58,8 @@ class Board(db.Model):
 		self.public = public
 
 	def save(self, **kwargs):
-		pass
+		self.name = kwargs.get('name', self.name)
+		self.public = kwargs.get('public', self.public)
 
 	def __repr__(self):
 		return '%s' % self.name
@@ -162,7 +166,13 @@ class Subscribers(db.Model):
 		self.favorite = favorite
 
 	def save(self, **kwargs):
-		pass
+		self.board = kwargs.get('board', self.board)
+		self.user = kwargs.get('user', self.user)
+		self.read = kwargs.get('read', self.read)
+		self.write = kwargs.get('write', self.write)
+		self.admin = kwargs.get('admin', self.admin)
+		self.notify = kwargs.get('notify', self.notify)
+		self.favorite = kwargs.get('favorite', self.favorite)
 
 	def __repr__(self):
 		return '%s %s' % (self.user.username, self.board.name)
@@ -185,7 +195,8 @@ class AssignedTags(db.Model):
 		self.tag = tag
 
 	def save(self, **kwargs):
-		pass
+		self.board = kwargs.get('board', self.board)
+		self.tag = kwargs.get('tag', self.tag)
 
 	def __repr__(self):
 		return '%s %s' % (self.board.name, self.tag.name)
