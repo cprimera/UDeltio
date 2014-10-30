@@ -1,7 +1,11 @@
 <div class="left animate-switch-container" ng-switch on="cname">
-	<div class="animate-switch" ng-switch-when="profile">
-		<div>Mute all boards</div>
-		<div>Change display name</div>
+	<div class="list-group" ng-switch-when="profile">
+        <a class="list-group-item">
+            Mute all boards
+		</a>
+		<a class="list-group-item" ng-click="go('/board_settings')">
+            Change Display Name
+		</a>
 	</div>
 	<div class="list-group" ng-switch-when="board">
 		<a class="list-group-item new-post-btn" data-toggle="modal" data-target="#newPostModal">
