@@ -116,7 +116,7 @@ def boards_favorite(id):
 def boards_users(id):
 	if request.method == 'GET':
 		subscribers = Subscribers.query.filter_by(board=id).all()
-		return Response(PermissionsSerializer().serialize(subscribers, many=true), mimetype='application/json')
+		return Response(PermissionsSerializer().serialize(subscribers, many=True), mimetype='application/json')
 	elif request.method == 'POST':
 		request.json['board'] = id
 		request.json['user'] = User.query.filter_by(username=request.json['username']).first_or_404
