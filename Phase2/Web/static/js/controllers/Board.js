@@ -20,6 +20,7 @@ BoardCtrl.controller('BoardCtrl', ['$scope', 'Restangular', '$routeParams', func
 		Restangular.one('posts').customPOST($scope.newPost, '', {}).then(function(postedData) {
 			$scope.newPost.subject = "";
 			$scope.newPost.content = "";
+			$scope.posts.push(postedData);
 		});
 	};
 
