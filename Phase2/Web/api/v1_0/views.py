@@ -119,7 +119,7 @@ def boards_users(id):
 		return Response(PermissionsSerializer().serialize(subscribers, many=True), mimetype='application/json')
 	elif request.method == 'POST':
 		request.json['board'] = id
-		request.json['user'] = User.query.filter_by(username=request.json['username']).first_or_404
+		request.json['user'] = User.query.filter_by(username=request.json['username']).first_or_404().id
 		request.json['notify'] = False
 		request.json['favorite'] = False
 		del request.json['username']
