@@ -6,7 +6,7 @@
         </div>
         <div class="navbar-text navbar-link"><a href="#/profile">Profile</a></div>
 
-        <button type="button" class="btn btn-danger navbar-right navbar-btn">Log out</button>
+        <button ng-show="loggedIn()" type="button" class="btn btn-danger navbar-right navbar-btn" ng-click="logOut()">Log out</button>
         <form class="navbar-form navbar-right" role="search">
             <div class="form-group">
                 <input id="search" type="text" class="form-control" placeholder="Search"/>
