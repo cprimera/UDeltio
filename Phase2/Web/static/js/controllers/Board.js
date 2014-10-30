@@ -16,6 +16,7 @@ BoardCtrl.controller('BoardCtrl', ['$scope', 'Restangular', '$routeParams', func
 	$scope.save_post = function() {
 		$scope.newPost.important = false;
 		$scope.newPost.board = $scope.board.id;
+		$("#newPostModal").modal("toggle");
 		Restangular.one('posts').customPOST($scope.newPost, '', {}).then(function(postedData) {
 			$scope.newPost.subject = "";
 			$scope.newPost.content = "";
@@ -23,9 +24,6 @@ BoardCtrl.controller('BoardCtrl', ['$scope', 'Restangular', '$routeParams', func
 	};
 
 }]);
-
-
-
 
 BoardCtrl.controller('BoardSettingsCtrl', ['$scope', function($scope) {
 	$scope.cname = "board_settings";
