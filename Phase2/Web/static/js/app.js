@@ -32,12 +32,9 @@ uDeltio.config(['$routeProvider', function($routeProvider, $scope) {
     $routeProvider.otherwise({redirectTo: '/profile'});
 }]);
 
-uDeltio.run(function run($http, $cookies) {
+uDeltio.run(function run($http, $cookieStore) {
 
-    var token = $cookies.token;//'7a5535ed99be264884fb41287b0a925a20f39984';
-    console.log("Cookies working");
-    console.log($cookies.token); // Using Jquery because we can't access the $cookie service in config blocks
-
+    var token = $cookieStore.get('token');
     $http.defaults.headers.common['Authorization']  = 'Bearer ' + token;
 
 });
