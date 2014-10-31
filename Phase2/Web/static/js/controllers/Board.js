@@ -68,6 +68,11 @@ BoardCtrl.controller('BoardCtrl', ['$scope', 'Restangular', '$routeParams', func
 		Restangular.one('boards', $routeParams['id']).customPOST($scope.isFavourited, 'favourite');
 	}
 
+	$scope.remove_fav = function() {
+		$scope.isFavourited.favourite = !$scope.isFavourited.favourite;
+		Restangular.one('boards', $routeParams['id']).customDELETE('favourite');
+	}
+
 }]);
 
 BoardCtrl.controller('BoardSettingsCtrl', ['$scope', function($scope) {
