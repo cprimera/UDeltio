@@ -92,8 +92,10 @@ def boards_posts(id):
 @oauth_required
 def boards_favorite(id):
 	if request.method == 'GET':
-		subscriber = Subscribers.query.filter_by(board=id, user=user_from_oauth().id).first_or_404()
-		isFavorite = subscriber.favorite
+		subscriber = Subscribers.query.filter_by(board=id, user=user_from_oauth().id).first()
+		isFavorite = False
+		if subscriber is not None:
+			isFavorite = subscriber.favorite
 		return Response(json.dumps({'favourite': isFavorite}), mimetype='application/json')
 	elif request.method == 'POST':
 		subscriber = Subscribers.query.filter_by(board=id, user=user_from_oauth().id).first()
@@ -109,6 +111,7 @@ def boards_favorite(id):
 		subscriber = Subscribers.query.filter_by(board=id, user=user_from_oauth().id).first()
 		if subscriber is not None:
 			subscriber.favorite = False
+			db.session.commit()
 		return Response(status=204)
 
 @router.route('/boards/<int:id>/users', methods=['GET', 'POST'])
