@@ -72,9 +72,6 @@
 
 Due to the difficulties with scheduling, the team has chosen to use ongoing Facebook conversation as a substitute for daily Scrum meetings. The list below contains highlights from the chat from each day. 
 
-*Oct 14, 2014*
-- **Release plan discussion**. Created a Google doc to sketch a release plan
-
 *Oct 15, 2014*
 - **Scheduling conflicts**: Discussing possible time options for a meeting
 - **Chris**: Started on [database schema](../DB Schema.png) and [API documentation](http://docs.udeltio.apiary.io).
