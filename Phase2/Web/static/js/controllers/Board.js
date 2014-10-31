@@ -53,11 +53,18 @@ BoardCtrl.controller('BoardCtrl', ['$scope', 'Restangular', '$routeParams', func
 	};
 
 	$scope.$on('logout', function(event) {
-        $scope.posts = null;
-        $scope.users = null;
-        $scope.board = null;
-        $scope.newPost = null;
-    });
+        	$scope.posts = null;
+        	$scope.users = null;
+        	$scope.board = null;
+        	$scope.newPost = null;
+   	});
+
+        // get favourite object from the backend 
+        Restangular.one('boards', $routeParams['id']).customGET('favourite').then(function (data) {
+                $scope.isFavourited = data; });
+        $scope.add_fav = function() {
+                $scope.isFavourited.favourite = !$scope.isFavourited.favourite;
+                Restangular.one('boards', $routeParams['id']).customPOST($scope.isFavourited, 'favourite');}
 
 }]);
 
