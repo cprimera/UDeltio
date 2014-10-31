@@ -17,7 +17,7 @@
 		<a class="list-group-item fav-btn" ng-click="add_fav()" ng-show="!(isFavourited.favourite)"> 
 			Add to favourites 
 		</a>
-		<a class="list-group-item fav-btn" ng-show="isFavourited.favourite"> 
+		<a class="list-group-item fav-btn" ng-click="remove_fav()" ng-show="isFavourited.favourite"> 
 			Remove from favourites 
 		</a>
 		<a href="" class="list-group-item" data-toggle="modal" data-target="#boardModal">
