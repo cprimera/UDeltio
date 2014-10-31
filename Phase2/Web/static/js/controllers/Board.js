@@ -9,38 +9,38 @@ BoardCtrl.controller('BoardCtrl', ['$scope', 'Restangular', '$routeParams', func
 		$scope.board = board;
 	});
 
-    Restangular.one('boards', $routeParams['id']).getList('posts').then(function (posts) {
-        $scope.posts = posts;
-    });
+	Restangular.one('boards', $routeParams['id']).getList('posts').then(function (posts) {
+		$scope.posts = posts;
+	});
 
-    Restangular.one('boards', $routeParams['id']).getList('users').then(function (users) {
-    	$scope.users = users;
-    });
-   	
-    $scope.toggle = function(user, item) {
-        user[item] = !user[item];
-    }
+	Restangular.one('boards', $routeParams['id']).getList('users').then(function (users) {
+		$scope.users = users;
+	});
+	
+	$scope.toggle = function(user, item) {
+		user[item] = !user[item];
+	}
 
-    $scope.saveBoard = function() {
-    	$scope.board.put().then(function (data) {
-            for(var i = 0; i < $scope.users.length; i++) {
-                var u = $scope.users[i];
-                u.put();
-            }
-            $('#boardModal').modal('toggle');
-    	});
-    }
+	$scope.saveBoard = function() {
+		$scope.board.put().then(function (data) {
+			for(var i = 0; i < $scope.users.length; i++) {
+				var u = $scope.users[i];
+				u.put();
+			}
+			$('#boardModal').modal('toggle');
+		});
+	}
 
-    $scope.newuser = {'username': '', 'read': false, 'write': false, 'admin': false};
+	$scope.newuser = {'username': '', 'read': false, 'write': false, 'admin': false};
 
-    $scope.saveUser = function() {
-        return Restangular.one('boards', $routeParams['id']).customPOST($scope.newuser, 'users').then(function(data) {
-            $scope.users.push(data);
-            $scope.newuser = {'username': '', 'read': false, 'write': false, 'admin': false};
-        });
-    };
+	$scope.saveUser = function() {
+		return Restangular.one('boards', $routeParams['id']).customPOST($scope.newuser, 'users').then(function(data) {
+			$scope.users.push(data);
+			$scope.newuser = {'username': '', 'read': false, 'write': false, 'admin': false};
+		});
+	};
 
-    // Create new post
+	// Create new post
 	$scope.save_post = function() {
 		$scope.newPost.important = false;
 		$scope.newPost.board = $scope.board.id;
@@ -53,18 +53,20 @@ BoardCtrl.controller('BoardCtrl', ['$scope', 'Restangular', '$routeParams', func
 	};
 
 	$scope.$on('logout', function(event) {
-        	$scope.posts = null;
-        	$scope.users = null;
-        	$scope.board = null;
-        	$scope.newPost = null;
-   	});
+			$scope.posts = null;
+			$scope.users = null;
+			$scope.board = null;
+			$scope.newPost = null;
+	});
 
-        // get favourite object from the backend 
-        Restangular.one('boards', $routeParams['id']).customGET('favourite').then(function (data) {
-                $scope.isFavourited = data; });
-        $scope.add_fav = function() {
-                $scope.isFavourited.favourite = !$scope.isFavourited.favourite;
-                Restangular.one('boards', $routeParams['id']).customPOST($scope.isFavourited, 'favourite');}
+	Restangular.one('boards', $routeParams['id']).customGET('favourite').then(function (data) {
+		$scope.isFavourited = data;
+	});
+	
+	$scope.add_fav = function() {
+		$scope.isFavourited.favourite = !$scope.isFavourited.favourite;
+		Restangular.one('boards', $routeParams['id']).customPOST($scope.isFavourited, 'favourite');
+	}
 
 }]);
 
