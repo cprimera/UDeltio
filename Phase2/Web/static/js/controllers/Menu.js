@@ -12,4 +12,8 @@ MenuCtrl.controller('MenuCtrl', ['$scope', '$rootScope', '$cookieStore', '$locat
         $rootScope.$broadcast('logout');
         $location.path( "/profile" );
     }
+
+    if(!loggedIn()) {
+        $location.path("/profile");
+    }
 }]);
