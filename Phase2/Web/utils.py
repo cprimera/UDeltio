@@ -4,6 +4,8 @@ import json
 
 from functools import wraps
 
+from datetime import datetime
+
 
 class BaseSerializer(object):
 	fields = []
@@ -54,6 +56,10 @@ class BaseSerializer(object):
 
 				if isinstance(value, list):
 					value = list(value)
+
+				if isinstance(value, datetime):
+					value = value.isoformat() + 'Z'
+					str_val = '"' + value + '"'
 
 				try:
 					if not isinstance(value, str):
