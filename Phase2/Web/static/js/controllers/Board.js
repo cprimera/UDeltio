@@ -88,11 +88,3 @@ BoardCtrl.controller('BoardCtrl', ['$scope', 'Restangular', '$routeParams', func
 	}
 
 }]);
-
-// BoardCtrl.controller('BoardSettingsCtrl', ['$scope', function($scope) {
-// 	$scope.cname = "board_settings";
-// }]);
-
-// BoardCtrl.controller('CreateBoardCtrl', ['$scope', function($scope) {
-// 	$scope.cname = "create_board";
-// }]);
