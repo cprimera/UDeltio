@@ -36,6 +36,326 @@ UDeltio API is a message board service
 
 # Group Board
 
+## Board's Posts [/api/v1.0/boards/{id}/posts]
+Collection of Posts belonging to a Board.
+
++ Parameters
+    + id (required, Number, `1`) ... ID of the Board
+
++ Model (application/json)
+
+    + Body
+
+            [
+                {
+                    "id": 1,
+                    "user": 1,
+                    "board": 1,
+                    "creation_date": "2014-10-12T10:17:00Z",
+                    "subject": "Test Message",
+                    "content": "This is just a test message.",
+                    "important": true
+                }
+            ]
+
+    + Schema
+    
+            {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "number"
+                        },
+                        "user": {
+                            "type": "number"
+                        },
+                        "board": {
+                            "type": "number"
+                        },
+                        "creation_date": {
+                            "type": "string"
+                        },
+                        "subject": {
+                            "type": "string"
+                        },
+                        "content": {
+                            "type": "string"
+                        },
+                        "important": {
+                            "type": "boolean"
+                        }
+                    },
+                    "required": [
+                        "id",
+                        "user",
+                        "board",
+                        "creation_date",
+                        "subject",
+                        "content",
+                        "important"
+                    ]
+                }
+            }
+
+### List All Posts [GET]
++ Response 200
+
+    [Board's Posts][]
+
+
+## Boards Collection [/api/v1.0/boards]
+Collection of all Boards.
+
++ Model (application/json)
+
+    + Body
+
+            [
+                {
+                    "id": 1,
+                    "name": "Rock Climbing",
+                    "public": true,
+                    "subscribers": [1, 2, 3],
+                    "tags": [12, 42, 85]
+                }
+            ]
+
+    + Schema
+        
+            {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "number"
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "public": {
+                            "type": "boolean"
+                        },
+                        "subscribers": {
+                            "type": "array"
+                        },
+                        "tags": {
+                            "type": "array"
+                        }
+                    },
+                    "required": [
+                        "id",
+                        "name",
+                        "public",
+                        "subscribers",
+                        "tags"
+                    ]
+                }
+            }
+
+### List all Boards [GET]
++ Response 200
+
+    [Boards Collection][]
+
+### Create a Board [POST]
++ Request (application/json)
+
+        {
+            "name": "Rock Climbing",
+            "public": true
+        }
+
++ Response 201
+
+    [Board][]
+
+
+## Board Favourited [/api/v1.0/boards/{id}/favourite]
+Whether the Board has been favourited.
+
++ Parameters
+    + id (required, Number, `1`) ... ID of the Board
+
++ Model (application/json)
+
+    + Body
+
+            {
+                "favourite": true
+            }
+
+    + Schema
+    
+            {
+                "type": "object",
+                "properties": {
+                    "favourite": {
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "favourite"
+                ]
+            }
+
+### Get Favourited [GET]
++ Response 200
+
+    [Board Favourited][]
+
+### Make Favourite [POST]
++ Response 201
+
+    [Board Favourited][]
+
+### Remove Favourite [DELETE]
++ Response 204
+
+## Board Permissions [/api/v1.0/boards/{id}/users]
+The User Permissions on a Board
+
++ Parameters
+    + id (required, Number, `1`) ... ID of the Board
+
++ Model (application/json)
+
+    + Body
+
+            [
+                {
+                    "id": 1,
+                    "username": "cprimera",
+                    "read": true,
+                    "write": true,
+                    "admin":true
+                }
+            ]
+
+    + Schema
+
+            {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "number"
+                        },
+                        "username": {
+                            "type": "string"
+                        },
+                        "read": {
+                            "type": "boolean"
+                        },
+                        "write": {
+                            "type": "boolean"
+                        },
+                        "admin": {
+                            "type": "boolean"
+                        }
+                    },
+                    "required": [
+                        "id",
+                        "username",
+                        "read",
+                        "write",
+                        "admin"
+                    ]
+                }
+            }
+
+### Get Permissions [GET]
++ Response 200
+
+    [Board Permissions][]
+
+### Add new Permission [POST]
++ Request (application/json)
+
+        {
+            "username": "cprimera",
+            "read": true,
+            "write": true,
+            "admin": true
+        }
+
++ Response 201
+
+    [Board Permissions][]
+
+## Board Permission User [/api/v1.0/boards/{id}/users/{userid}]
+A specific User Permissions on a Board
+
++ Parameters
+    + id (required, Number, `1`) ... ID of the Board
+    + userid (required, Number, `1`) ... ID of the User
+
++ Model (application/json)
+
+    + Body
+
+            {
+                "id": 1,
+                "username": "cprimera",
+                "read": true,
+                "write": true,
+                "admin":true
+            }
+
+    + Schema
+
+            {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "number"
+                    },
+                    "username": {
+                        "type": "string"
+                    },
+                    "read": {
+                        "type": "boolean"
+                    },
+                    "write": {
+                        "type": "boolean"
+                    },
+                    "admin": {
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "id",
+                    "username",
+                    "read",
+                    "write",
+                    "admin"
+                ]
+            }
+
+### Get Permission [GET]
++ Response 200
+
+    [Board Permission User][]
+
+### Update Permission [PUT]
++ Request (application/json)
+
+        {
+            "id": 1,
+            "username": "cprimera",
+            "read": true,
+            "write": true,
+            "admin": true
+        }
+
++ Response 200
+
+    [Board Permission User][]
+
+
 ## Board [/api/v1.0/boards/{id}]
 A single Board object.
 
@@ -120,143 +440,6 @@ The *id* state is assigned by the UDeltio API at the moment of creation.
 
 ### Delete Board [DELETE]
 + Response 204
-
-
-## Board's Posts [/api/v1.0/boards/{id}/posts]
-Collection of Posts belonging to a Board.
-
-+ Parameters
-    + id (required, Number, `1`) ... ID of the Board
-
-+ Model (application/json)
-
-    + Body
-
-            [
-                {
-                    "id": 1,
-                    "user": 1,
-                    "board": 1,
-                    "creation_date": "2014-10-12T10:17:00Z",
-                    "subject": "Test Message",
-                    "content": "This is just a test message.",
-                    "important": true
-                }
-            ]
-
-    + Schema
-    
-            {
-                "type": "array",
-                "items": {
-                    "type": "object",
-                    "properties": {
-                        "id": {
-                            "type": "number"
-                        },
-                        "user": {
-                            "type": "number"
-                        },
-                        "board": {
-                            "type": "number"
-                        },
-                        "creation_date": {
-                            "type": "string"
-                        },
-                        "subject": {
-                            "type": "string"
-                        },
-                        "content": {
-                            "type": "string"
-                        },
-                        "important": {
-                            "type": "boolean"
-                        }
-                    },
-                    "required": [
-                        "id",
-                        "user",
-                        "board",
-                        "creation_date",
-                        "subject",
-                        "content",
-                        "important"
-                    ]
-                }
-            }
-
-### List All Posts [GET]
-+ Response 200
-
-    [Board's Posts][]
-
-## Boards Collection [/api/v1.0/boards]
-Collection of all Boards.
-
-+ Model (application/json)
-
-    + Body
-
-            [
-                {
-                    "id": 1,
-                    "name": "Rock Climbing",
-                    "public": true,
-                    "subscribers": [1, 2, 3],
-                    "tags": [12, 42, 85]
-                }
-            ]
-
-    + Schema
-        
-            {
-                "type": "array",
-                "items": {
-                    "type": "object",
-                    "properties": {
-                        "id": {
-                            "type": "number"
-                        },
-                        "name": {
-                            "type": "string"
-                        },
-                        "public": {
-                            "type": "boolean"
-                        },
-                        "subscribers": {
-                            "type": "array"
-                        },
-                        "tags": {
-                            "type": "array"
-                        }
-                    },
-                    "required": [
-                        "id",
-                        "name",
-                        "public",
-                        "subscribers",
-                        "tags"
-                    ]
-                }
-            }
-
-### List all Boards [GET]
-+ Response 200
-
-    [Boards Collection][]
-
-### Create a Board [POST]
-+ Request (application/json)
-
-        {
-            "name": "Rock Climbing",
-            "public": true
-        }
-
-+ Response 201
-
-    [Board][]
-
 
 
 # Group User

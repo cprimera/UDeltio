@@ -2,34 +2,9 @@ from flask import Flask
 
 import json
 
+from functools import wraps
 
-class ApiRouter():
-
-	def __init__(self, app=None, api_version="", base_url="/api"):
-		self.api_version = api_version if api_version != None else ""
-		self.base_url = base_url if base_url != None else ""
-		if app is not None:
-			self.app = app
-			self.init_app(app)
-		else:
-			self.app = None
-
-	def init_app(self, app):
-		self.app = app
-
-	def route(self, route, **options):
-		self.api_version =  '/' + self.api_version.replace('/', '')
-		self.base_url = '/' + self.base_url.replace('/', '')
-		route = '/' + (route if route[0] != '/' else route[1:])
-
-		r = self.base_url + (self.api_version if self.api_version != '/' else '') + route
-
-		def decorated_function(f):
-			endpoint = options.pop('endpoint', None)
-			self.app.add_url_rule(r, endpoint, f, **options)
-			return f
-		return decorated_function
-
+from datetime import datetime
 
 
 class BaseSerializer(object):
@@ -81,6 +56,10 @@ class BaseSerializer(object):
 
 				if isinstance(value, list):
 					value = list(value)
+
+				if isinstance(value, datetime):
+					value = value.isoformat() + 'Z'
+					str_val = '"' + value + '"'
 
 				try:
 					if not isinstance(value, str):

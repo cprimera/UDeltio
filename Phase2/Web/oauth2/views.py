@@ -19,6 +19,10 @@ def access_token():
 		if token and token.expires > datetime.utcnow():
 			return Response(json.dumps({'access_token' : token.access_token}), mimetype='application/json')
 
+		if token:
+			db.session.delete(token)
+			db.session.commit()
+
 		expire_time = datetime.utcnow() + timedelta(days=1)
 		token = Token(
 			access_token=b2a_hex(urandom(20)),
