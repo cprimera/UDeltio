@@ -171,7 +171,7 @@ Due to the difficulties with scheduling, the team has chosen to use ongoing Face
 - **Yasith**: The [controllers are split](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/commit/bab4c869ef2eb04df0b52997eb9570dd9bde9b75) to separate files to avoid extra merges 
 - **Chris**: Set up the backend to run on udeltio.com port 80. OAuth credentials are given to the team
 - **Chris**: Gave Yasith access to the mock Apiary
-- **Yasith**: Got bootstrap working with less, addressed issue [Add bootstrap styling to Profile](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/8)(https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/commit/5e3cd37e6ca2fac14cc380e1565b83ca060dd18f)
+- **Yasith**: Got bootstrap working with less, [resolved](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/commit/5e3cd37e6ca2fac14cc380e1565b83ca060dd18f) issue [Add bootstrap styling to Profile](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/8)
 - ![Basic Frontend](basicFrontend.jpg)
 
 
