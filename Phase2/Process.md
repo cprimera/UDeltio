@@ -133,7 +133,7 @@ Due to the difficulties with scheduling, the team has chosen to use ongoing Face
 
 *Oct 20, 2014*
 - Scheduled a meeting to get the release plan approved and then to have a Sprint 1 review (Google hangout is planned)
-- 
+ 
 *Oct 21, 2014*
 - **Chris**: Added [OAuth backend implementation](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/commit/7126de3b402312d486a9a91b820d6ee89762e815)
 
