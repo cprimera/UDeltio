@@ -52,10 +52,9 @@ The meetings contain a very high-level description of what is done. All commits 
   - Basic frontend is implemented
   - Web app design is aproved by the team
   - Distirbution of responsibilities is working, the initial plan does not have to be adjusted
-  - **Sprint 1 Progression Chart**
-  ![Sprint 1 Graph](sprint1_graph.PNG)
-  - **Sprint 1 Task Duration**
-  ![Sprint 1 Task Duration](sprint1_task_duration.png)
+  - **Sprint 1 Burn Down Chart**
+  ![Sprint 1 Graph](sprint1_burndown.png)
+  - ![Sprint 1 Task Duration](sprint1_task_duration.png)
 
 - **Sprint 2 Planning**
   - Add [Restangular](https://github.com/mgonto/restangular) to the frontend 
@@ -97,11 +96,10 @@ The meetings contain a very high-level description of what is done. All commits 
   - All issues based on user stories marked for first release are implemented
   - In addition, authentication support was added to the frontend
   - Extra user story (removing board from favourites) was addressed and the respective [feature](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/26) was added
-  - **Sprint 2 Progression Chart**
-  ![Sprint 2 Graph](sprint2_graph.PNG)
+  - **Sprint 2 Burn Down Chart**
+  ![Sprint 2 Graph](sprint2_burndown.png)
   - We noticed a bit of a drop in performance during the sprint start. However, this chart includes only major issues and does not include bugs and hotfixes, where the majority of those was happening in the beginning of this sprint, as the team was getting familiar with Angular.js.
-  - **Sprint 2 Task Duration**
-  ![Sprint 2 Task Duration](sprint2_task_duration.png)
+  - ![Sprint 2 Task Duration](sprint2_task_duration.png)
   - **Conclusion**: Planning and splitting up responsibilities worked out well
 
 ### Daily Scrum Highlights
@@ -118,7 +116,7 @@ Due to the difficulties with scheduling, the team has chosen to use ongoing Face
 *Oct 17, 2014*
 - **Yuliya**: Web app design layout is done. [Sketches](../UI_layout.pdf) with descriptions of UI elements added
 - **Chris**: [Mock API](http://docs.udeltio.apiary.io/reference) is ready
-- Scheduled Google hangout with team members [Sprint 1 planning](#meeting-1)
+- Google hangout with team members: [Sprint 1 planning](#meeting-1)
 - **Discussion**: 'Mute board' and 'unsubscribe board' should be two different issues, way to resolve this on the backend. 'Subscribe to' is referred to as 'favourite' from now on 
 
 *Oct 18, 2014*
@@ -144,7 +142,7 @@ Due to the difficulties with scheduling, the team has chosen to use ongoing Face
 - **Yuliya**: [UI sketches](../UI_layout.pdf) are replaced with the proper pictures instead of drafts
 - Release plan is approved
 - Live demo is scheduled
-- Google hangout with team members [Sprint 1 review, Sprint 2 planning](#meeting-2)
+- Google hangout with team members: [Sprint 1 review, Sprint 2 planning](#meeting-2)
 - Planning the responsibilities for the next week
   - Chris continues to work on the backend
   - Yuliya continues to work on the frontend
@@ -168,11 +166,11 @@ Due to the difficulties with scheduling, the team has chosen to use ongoing Face
 
 *Oct 26, 2014*
 - **Yasith**: We need to  enable CORS from the settings. Restangular in UDeltio API is hooked up, but it's disallowing cross domain requests
-- **Yasith**: Added a [README](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/blob/develop/Phase2/Web/README.md) to help people get setup with the environment
+- **Yasith**: Added a [README](Web/README.md) to help people get setup with the environment
 - **Yasith**: The [controllers are split](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/commit/bab4c869ef2eb04df0b52997eb9570dd9bde9b75) to separate files to avoid extra merges 
 - **Chris**: Set up the backend to run on udeltio.com port 80. OAuth credentials are given to the team
 - **Chris**: Gave Yasith access to the mock Apiary
-- **Yasith**: [Got bootstrap working with less](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/commit/5e3cd37e6ca2fac14cc380e1565b83ca060dd18f)
+- **Yasith**: Got bootstrap working with less, addressed issue [Add bootstrap styling to Profile](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/8)(https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/commit/5e3cd37e6ca2fac14cc380e1565b83ca060dd18f)
 - ![Basic Frontend](basicFrontend.jpg)
 
 
@@ -184,9 +182,9 @@ Due to the difficulties with scheduling, the team has chosen to use ongoing Face
 - **Chris**: Fixed the Git tree: Because the branches depended on each other, the PRs were based off of each other.
 - **Chris**: [Added Dredd](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/commit/40829fd1d1fc1f09824fa86703ee782a0e34d114) in package.json file for node
 - **Issue**: The backend requires CORS headers added for local development
-- Planned team meeting [Sprint 2 ongoing](#meeting-3)
-- **Chris**: [/board/:id/favourite endpoint](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/commit/602b9ef355b1eefa06f1a4627f4099d4f91c3cb5) is created
-- **Yuliya and Yasith**: Went through each user story issue and [described steps](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/blob/develop/Phase2/scrumBoard.jpg) required to implement it
+- Team meeting: [Sprint 2 ongoing](#meeting-3)
+- **Chris**: Added [favourite endpoint to specific board](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/commit/602b9ef355b1eefa06f1a4627f4099d4f91c3cb5) is created
+- **Yuliya and Yasith**: Went through each user story issue and [described steps](scrumBoard.jpg) required to implement it
 - **Will and Yuliya**: Started working on documentation
 - **Leo**: Started to work on setting up a VM to work with npm
 
@@ -199,22 +197,22 @@ Due to the difficulties with scheduling, the team has chosen to use ongoing Face
 *Oct 30, 2014*
 - **Yuliya**: [Creating a new Post](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/9) is done
   - [Basic layout](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/commit/bc48a334f6d19eb939e2e187c1e127d358a4caa0)
-  - Update to new Post to [use modal](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/commit/243dbd4086b43d0f630b7a2d2d5a97a867fc87dc)
+  - Update to new Post to [use modal pop-up](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/commit/243dbd4086b43d0f630b7a2d2d5a97a867fc87dc)
 - **Yasith**: [Authentication on the frontend](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/11) is done
   - [Request interceptor](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/commit/7e3e1886c6efb1049d9036c21ecef6d2db729cc7) 
   - [Retrieving OAuth token from the backend](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/commit/05dde2f6e292419102737c3c438f1a7dc73b4d0d)
   - [Adding the login form](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/commit/da28ca4caa225f13c1e8bc3ea61a4299fa329c8e)
-- **Chris**: Implemented a [popover for the Board Settings](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/commit/1aa995ac7a085dfcc4be22e78533ed282bcfb658) for an existing board
+- **Chris**: Implemented a [modal pop-up for the Board Settings](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/commit/1aa995ac7a085dfcc4be22e78533ed282bcfb658) for an existing board
 - **Will**: [Creating a new Board](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/10) is done
   - [CreateBoard modal](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/commit/71fc71e52f9c8fa3aed0770b1a7a06fe761f2cac)
   - [Communication with the backend](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/commit/c28ea7024f1340145295c59886f261941a1cc665)
 - **Leo**: Setting up the VM is done
 - **Leo**: Started working on adding a Board to favourites
 - **Yuliya and Yasith**: Write-up is done and has to be put in markdown
-- Quick sync meeting is scheduled for Oct 30, 2014
+- **Quick sync meeting**: review remaining issues and tasks
 
 *Oct 31, 2014*
-- [Sprint 2 review](#meeting-4)
+- Team meeting: [Sprint 2 review](#meeting-4)
 - **Leo**: [Favourite Board](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/12) functionality is implemented
   - [A button and respective communication to the backend](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/commit/95dcef6ed591629acb2b368fd9231128cc3d2a6c)
 - **Chris**: [Fixed](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/commit/030ef8ee0d3e1d7cbb5a756629bf0dce6d004ebf) bug on delete Board on the backend 
