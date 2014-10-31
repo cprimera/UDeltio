@@ -11,6 +11,10 @@ BoardCtrl.controller('BoardCtrl', ['$scope', 'Restangular', '$routeParams', func
 
 	Restangular.one('boards', $routeParams['id']).getList('posts').then(function (posts) {
 		$scope.posts = posts;
+		for (var i = 0; i < $scope.posts.length; i++) {
+			var d = new Date($scope.posts[i].creation_date)
+			$scope.posts[i].creation_date = d.toLocaleString();
+		}
 	});
 
 	Restangular.one('boards', $routeParams['id']).getList('users').then(function (users) {
@@ -51,6 +55,8 @@ BoardCtrl.controller('BoardCtrl', ['$scope', 'Restangular', '$routeParams', func
 		Restangular.one('posts').customPOST($scope.newPost).then(function(postedData) {
 			$scope.newPost.subject = "";
 			$scope.newPost.content = "";
+			var d = new Date(postedData.creation_date);
+			postedData.creation_date = d.toLocaleString();
 			$scope.posts.push(postedData);
 			$("#newPostModal").modal("toggle");
 		});
