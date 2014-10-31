@@ -1,5 +1,5 @@
-## Summary of Team Meetings
-### Meeting 1
+### Summary of Team Meetings
+#### Meeting 1
 *Friday Oct 17th, Google hangout (initial planning)*
 
 - **Main Discussion**: Timeline split and responsibilities delegation 
@@ -39,7 +39,7 @@
   - Decision: A team member creating a pull request should merge it to enforce effective time management
 
 
-### Meeting 2
+#### Meeting 2
 *Tuesday Oct 28th, in person meeting at UTM*
 
 - **Main Discussion**: Splitting up existing issues on the frontend
@@ -165,12 +165,12 @@ Due to the difficulties with scheduling, the team has chosen to use ongoing Face
 - **Yuliya and Yasith**: Write-up describing our Scrum process and our product is done
 - Quick sync meeting is scheduled for Oct 30, 2014
 
-**Issues Distribution and GitHub Issue Management System**
+### Issues Distribution and GitHub Issue Management System
 
 - We had a meeting to compile all the work we need to do in order to finish the project. Then we grouped those pieces into related high level issues, and assigned issues between team members
 - When we encounter bugs that should be addressed later, we create issues for those in GitHub and assign it to the responsible people
 
-**GitHub Workflow**
+### GitHub Workflow
 
 - We exclusively used feature/* and bug/* branches when individually working on pieces of the project
 - In a branch feature/[name], name describes what the feature is very concisely, same goes for bug/[name]
@@ -178,7 +178,7 @@ Due to the difficulties with scheduling, the team has chosen to use ongoing Face
   - If we want to get feedback from someone, we push the branch to origin, and ask that person to give feedback
   - We restrained from using Pull Requests to ease some overhead
 
-**Scrum Process**
+### Scrum Process
 
 The team had to modify existing Scrum process due to the difficulties with scheduling. We decided to have two sprints, maintain ongoing chat conversation between team members to serve as a substitute for daily Scrum meetings, and have additional meetings in case of the situation that would have to be resolved quickly.
 
