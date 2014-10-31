@@ -2,7 +2,7 @@
 
 var MenuCtrl = angular.module('MenuCtrl', ['ngCookies']);
 
-MenuCtrl.controller('MenuCtrl', ['$scope', '$rootScope', '$cookieStore', function($scope, $rootScope, $cookieStore) {
+MenuCtrl.controller('MenuCtrl', ['$scope', '$rootScope', '$cookieStore', '$location', function($scope, $rootScope, $cookieStore, $location) {
     $scope.loggedIn = function() {
         return $cookieStore.get('token') != null;
     }
@@ -10,5 +10,6 @@ MenuCtrl.controller('MenuCtrl', ['$scope', '$rootScope', '$cookieStore', functio
     $scope.logOut = function() {
         $cookieStore.remove('token');
         $rootScope.$broadcast('logout');
+        $location.path( "/profile" );
     }
 }]);

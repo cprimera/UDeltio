@@ -40,16 +40,24 @@ BoardCtrl.controller('BoardCtrl', ['$scope', 'Restangular', '$routeParams', func
         });
     };
 
+    // Create new post
 	$scope.save_post = function() {
 		$scope.newPost.important = false;
 		$scope.newPost.board = $scope.board.id;
-		$("#newPostModal").modal("toggle");
-		Restangular.one('posts').customPOST($scope.newPost, '', {}).then(function(postedData) {
+		Restangular.one('posts').customPOST($scope.newPost).then(function(postedData) {
 			$scope.newPost.subject = "";
 			$scope.newPost.content = "";
 			$scope.posts.push(postedData);
+			$("#newPostModal").modal("toggle");
 		});
 	};
+
+	$scope.$on('logout', function(event) {
+        $scope.posts = null;
+        $scope.users = null;
+        $scope.board = null;
+        $scope.newPost = null;
+    });
 
 }]);
 
