@@ -6518,7 +6518,8 @@ label {
 .popover {
   color: #333333;
 }
-.new-post-btn:hover {
+.new-post-btn,
+.fav-btn:hover {
   cursor: pointer;
 }
 .add {
@@ -6544,4 +6545,7 @@ button.add {
   background: transparent;
   border: 0;
   -webkit-appearance: none;
+}
+.modal-dialog {
+  z-index: 1060;
 }

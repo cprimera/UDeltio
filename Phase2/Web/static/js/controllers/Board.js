@@ -17,10 +17,12 @@ BoardCtrl.controller('BoardCtrl', ['$scope', 'Restangular', '$routeParams', func
 		$scope.users = users;
 	});
 	
+	// Toggle user priviledges for the board
 	$scope.toggle = function(user, item) {
 		user[item] = !user[item];
 	}
 
+	// Update board 
 	$scope.saveBoard = function() {
 		$scope.board.put().then(function (data) {
 			for(var i = 0; i < $scope.users.length; i++) {
@@ -31,8 +33,10 @@ BoardCtrl.controller('BoardCtrl', ['$scope', 'Restangular', '$routeParams', func
 		});
 	}
 
+
 	$scope.newuser = {'username': '', 'read': false, 'write': false, 'admin': false};
 
+	// Add user to the board
 	$scope.saveUser = function() {
 		return Restangular.one('boards', $routeParams['id']).customPOST($scope.newuser, 'users').then(function(data) {
 			$scope.users.push(data);
@@ -52,6 +56,7 @@ BoardCtrl.controller('BoardCtrl', ['$scope', 'Restangular', '$routeParams', func
 		});
 	};
 
+	// Clean scope variables on logout
 	$scope.$on('logout', function(event) {
 			$scope.posts = null;
 			$scope.users = null;
@@ -59,15 +64,18 @@ BoardCtrl.controller('BoardCtrl', ['$scope', 'Restangular', '$routeParams', func
 			$scope.newPost = null;
 	});
 
+	// Get the board's favourite status
 	Restangular.one('boards', $routeParams['id']).customGET('favourite').then(function (data) {
 		$scope.isFavourited = data;
 	});
 	
+	// Add board to favourites
 	$scope.add_fav = function() {
 		$scope.isFavourited.favourite = !$scope.isFavourited.favourite;
 		Restangular.one('boards', $routeParams['id']).customPOST($scope.isFavourited, 'favourite');
 	}
 
+	// Unfavourite the board
 	$scope.remove_fav = function() {
 		$scope.isFavourited.favourite = !$scope.isFavourited.favourite;
 		Restangular.one('boards', $routeParams['id']).customDELETE('favourite');
@@ -75,10 +83,10 @@ BoardCtrl.controller('BoardCtrl', ['$scope', 'Restangular', '$routeParams', func
 
 }]);
 
-BoardCtrl.controller('BoardSettingsCtrl', ['$scope', function($scope) {
-	$scope.cname = "board_settings";
-}]);
+// BoardCtrl.controller('BoardSettingsCtrl', ['$scope', function($scope) {
+// 	$scope.cname = "board_settings";
+// }]);
 
-BoardCtrl.controller('CreateBoardCtrl', ['$scope', function($scope) {
-	$scope.cname = "create_board";
-}]);
+// BoardCtrl.controller('CreateBoardCtrl', ['$scope', function($scope) {
+// 	$scope.cname = "create_board";
+// }]);

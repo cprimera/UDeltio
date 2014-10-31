@@ -1,4 +1,3 @@
-/*global $:false jQUery:false */
 'use strict';
 
 // Declare app level module which depends on views, and components
