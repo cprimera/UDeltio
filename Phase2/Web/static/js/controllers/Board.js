@@ -16,7 +16,7 @@ BoardCtrl.controller('BoardCtrl', ['$scope', 'Restangular', '$routeParams', func
     Restangular.one('boards', $routeParams['id']).getList('users').then(function (users) {
     	$scope.users = users;
     });
-
+   	
     $scope.toggle = function(user, item) {
         user[item] = !user[item];
     }
