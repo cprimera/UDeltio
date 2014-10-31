@@ -51,10 +51,11 @@ The meetings contain a very high-level description of what is done. All commits 
   - Backend is implemented
   - Basic frontend is implemented
   - Web app design is aproved by the team
-  - Distirbution of responsibilities is working, the initial plan does not have to be adjusted
   - **Sprint 1 Burn Down Chart**
   ![Sprint 1 Graph](sprint1_burndown.png)
   - ![Sprint 1 Task Duration](sprint1_task_duration.png)
+  - We have noticed a bit of a drop in performance during the sprint start. This was expected, as the team was getting familiar with Angular.js.
+  - **Overall performance discussion**: Distirbution of responsibilities is working, the initial plan does not have to be adjusted
 
 - **Sprint 2 Planning**
   - Add [Restangular](https://github.com/mgonto/restangular) to the frontend 
@@ -98,9 +99,9 @@ The meetings contain a very high-level description of what is done. All commits 
   - Extra user story (removing board from favourites) was addressed and the respective [feature](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/26) was added
   - **Sprint 2 Burn Down Chart**
   ![Sprint 2 Graph](sprint2_burndown.png)
-  - We noticed a bit of a drop in performance during the sprint start. However, this chart includes only major issues and does not include bugs and hotfixes, where the majority of those was happening in the beginning of this sprint, as the team was getting familiar with Angular.js.
   - ![Sprint 2 Task Duration](sprint2_task_duration.png)
-  - **Conclusion**: Planning and splitting up responsibilities worked out well
+  - We have noticed a bit of a drop in performance during the sprint start. However, the graph focuses on feature updates and does not reflect bugs and minor commits.
+  - **Team performance discussion**: As a team, we feel that our planning and distribution of responsibilities were successful 
 
 ### Daily Scrum Highlights
 
