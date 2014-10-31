@@ -52,6 +52,11 @@ The meetings contain a very high-level description of what is done. All commits 
   - Basic frontend is implemented
   - Web app design is aproved by the team
   - Distirbution of responsibilities is working, the initial plan does not have to be adjusted
+  - **Sprint 1 Progression Chart**
+  ![Sprint 1 Graph](sprint1_graph.PNG)
+  - **Sprint 1 Task Duration**
+  ![Sprint 1 Task Duration](sprint1_task_duration.png)
+
 - **Sprint 2 Planning**
   - Add [Restangular](https://github.com/mgonto/restangular) to the frontend 
     - Once the frontend can communicate with the backend, schedule a meeting to distribute issues based on user stories between team members 
@@ -92,6 +97,11 @@ The meetings contain a very high-level description of what is done. All commits 
   - All issues based on user stories marked for first release are implemented
   - In addition, authentication support was added to the frontend
   - Extra user story (removing board from favourites) was addressed and the respective [feature](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/26) was added
+  - **Sprint 2 Progression Chart**
+  ![Sprint 2 Graph](sprint2_graph.PNG)
+  - We noticed a bit of a drop in performance during the sprint start. However, this chart includes only major issues and does not include bugs and hotfixes, where the majority of those was happening in the beginning of this sprint, as the team was getting familiar with Angular.js.
+  - **Sprint 2 Task Duration**
+  ![Sprint 2 Task Duration](sprint2_task_duration.png)
   - **Conclusion**: Planning and splitting up responsibilities worked out well
 
 ### Daily Scrum Highlights
