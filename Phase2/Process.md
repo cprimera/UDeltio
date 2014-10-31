@@ -1,6 +1,6 @@
 ### Summary of Team Meetings
 #### Meeting 1
-*Friday Oct 17th, Google hangout (initial planning)*
+*Friday Oct 17th, Google hangout (Sprint 1 planning)*
 
 - **Main Discussion**: Timeline split and responsibilities delegation 
   - **Week 1**
@@ -10,7 +10,7 @@
   - **Week 2**
     - Yuliya had to create a basic frontend
     - Frontend had to be upgraded with less and bootstrap
-    - Frontend should be able to work with the REST API (use restangular)
+    - Frontend should be able to work with the REST API (use Restangular)
     - Once the frontend and backend work, user stories had to be split between team members
   - **Week 3**
     - Implement user stories planned for the first release
@@ -28,6 +28,7 @@
   - **Frontend**
     - HTML, CSS, JavaScript
     - [Angular.js](https://angularjs.org) as the foundation for the app
+    - [Restangular](https://github.com/mgonto/restangular) to interact with REST API
     - [Bootstrap](http://getbootstrap.com) for styling
     - [Less](http://lesscss.org) to allow easy customization of Bootstrap CSS
     - **Discussion based on the choices above**
@@ -39,8 +40,20 @@
   - Decision: A team member creating a pull request should merge it to enforce effective time management
 
 
-#### Meeting 2
-*Tuesday Oct 28th, in person meeting at UTM*
+#### Meeting 2 
+*Wednesday Oct 22th, Google hangout (Sprint 1 review, Sprint 2 planning)*
+
+- **Sprint 1 Review**:
+  - Backend is implemented
+  - Basic frontend is implemented
+  - Distirbution of responsibilities is working, the initial plan does not have to be adjusted
+- **Sprint 2 Planning**
+  - Add [Restangular](https://github.com/mgonto/restangular) to the frontend 
+    - Once the frontend can communicate with the backend, schedule a meeting to distribute issues based on user stories between team members 
+  - Add [Bootstrap](http://getbootstrap.com) and [Less](http://lesscss.org) to the frontend
+
+#### Meeting 3
+*Tuesday Oct 28th, in person meeting at UTM (Sprint 2 ongoing)*
 
 - **Main Discussion**: Splitting up existing issues on the frontend
   - **Results**: The team created a diagram describing existing issues and steps to resolve each issue. Each issue was then examined closely in terms of UI to minimize potential misunderstandings. All issues were assigned.
@@ -67,6 +80,14 @@
   - **Arguments against it**: We should follow a cleaner approach and retrieve it from something more general, like current user endpoint as we will need it anyways 
   - **Decision**: Time constraint is a serious issue. We will create the endpoint now and update it later
 
+#### Meeting 4
+*Friday Oct 31th, in person meeting at UTM (Sprint 2 review)*
+
+- **Sprint 2 Review**:
+  - All issues based on user stories marked for first release are implemented
+  - In addition, authentication support was added to the frontend
+  - Extra user story (removing board from favourites) was addressed and the respective feature was added
+  - **Conclusion**: Planning and splitting up responsibilities worked out well
 
 ### Daily Scrum Highlights
 
@@ -82,7 +103,7 @@ Due to the difficulties with scheduling, the team has chosen to use ongoing Face
 *Oct 17, 2014*
 - **Yuliya**: Web app design layout is done. [Sketches](../UI_layout.pdf) with descriptions of UI elements added
 - **Chris**: Mock API is ready
-- Scheduled Google hangout with team members [Meeting 1](#meeting-1)
+- Scheduled Google hangout with team members [Sprint 1 planning](#meeting-1)
 - **Discussion**: 'Mute board' and 'unsubscribe board' should be two different issues, way to resolve this on the backend. 'Subscribe to' is referred to as 'favourite' from now on 
 
 *Oct 18, 2014*
@@ -94,13 +115,14 @@ Due to the difficulties with scheduling, the team has chosen to use ongoing Face
   - We shall not allow deleting users from the app
 
 *Oct 20, 2014*
-- Scheduled a meeting to get the release plan approved (Google hangout is planned)
+- Scheduled a meeting to get the release plan approved and then to have a Sprint 1 review (Google hangout is planned)
 
 *Oct 22, 2014*
 - **Yuliya**: A basic web frontend is created and pushed (web frontend branch)
 - **Yuliya**: [UI sketches](../UI_layout.pdf) are replaced with the proper pictures instead of sketches
 - Release plan is approved
 - Live demo is scheduled
+- Google hangout with team members [Sprint 1 review, Sprint 2 planning](#meeting-2)
 - Planning the responsibilities for the next week
   - Chris continues to work on the backend
   - Yuliya continues to work on the frontend
@@ -139,7 +161,7 @@ Due to the difficulties with scheduling, the team has chosen to use ongoing Face
 - **Chris**: Fixed the Git tree: Because the branches depended on each other, the PRs were based off of each other.
 - **Chris**: Added dredd in package.json file for node
 - **Issue**: The backend requires CORS headers added to it for local development
-- Scrum meeting
+- Planned team meeting [Sprint 2 ongoing](#meeting-3)
 - **Chris**: /board/:id/favourite endpoint is created
 - **Yuliya and Yasith**: Each user story issue now consists of steps required to implement it
 - **Will**: Added a write-up for the first scrum meeting
@@ -162,6 +184,13 @@ Due to the difficulties with scheduling, the team has chosen to use ongoing Face
 - **Yuliya and Yasith**: Write-up describing our Scrum process and our product is done
 - Quick sync meeting is scheduled for Oct 30, 2014
 
+*Oct 31, 2014*
+- [Sprint 2 review](#meeting-4)
+- **Leo**: Favourite Board functionality is implemented
+- **Chris**: Fixed bug on delete Board on the backend
+- **Yuliya**: Added unfavourite Board functionality
+- **Yuliya**: Code cleanup
+
 ### Issues Distribution and GitHub Issue Management System
 
 - We had a meeting to compile all the work we need to do in order to finish the project. Then we grouped those pieces into related high level issues, and assigned issues between team members
@@ -174,6 +203,7 @@ Due to the difficulties with scheduling, the team has chosen to use ongoing Face
 - After working on a feature or a bug, we do a non fast forward merge into develop and push to origin
   - If we want to get feedback from someone, we push the branch to origin, and ask that person to give feedback
   - We restrained from using Pull Requests to ease some overhead
+- We used cleanup/* branches for code cleanups
 
 ### Scrum Process
 
