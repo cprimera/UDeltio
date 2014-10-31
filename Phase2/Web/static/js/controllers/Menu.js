@@ -13,7 +13,7 @@ MenuCtrl.controller('MenuCtrl', ['$scope', '$rootScope', '$cookieStore', '$locat
         $location.path( "/profile" );
     }
 
-    if(!loggedIn()) {
+    if(!$scope.loggedIn()) {
         $location.path("/profile");
     }
 }]);
