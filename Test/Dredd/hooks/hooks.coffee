@@ -87,6 +87,29 @@ before "Tag > Tag Collection > Retrieve All Tags", (transaction) ->
 before "Tag > Tag Collection > Create new Tag", (transaction) ->
 	transaction.request.headers.Authorization = token
 
+before "Board > Board Permissions > Get Permissions", (transaction) ->
+	transaction.request.headers.Authorization = token
+	
+before "Board > Board Permissions > Add new Permission", (transaction) ->
+	transaction.request.headers.Authorization = token
+	
+before "Board > Board Permission User > Get Permission", (transaction) ->
+	transaction.request.headers.Authorization = token
+	
+before "Board > Board Permission User > Update Permission", (transaction) ->
+	transaction.request.headers.Authorization = token
+	
+before "User > Current User > Get Current User", (transaction) ->
+	transaction.request.headers.Authorization = token
+	
+before "User > Current User Favourites > Get User Favourites", (transaction) ->
+	transaction.request.headers.Authorization = token
+	
+before "User > Current User Notifications > Get User Notifications", (transaction) ->
+	transaction.request.headers.Authorization = token
+	
+
+
 afterAll (done) ->
 	reset = spawn './scripts/reset_db.sh'
 	reset.on 'close', (code) ->
