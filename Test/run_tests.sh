@@ -2,13 +2,13 @@
 
 PID=$$
 
-cd ../Phase2/Web
+cd ../Phase3/Web
 ./udeltio.py 8080 1>&2 2>/dev/null &
 
 sleep 1
 
 cd ../../Test/Dredd
-../../Phase2/Web/node_modules/dredd/bin/dredd ../../apiary.apib http://localhost:8080 --hookfiles hooks/* --sorted --reporter markdown --output ../dredd_report.md >/dev/null
+../../Phase3/Web/node_modules/dredd/bin/dredd ../../apiary.apib http://localhost:8080 --hookfiles hooks/* --sorted --reporter markdown --output ../dredd_report.md >/dev/null
 RET=$?
 
 sleep 1
