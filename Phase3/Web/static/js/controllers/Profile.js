@@ -33,6 +33,10 @@ ProfileCtrl.controller('ProfileCtrl', ['$scope', '$rootScope', 'Restangular', '$
 						$cookieStore.put('token', response.access_token);
 						$http.defaults.headers.common['Authorization']  = 'Bearer ' + response.access_token;
 						getBoards();
+
+						Restangular.one('me').get().then(function (user) {
+								$scope.current_user = user;
+						});
 				});
 		};
 
