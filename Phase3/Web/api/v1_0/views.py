@@ -11,6 +11,36 @@ import json
 
 router = Blueprint('apiRouter', __name__)
 
+@router.route('/me', methods=['GET'])
+@oauth_required
+def current_user():
+	user = user_from_oauth()
+	if request.method == 'GET':
+		return Response(UserSerializer().serialize(user), mimetype='application/json')
+
+@router.route('/me/favourites', methods=['GET'])
+@oauth_required
+def current_user_favourites():
+	user = user_from_oauth()
+	if request.method == 'GET':
+		perms = Subscribers.query.filter_by(user=user.id, favorite=True).all()
+		boards = []
+		for p in perms:
+			boards.append(Board.query.filter_by(id=p.board).first())
+		return Response(BoardSerializer().serialize(boards, many=True), mimetype='application/json')
+
+@router.route('/me/notify', methods=['GET'])
+@oauth_required
+def current_user_notify():
+	user = user_from_oauth()
+	if request.method == 'GET':
+		perms = Subscribers.query.filter_by(user=user.id, notify=True).all()
+		boards = []
+		for p in perms:
+			boards.append(Board.query.filter_by(id=p.board).first())
+		return Response(BoardSerializer().serialize(boards, many=True), mimetype='application/json')
+
+
 @router.route('/posts', methods=['GET', 'POST'])
 @oauth_required
 def posts_collection():
