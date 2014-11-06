@@ -1,0 +1,17 @@
+<nav class="navbar navbar-default" role="navigation" ng-controller="MenuCtrl">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">UDeltio</a>
+        </div>
+        <div class="navbar-text navbar-link"><a href="#/profile">Profile</a></div>
+
+        <button ng-hide="loggedIn()" type="button" class="btn btn-primary navbar-right navbar-btn" data-toggle="modal" data-target="#myModal">Log In</button>
+        <button ng-show="loggedIn()" type="button" class="btn btn-danger navbar-right navbar-btn" ng-click="logOut()">Log Out</button>
+        <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+                <input id="search" type="text" class="form-control" placeholder="Search"/>
+            </div>
+            <button class="btn btn-default">Search</button>
+        </form>
+    </div>
+</nav>
