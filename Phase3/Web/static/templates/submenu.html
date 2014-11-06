@@ -11,7 +11,7 @@
 		</a>
 	</div>
 	<div class="list-group" ng-switch-when="board" ng-switch on="cname">
-		<a class="list-group-item new-post-btn" data-toggle="modal" data-target="#newPostModal">
+		<a class="list-group-item new-post-btn" data-toggle="modal" data-target="#postModal" ng-click="clearPost()">
 			New Post
 		</a>
 		<a class="list-group-item fav-btn" ng-click="add_fav()" ng-show="!(isFavourited.favourite)"> 

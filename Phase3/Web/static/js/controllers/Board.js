@@ -48,18 +48,39 @@ BoardCtrl.controller('BoardCtrl', ['$scope', 'Restangular', '$routeParams', func
 		});
 	};
 
-	// Create new post
+
+	$scope.postDetails = {'important': false, 'board': $routeParams['id'], 'subject': "", 'content': ""};
+
+	// Create or update post
 	$scope.save_post = function() {
-		$scope.newPost.important = false;
-		$scope.newPost.board = $scope.board.id;
-		Restangular.one('posts').customPOST($scope.newPost).then(function(postedData) {
-			$scope.newPost.subject = "";
-			$scope.newPost.content = "";
-			var d = new Date(postedData.creation_date);
-			postedData.creation_date = d.toLocaleString();
-			$scope.posts.push(postedData);
-			$("#newPostModal").modal("toggle");
-		});
+		if ($scope.newPost) {
+			Restangular.one('posts').customPOST($scope.postDetails).then(function(postedData) {
+				$scope.clearPost();
+				var d = new Date(postedData.creation_date);
+				postedData.creation_date = d.toLocaleString();
+				$scope.posts.push(postedData);
+			});
+		} else {
+			$scope.editedPost.subject = $scope.postDetails.subject;
+			$scope.editedPost.content = $scope.postDetails.content;
+
+			Restangular.one('posts', $scope.editedPost.id).customPUT($scope.editedPost).then(function(postedData) {
+				$scope.clearPost();
+			});
+		}
+	};
+
+	$scope.clearPost = function() {
+		$scope.newPost = true;
+		$scope.postDetails.subject = "";
+		$scope.postDetails.content = "";
+	}
+
+	$scope.updatePostDetails = function(post) {
+		$scope.newPost = false;
+		$scope.editedPost = post;
+		$scope.postDetails.subject = post.subject;
+		$scope.postDetails.content = post.content;
 	};
 
 	// Clean scope variables on logout
@@ -68,6 +89,7 @@ BoardCtrl.controller('BoardCtrl', ['$scope', 'Restangular', '$routeParams', func
 			$scope.users = null;
 			$scope.board = null;
 			$scope.newPost = null;
+			$scope.postDetails = null;
 	});
 
 	// Get the board's favourite status
