@@ -284,7 +284,7 @@ The User Permissions on a Board
 
 + Response 201
 
-    [Board Permissions][]
+    [Board Permission User][]
 
 ## Board Permission User [/api/v1.0/boards/{id}/users/{userid}]
 A specific User Permissions on a Board
@@ -443,6 +443,30 @@ The *id* state is assigned by the UDeltio API at the moment of creation.
 
 
 # Group User
+
+## Current User [/api/v1.0/me]
+The current User object.
+
+### Get Current User [GET]
++ Response 200
+
+    [User][]
+
+## Current User Favourites [/api/v1.0/me/favourites]
+The current User's favourited boards
+
+### Get User Favourites [GET]
++ Response 200
+
+    [Boards Collection][]
+
+## Current User Notifications [/api/v1.0/me/notify]
+The boards that the current User will be notified for
+
+### Get User Notifications [GET]
++ Response 200
+
+    [Boards Collection][]
 
 ## User [/api/v1.0/users/{id}]
 A single User object.
