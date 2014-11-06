@@ -20,6 +20,10 @@ BoardCtrl.controller('BoardCtrl', ['$scope', 'Restangular', '$routeParams', func
 	Restangular.one('boards', $routeParams['id']).getList('users').then(function (users) {
 		$scope.users = users;
 	});
+
+	Restangular.one('me').get().then(function (user) {
+		$scope.current_user = user;
+	});
 	
 	// Toggle user priviledges for the board
 	$scope.toggle = function(user, item) {

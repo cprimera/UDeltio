@@ -16,8 +16,10 @@
                             <h3 class="panel-title">{{post.subject}}</h3>
                             <div class="label">{{post.creation_date}}</div>
                         </div>
-                        <div class="pull-right">
-                            <button type="button" class="btn btn-default" ng-click="updatePostDetails(post)" data-toggle="modal" data-target="#postModal">Edit Post</button>
+                        <div class="pull-right" ng-if="current_user.id == post.user">
+                            <button type="button" class="btn btn-default" ng-click="updatePostDetails(post)" data-toggle="modal" data-target="#postModal">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </button>
                         </div>
                     </div>
                     <div class="panel-body">
