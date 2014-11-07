@@ -3,7 +3,7 @@
 var BoardCtrl = angular.module('BoardCtrl', ['restangular']);
 
 
-BoardCtrl.controller('BoardCtrl', ['$scope', 'Restangular', '$routeParams', function($scope, Restangular, $routeParams) {
+BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$routeParams', function($scope, $rootScope, Restangular, $routeParams) {
 	$scope.cname = "board";
 	Restangular.one('boards', $routeParams['id']).get().then(function (board) {
 		$scope.board = board;
@@ -48,18 +48,38 @@ BoardCtrl.controller('BoardCtrl', ['$scope', 'Restangular', '$routeParams', func
 		});
 	};
 
-	// Create new post
-	$scope.save_post = function() {
-		$scope.newPost.important = false;
-		$scope.newPost.board = $scope.board.id;
-		Restangular.one('posts').customPOST($scope.newPost).then(function(postedData) {
-			$scope.newPost.subject = "";
-			$scope.newPost.content = "";
-			var d = new Date(postedData.creation_date);
-			postedData.creation_date = d.toLocaleString();
-			$scope.posts.push(postedData);
-			$("#newPostModal").modal("toggle");
-		});
+
+	$scope.postDetails = {'important': false, 'board': $routeParams['id'], 'subject': "", 'content': ""};
+
+	// Create or update post
+	$scope.savePost = function() {
+		if ($scope.newPost) {
+			Restangular.one('posts').customPOST($scope.postDetails).then(function(postedData) {
+				$scope.clearPost();
+				var d = new Date(postedData.creation_date);
+				postedData.creation_date = d.toLocaleString();
+				$scope.posts.push(postedData);
+			});
+		} else {
+			$scope.editedPost.subject = $scope.postDetails.subject;
+			$scope.editedPost.content = $scope.postDetails.content;
+
+			Restangular.one('posts', $scope.editedPost.id).customPUT($scope.editedPost).then(function(postedData) {
+				$scope.clearPost();
+			});
+		}
+	};
+
+	$scope.clearPost = function() {
+		$scope.newPost = true;
+		$scope.postDetails = {'important': false, 'board': $routeParams['id'], 'subject': "", 'content': ""};
+	}
+
+	$scope.updatePostDetails = function(post) {
+		$scope.newPost = false;
+		$scope.editedPost = post;
+		$scope.postDetails.subject = post.subject;
+		$scope.postDetails.content = post.content;
 	};
 
 	// Clean scope variables on logout
@@ -68,6 +88,7 @@ BoardCtrl.controller('BoardCtrl', ['$scope', 'Restangular', '$routeParams', func
 			$scope.users = null;
 			$scope.board = null;
 			$scope.newPost = null;
+			$scope.postDetails = null;
 	});
 
 	// Get the board's favourite status
@@ -76,13 +97,13 @@ BoardCtrl.controller('BoardCtrl', ['$scope', 'Restangular', '$routeParams', func
 	});
 	
 	// Add board to favourites
-	$scope.add_fav = function() {
+	$scope.addFavourite = function() {
 		$scope.isFavourited.favourite = !$scope.isFavourited.favourite;
 		Restangular.one('boards', $routeParams['id']).customPOST($scope.isFavourited, 'favourite');
 	}
 
 	// Unfavourite the board
-	$scope.remove_fav = function() {
+	$scope.removeFavourite = function() {
 		$scope.isFavourited.favourite = !$scope.isFavourited.favourite;
 		Restangular.one('boards', $routeParams['id']).customDELETE('favourite');
 	}
