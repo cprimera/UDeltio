@@ -3,7 +3,7 @@
 var BoardCtrl = angular.module('BoardCtrl', ['restangular']);
 
 
-BoardCtrl.controller('BoardCtrl', ['$scope', 'Restangular', '$routeParams', function($scope, Restangular, $routeParams) {
+BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$routeParams', function($scope, $rootScope, Restangular, $routeParams) {
 	$scope.cname = "board";
 	Restangular.one('boards', $routeParams['id']).get().then(function (board) {
 		$scope.board = board;
@@ -19,10 +19,6 @@ BoardCtrl.controller('BoardCtrl', ['$scope', 'Restangular', '$routeParams', func
 
 	Restangular.one('boards', $routeParams['id']).getList('users').then(function (users) {
 		$scope.users = users;
-	});
-
-	Restangular.one('me').get().then(function (user) {
-		$scope.current_user = user;
 	});
 	
 	// Toggle user priviledges for the board
@@ -56,7 +52,7 @@ BoardCtrl.controller('BoardCtrl', ['$scope', 'Restangular', '$routeParams', func
 	$scope.postDetails = {'important': false, 'board': $routeParams['id'], 'subject': "", 'content': ""};
 
 	// Create or update post
-	$scope.save_post = function() {
+	$scope.savePost = function() {
 		if ($scope.newPost) {
 			Restangular.one('posts').customPOST($scope.postDetails).then(function(postedData) {
 				$scope.clearPost();
@@ -76,8 +72,7 @@ BoardCtrl.controller('BoardCtrl', ['$scope', 'Restangular', '$routeParams', func
 
 	$scope.clearPost = function() {
 		$scope.newPost = true;
-		$scope.postDetails.subject = "";
-		$scope.postDetails.content = "";
+		$scope.postDetails = {'important': false, 'board': $routeParams['id'], 'subject': "", 'content': ""};
 	}
 
 	$scope.updatePostDetails = function(post) {
@@ -102,13 +97,13 @@ BoardCtrl.controller('BoardCtrl', ['$scope', 'Restangular', '$routeParams', func
 	});
 	
 	// Add board to favourites
-	$scope.add_fav = function() {
+	$scope.addFavourite = function() {
 		$scope.isFavourited.favourite = !$scope.isFavourited.favourite;
 		Restangular.one('boards', $routeParams['id']).customPOST($scope.isFavourited, 'favourite');
 	}
 
 	// Unfavourite the board
-	$scope.remove_fav = function() {
+	$scope.removeFavourite = function() {
 		$scope.isFavourited.favourite = !$scope.isFavourited.favourite;
 		Restangular.one('boards', $routeParams['id']).customDELETE('favourite');
 	}

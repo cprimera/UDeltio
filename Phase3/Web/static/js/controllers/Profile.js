@@ -35,7 +35,7 @@ ProfileCtrl.controller('ProfileCtrl', ['$scope', '$rootScope', 'Restangular', '$
 						getBoards();
 
 						Restangular.one('me').get().then(function (user) {
-								$scope.current_user = user;
+								$rootScope.currentUser = user;
 						});
 				});
 		};
