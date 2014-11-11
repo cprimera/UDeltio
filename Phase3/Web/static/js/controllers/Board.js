@@ -37,6 +37,12 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 		});
 	}
 
+	// Delete board
+	$scope.deleteBoard = function() {
+		//do we have to delete all the posts.. remove all users etc?
+		$('#confirmDeleteBoardModal').modal('toggle');
+	}
+
 
 	$scope.newuser = {'username': '', 'read': false, 'write': false, 'admin': false};
 
