@@ -7,6 +7,7 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 	$scope.cname = "board";
 	Restangular.one('boards', $routeParams['id']).get().then(function (board) {
 		$scope.board = board;
+		$scope.publicBoard = board.public; // temporary variable to avoid data binding on unsaved data
 	});
 
 	Restangular.one('boards', $routeParams['id']).getList('posts').then(function (posts) {
@@ -19,6 +20,17 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 
 	Restangular.one('boards', $routeParams['id']).getList('users').then(function (users) {
 		$scope.users = users;
+
+		$scope.canPost = false;
+		for(var i = 0; i < $scope.users.length; i++) {
+			console.log($scope.users[i].id);
+
+			if ($scope.users[i].id == $rootScope.currentUser.id) {
+				$scope.canPost = $scope.users[i].write || $scope.users[i].admin;
+				break;
+			}
+		}
+
 	});
 	
 	// Toggle user priviledges for the board
@@ -32,8 +44,13 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 			for(var i = 0; i < $scope.users.length; i++) {
 				var u = $scope.users[i];
 				u.put();
+				if ($scope.users[i].id == $rootScope.currentUser.id) {
+					$scope.canPost = $scope.users[i].write || $scope.users[i].admin;
+				}
 			}
+			$scope.board = data;
 			$('#boardModal').modal('toggle');
+			$scope.publicBoard = data.public;
 		});
 	}
 
@@ -107,5 +124,11 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 		$scope.isFavourited.favourite = !$scope.isFavourited.favourite;
 		Restangular.one('boards', $routeParams['id']).customDELETE('favourite');
 	}
+
+	// $scope.userBoardPermissions = function() {
+	// 	Restangular.one('boards', $routeParams['id']).one('users', $rootScope.currentUser.id).get().then(function (user) {
+	// 		$scope.canPost = (user.admin || user.write);
+	// 	});
+	// };
 
 }]);
