@@ -81,7 +81,9 @@ def boards_collection():
 		return Response(BoardSerializer().serialize(Board.query.all(), many=True), mimetype='application/json')
 	elif request.method == 'POST':
 		board = Board(**(request.json))
+		subscriber = Subscribers(board=id, user=user_from_oauth().id, read=False, write=False, admin=True, notify=False, favorite=False)
 		db.session.add(board)
+		db.session.add(subscriber)
 		db.session.commit()
 		return Response(BoardSerializer().serialize(board), status=201, mimetype='application/json')
 
