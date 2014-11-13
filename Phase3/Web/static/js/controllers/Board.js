@@ -13,6 +13,7 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 	$scope.cname = "board";
 	Restangular.one('boards', $routeParams['id']).get().then(function (board) {
 		$scope.board = board;
+		$scope.publicBoard = board.public; // temporary variable to avoid data binding on unsaved data
 	});
 
 	Restangular.one('boards', $routeParams['id']).getList('posts').then(function (posts) {
@@ -26,6 +27,13 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 	Restangular.one('boards', $routeParams['id']).getList('users').then(function (users) {
 		$scope.users = users;
 	});
+
+
+	$scope.canPost = false;
+	// Get current user permissions
+	Restangular.one('boards', $routeParams['id']).one("users", $rootScope.currentUser.id).get().then(function (user) {
+		$scope.canPost = user.write || user.admin;
+	});
 	
 	// Toggle user priviledges for the board
 	$scope.toggle = function(user, item) {
@@ -38,8 +46,13 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 			for(var i = 0; i < $scope.users.length; i++) {
 				var u = $scope.users[i];
 				u.put();
+				if ($scope.users[i].id == $rootScope.currentUser.id) {
+					$scope.canPost = $scope.users[i].write || $scope.users[i].admin;
+				}
 			}
+			$scope.board = data;
 			$('#boardModal').modal('toggle');
+			$scope.publicBoard = data.public;
 		});
 	}
 
