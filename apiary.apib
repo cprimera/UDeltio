@@ -214,6 +214,48 @@ Whether the Board has been favourited.
 ### Remove Favourite [DELETE]
 + Response 204
 
+
+## Board Notify [/api/v1.0/boards/{id}/notify]
+Whether the Board has notifications enabled.
+
++ Parameters
+    + id (required, Number, `1`) ... ID of the Board
+
++ Model (application/json)
+
+    + Body
+
+            {
+                "notify": true
+            }
+
+    + Schema
+    
+            {
+                "type": "object",
+                "properties": {
+                    "notify": {
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "notify"
+                ]
+            }
+
+### Get Notify [GET]
++ Response 200
+
+    [Board Notify][]
+
+### Make Notify [POST]
++ Response 201
+
+    [Board Notify][]
+
+### Remove Notify [DELETE]
++ Response 204
+
 ## Board Permissions [/api/v1.0/boards/{id}/users]
 The User Permissions on a Board
 
