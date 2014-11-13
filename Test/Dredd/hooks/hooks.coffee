@@ -33,6 +33,15 @@ before "Board > Board Favourited > Make Favourite", (transaction) ->
 before "Board > Board Favourited > Remove Favourite", (transaction) ->
 	transaction.request.headers.Authorization = token
 
+before "Board > Board Notify > Get Notify", (transaction) ->
+	transaction.request.headers.Authorization = token
+
+before "Board > Board Notify > Make Notify", (transaction) ->
+	transaction.request.headers.Authorization = token
+
+before "Board > Board Notify > Remove Notify", (transaction) ->
+	transaction.request.headers.Authorization = token
+	
 before "Board > Boards Collection > List all Boards", (transaction) ->
 	transaction.request.headers.Authorization = token
 
