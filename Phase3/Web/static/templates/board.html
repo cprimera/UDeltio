@@ -21,6 +21,11 @@
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </button>
                         </div>
+                        <div class="pull-right" ng-if="$root.currentUser.id == post.user">
+                            <button type="button" class="btn btn-default" ng-click="deletePost(post)">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </div>
                     </div>
                     <div class="panel-body">
                         {{post.content}}
