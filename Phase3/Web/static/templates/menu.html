@@ -3,7 +3,7 @@
         <div class="navbar-header">
             <a class="navbar-brand" href="#">UDeltio</a>
         </div>
-        <div class="navbar-text navbar-link"><a href="#/profile">Profile</a></div>
+        <div class='navbar-text navbar-link' ng-if="$root.authenticated"><a href="#/profile">Profile</a></div>
 
         <button ng-hide="loggedIn()" type="button" class="btn btn-primary navbar-right navbar-btn" data-toggle="modal" data-target="#myModal">Log In</button>
         <button ng-show="loggedIn()" type="button" class="btn btn-danger navbar-right navbar-btn" ng-click="logOut()">Log Out</button>
