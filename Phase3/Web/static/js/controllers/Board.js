@@ -20,15 +20,13 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 
 	Restangular.one('boards', $routeParams['id']).getList('users').then(function (users) {
 		$scope.users = users;
+	});
 
-		$scope.canPost = false;
-		for(var i = 0; i < $scope.users.length; i++) {
-			if ($scope.users[i].id == $rootScope.currentUser.id) {
-				$scope.canPost = $scope.users[i].write || $scope.users[i].admin;
-				break;
-			}
-		}
 
+	$scope.canPost = false;
+	// Get current user permissions
+	Restangular.one('boards', $routeParams['id']).one("users", $rootScope.currentUser.id).get().then(function (user) {
+		$scope.canPost = user.write || user.admin;
 	});
 	
 	// Toggle user priviledges for the board
