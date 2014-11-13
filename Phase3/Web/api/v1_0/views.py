@@ -81,7 +81,9 @@ def boards_collection():
 		return Response(BoardSerializer().serialize(Board.query.all(), many=True), mimetype='application/json')
 	elif request.method == 'POST':
 		board = Board(**(request.json))
+		subscriber = Subscribers(board=id, user=user_from_oauth().id, read=False, write=False, admin=True, notify=False, favorite=False)
 		db.session.add(board)
+		db.session.add(subscriber)
 		db.session.commit()
 		return Response(BoardSerializer().serialize(board), status=201, mimetype='application/json')
 
@@ -172,6 +174,33 @@ def boards_users_id(id, userid):
 		subscriber.save(**(request.json))
 		db.session.commit()
 		return Response(PermissionsSerializer().serialize(subscriber), mimetype='application/json')
+
+
+@router.route('/boards/<int:id>/notify', methods=['GET', 'POST', 'DELETE'])
+@oauth_required
+def boards_notify(id):
+	if request.method == 'GET':
+		subscriber = Subscribers.query.filter_by(board=id, user=user_from_oauth().id).first()
+		isNotify = False
+		if subscriber is not None:
+			isNotify = subscriber.notify
+		return Response(json.dumps({'notify': isNotify}), mimetype='application/json')
+	elif request.method == 'POST':
+		subscriber = Subscribers.query.filter_by(board=id, user=user_from_oauth().id).first()
+		if subscriber is not None:
+			subscriber.notify = True
+			db.session.commit()
+		else:
+			subscriber = Subscribers(board=id, user=user_from_oauth().id, read=False, write=False, admin=False, notify=True, favorite=False)
+			db.session.add(subscriber)
+			db.session.commit()
+		return Response(json.dumps({'notify': True}), status=201, mimetype='application/json')
+	elif request.method == 'DELETE':
+		subscriber = Subscribers.query.filter_by(board=id, user=user_from_oauth().id).first()
+		if subscriber is not None:
+			subscriber.notify = False
+			db.session.commit()
+		return Response(status=204)
 
 
 @router.route('/users', methods=['GET', 'POST'])

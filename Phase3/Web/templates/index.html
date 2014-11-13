@@ -15,6 +15,7 @@
     <script src="static/bower_components/lodash/dist/lodash.js"></script>
     <script src="static/bower_components/jquery/dist/jquery.js"></script>
     <script src="static/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="static/bower_components/angular-bootstrap/ui-bootstrap.js"></script>
 	<script src="static/js/app.js"></script>
 
     <script src="static/js/controllers/Main.js"></script>
@@ -24,6 +25,6 @@
 </head>
 <body ng-controller="MainCtrl">
 	<ng-include src="menu_template"></ng-include>
-	<div ng-view></div>
+	<div class="container-fluid" ng-view></div>
 </body>
 </html>

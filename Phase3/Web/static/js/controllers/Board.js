@@ -2,23 +2,39 @@
 
 var BoardCtrl = angular.module('BoardCtrl', ['restangular']);
 
+BoardCtrl.filter('localeString', function () {
+	return function(input) {
+		return input.toLocaleString();
+	}
+});
+
 
 BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$routeParams', function($scope, $rootScope, Restangular, $routeParams) {
 	$scope.cname = "board";
 	Restangular.one('boards', $routeParams['id']).get().then(function (board) {
 		$scope.board = board;
+		$scope.publicBoard = board.public; // temporary variable to avoid data binding on unsaved data
 	});
 
 	Restangular.one('boards', $routeParams['id']).getList('posts').then(function (posts) {
 		$scope.posts = posts;
 		for (var i = 0; i < $scope.posts.length; i++) {
 			var d = new Date($scope.posts[i].creation_date)
-			$scope.posts[i].creation_date = d.toLocaleString();
+			$scope.posts[i].creation_date = d;
 		}
 	});
 
 	Restangular.one('boards', $routeParams['id']).getList('users').then(function (users) {
 		$scope.users = users;
+	});
+
+
+	$scope.canPost = false;
+	$scope.isAdmin = false;
+	// Get current user permissions
+	Restangular.one('boards', $routeParams['id']).one("users", $rootScope.currentUser.id).get().then(function (user) {
+		$scope.canPost = user.write || user.admin;
+		$scope.isAdmin = user.admin;
 	});
 	
 	// Toggle user priviledges for the board
@@ -32,8 +48,14 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 			for(var i = 0; i < $scope.users.length; i++) {
 				var u = $scope.users[i];
 				u.put();
+				if ($scope.users[i].id == $rootScope.currentUser.id) {
+					$scope.canPost = $scope.users[i].write || $scope.users[i].admin;
+					$scope.isAdmin = $scope.users[i].admin;
+				}
 			}
+			$scope.board = data;
 			$('#boardModal').modal('toggle');
+			$scope.publicBoard = data.public;
 		});
 	}
 
@@ -63,7 +85,7 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 			Restangular.one('posts').customPOST($scope.postDetails).then(function(postedData) {
 				$scope.clearPost();
 				var d = new Date(postedData.creation_date);
-				postedData.creation_date = d.toLocaleString();
+				postedData.creation_date = d;
 				$scope.posts.push(postedData);
 			});
 		} else {
@@ -86,6 +108,12 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 		$scope.editedPost = post;
 		$scope.postDetails.subject = post.subject;
 		$scope.postDetails.content = post.content;
+	};
+
+	$scope.deletePost = function(post) {
+		Restangular.one('posts', post.id).remove().then(function() {
+	    	$scope.posts = _.without($scope.posts, post);
+	   });
 	};
 
 	// Clean scope variables on logout

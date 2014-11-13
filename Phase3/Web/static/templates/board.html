@@ -14,11 +14,16 @@
                     <div class="panel-heading clearfix">
                         <div class="pull-left">
                             <h3 class="panel-title">{{post.subject}}</h3>
-                            <div class="label">{{post.creation_date}}</div>
+                            <div class="label">{{post.creation_date | localeString}}</div>
                         </div>
                         <div class="pull-right" ng-if="$root.currentUser.id == post.user">
                             <button type="button" class="btn btn-default" ng-click="updatePostDetails(post)" data-toggle="modal" data-target="#postModal">
                                 <span class="glyphicon glyphicon-pencil"></span>
+                            </button>
+                        </div>
+                        <div class="pull-right" ng-if="$root.currentUser.id == post.user || isAdmin">
+                            <button type="button" class="btn btn-default" ng-click="deletePost(post)">
+                                <span class="glyphicon glyphicon-remove"></span>
                             </button>
                         </div>
                     </div>
