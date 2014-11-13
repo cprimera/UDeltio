@@ -8,7 +8,8 @@ var uDeltio = angular.module('UDeltio', [
     'BoardCtrl',
     'ProfileCtrl',
     'MenuCtrl',
-    'ngCookies'
+    'ngCookies',
+    'ui.bootstrap'
 ]);
 
 uDeltio.config(['$routeProvider', function($routeProvider, $scope) {

@@ -4,8 +4,17 @@
     </div>
     <div class="col-md-10">
         <ul class="list-group">
-            <li class="list-group-item" ng-repeat="board in boards">
+            <li class="list-group-item clearfix" ng-repeat="board in boards">
                 <a href="#/board/{{board.id}}">{{board.name}}</a>
+                <div class="btn-group pull-right">
+                    <label class="btn btn-default" ng-model="board.favorite" ng-change="saveFavorite(board)" btn-checkbox>
+                        <span class="glyphicon glyphicon-heart"></span>
+                    </label>
+                    
+                    <label class="btn btn-default" ng-model="board.notify" ng-change="saveNotify(board)" btn-checkbox>
+                        <span class="glyphicon glyphicon-envelope"></span>
+                    </label>
+                </div>
             </li>
         </ul>
 
