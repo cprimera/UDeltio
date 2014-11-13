@@ -30,9 +30,11 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 
 
 	$scope.canPost = false;
+	$scope.isAdmin = false;
 	// Get current user permissions
 	Restangular.one('boards', $routeParams['id']).one("users", $rootScope.currentUser.id).get().then(function (user) {
 		$scope.canPost = user.write || user.admin;
+		$scope.isAdmin = user.admin;
 	});
 	
 	// Toggle user priviledges for the board
@@ -48,6 +50,7 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 				u.put();
 				if ($scope.users[i].id == $rootScope.currentUser.id) {
 					$scope.canPost = $scope.users[i].write || $scope.users[i].admin;
+					$scope.isAdmin = $scope.users[i].admin;
 				}
 			}
 			$scope.board = data;
@@ -103,7 +106,7 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 
 	$scope.deletePost = function(post) {
 		Restangular.one('posts', post.id).remove().then(function() {
-	      $scope.posts = _.without($scope.posts, post);
+	    	$scope.posts = _.without($scope.posts, post);
 	   });
 	};
 
