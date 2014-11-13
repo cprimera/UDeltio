@@ -23,8 +23,6 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 
 		$scope.canPost = false;
 		for(var i = 0; i < $scope.users.length; i++) {
-			console.log($scope.users[i].id);
-
 			if ($scope.users[i].id == $rootScope.currentUser.id) {
 				$scope.canPost = $scope.users[i].write || $scope.users[i].admin;
 				break;
