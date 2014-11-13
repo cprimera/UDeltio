@@ -88,6 +88,12 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 		$scope.postDetails.content = post.content;
 	};
 
+	$scope.deletePost = function(post) {
+		Restangular.one('posts', post.id).remove().then(function() {
+	      $scope.posts = _.without($scope.posts, post);
+	   });
+	};
+
 	// Clean scope variables on logout
 	$scope.$on('logout', function(event) {
 			$scope.posts = null;
