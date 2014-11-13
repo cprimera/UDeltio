@@ -18,7 +18,6 @@ ProfileCtrl.controller('ProfileCtrl', ['$scope', '$rootScope', 'Restangular', '$
 						});
 				}
 		};
-
 		getBoards();
 
 		$scope.login = function() {
@@ -34,6 +33,7 @@ ProfileCtrl.controller('ProfileCtrl', ['$scope', '$rootScope', 'Restangular', '$
 						$http.defaults.headers.common['Authorization']  = 'Bearer ' + response.access_token;
 						getBoards();
 
+						$rootScope.authenticated = true;
 						Restangular.one('me').get().then(function (user) {
 								$rootScope.currentUser = user;
 						});
