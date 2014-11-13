@@ -2,6 +2,12 @@
 
 var BoardCtrl = angular.module('BoardCtrl', ['restangular']);
 
+BoardCtrl.filter('localeString', function () {
+	return function(input) {
+		return input.toLocaleString();
+	}
+});
+
 
 BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$routeParams', function($scope, $rootScope, Restangular, $routeParams) {
 	$scope.cname = "board";
@@ -13,7 +19,7 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 		$scope.posts = posts;
 		for (var i = 0; i < $scope.posts.length; i++) {
 			var d = new Date($scope.posts[i].creation_date)
-			$scope.posts[i].creation_date = d.toLocaleString();
+			$scope.posts[i].creation_date = d;
 		}
 	});
 
@@ -57,7 +63,7 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 			Restangular.one('posts').customPOST($scope.postDetails).then(function(postedData) {
 				$scope.clearPost();
 				var d = new Date(postedData.creation_date);
-				postedData.creation_date = d.toLocaleString();
+				postedData.creation_date = d;
 				$scope.posts.push(postedData);
 			});
 		} else {
