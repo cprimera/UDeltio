@@ -8,11 +8,15 @@ MainCtrl.controller('MainCtrl', ['$scope', '$rootScope', '$location', function($
 		$rootScope.authenticated = false;
 		
 		$scope.go = function (path) {
-		  var param = $location.path().split("/")[2]||"";
-		  if (param !== "undefined") {
-		  	$location.path(path + "/" + param);
-		  } else {
-		  	$location.path(path);
-		  }
+			var param = $location.path().split("/")[2]||"";
+			if (param !== "undefined") {
+				$location.path(path + "/" + param);
+			} else {
+				$location.path(path);
+			}
 		};
+
+		$scope.$on('logout', function(event) {
+			$rootScope.authenticated = false;
+		});
 	}])	;
