@@ -125,10 +125,4 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 		Restangular.one('boards', $routeParams['id']).customDELETE('favourite');
 	}
 
-	// $scope.userBoardPermissions = function() {
-	// 	Restangular.one('boards', $routeParams['id']).one('users', $rootScope.currentUser.id).get().then(function (user) {
-	// 		$scope.canPost = (user.admin || user.write);
-	// 	});
-	// };
-
 }]);
