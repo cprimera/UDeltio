@@ -160,8 +160,8 @@
 					</tr>
 					</tbody>
 				</table>
-                <tags-input ng-model="tags">
-
+                <tags-input ng-model="tags" display-property="name">
+                    <auto-complete source="loadTags($query)"></auto-complete>
                 </tags-input>
 			</div>
 			<div class="modal-footer">

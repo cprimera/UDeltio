@@ -9,7 +9,7 @@ BoardCtrl.filter('localeString', function () {
 });
 
 
-BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$routeParams', '$location', '$sce', function($scope, $rootScope, Restangular, $routeParams, $location, $sce) {
+BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$routeParams', '$location', '$sce', '$q', function($scope, $rootScope, Restangular, $routeParams, $location, $sce, $q) {
 	$scope.cname = "board";
 
 	// temporary variable to avoid data binding on unsaved data
@@ -22,7 +22,8 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 	$scope.newuser = {'username': '', 'read': false, 'write': false, 'admin': false};
 	$scope.postDetails = {'important': false, 'board': $routeParams['id'], 'subject': "", 'content': ""};
 
-    $scope.tags = [{'text': 'Tag1'}, {'text': 'Tag2'}];
+    $scope.allTags = [];
+    $scope.tags = [];
 
 
 	Restangular.one('boards', $routeParams['id']).get().then(function (board) {
@@ -47,6 +48,11 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 		$scope.canPost = user.write || user.admin;
 		$scope.isAdmin = user.admin;
 	});
+
+    // Get the list of all tags
+    Restangular.one('tags').getList('').then(function (tags) {
+            $scope.allTags = tags;
+    });
 
 	// Toggle user priviledges for the board
 	$scope.toggle = function(user, item) {
@@ -181,5 +187,12 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 		$scope.notifications.notify = !$scope.notifications.notify;
 		Restangular.one('boards', $routeParams['id']).customDELETE('notify');
 	}
+
+    $scope.loadTags = function(query) {
+        // TODO(yasith: Use bloodhound and typeahead to filter the list further
+        var deferred = $q.defer();
+        deferred.resolve($scope.allTags);
+        return deferred.promise;
+    }
 
 }]);
