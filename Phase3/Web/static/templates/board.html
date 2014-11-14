@@ -26,7 +26,7 @@
                                 <span class="glyphicon glyphicon-remove"></span>
                             </button>
                         </div>
-                        <div class="pull-right" ng-if="!post.user" >
+                        <div class="pull-right" ng-if="$root.currentUser.id != post.user">
                             <button type="button" class="btn btn-default" ng-click="flagPost(post)">
                                 <span class="glyphicon glyphicon-bullhorn"></span>
                             </button>
@@ -52,7 +52,7 @@
                                 <span class="glyphicon glyphicon-remove"></span>
                             </button>
                         </div>
-                        <div class="pull-right" ng-if="!post.user">
+                        <div class="pull-right" ng-if="$root.currentUser.id != post.user">
                             <button type="button" class="btn btn-default active">
                                 <span class="glyphicon glyphicon-bullhorn"></span>
                             </button>
