@@ -54,6 +54,11 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
             $scope.allTags = tags;
     });
 
+    // Get the list of all tags
+    Restangular.one('boards', $routeParams['id']).getList('tags').then(function (tags) {
+            $scope.tags = tags;
+    });
+
 	// Toggle user priviledges for the board
 	$scope.toggle = function(user, item) {
 		user[item] = !user[item];
