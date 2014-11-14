@@ -246,7 +246,7 @@ def boards_tags(id):
 		try:
 			db.session.commit()
 		except IntegrityError:
-			abort(409)
+			db.session.rollback()
 		tag = Tag.query.filter_by(name=request.json.get('name', None)).first()
 		assigned_tag = AssignedTags(board=id, tag=tag.id)
 		db.session.add(assigned_tag)
