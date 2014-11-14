@@ -95,13 +95,16 @@ class Post(db.Model):
 
 	important = db.Column(db.Boolean)
 
-	def __init__(self, user, board, subject, content, important):
+	offensive = db.Column(db.Boolean)
+
+	def __init__(self, user, board, subject, content, important, offensive):
 		self.user = user
 		self.board = board
 		self.subject = subject
 		self.content = content
 		self.important = important
 		self.creation_date = datetime.utcnow()
+		self.offensive = offensive
 
 	def save(self, **kwargs):
 		self.user = kwargs.get('user', self.user)
@@ -109,6 +112,7 @@ class Post(db.Model):
 		self.subject = kwargs.get('subject', self.subject)
 		self.content = kwargs.get('content', self.content)
 		self.important = kwargs.get('important', self.important)
+		self.offensive = kwargs.get('offensive', self.offensive)
 
 	def __repr__(self):
 		return '%s %s' % (User.query.filter_by(id=self.user).first().username, self.subject)
