@@ -20,6 +20,12 @@
 		<a class="list-group-item fav-btn" ng-click="removeFavourite()" ng-show="isFavourited.favourite"> 
 			Remove from favourites 
 		</a>
+		<a class="list-group-item fav-btn" ng-click="addNotifications()" ng-show="!(notifications.notify)"> 
+			Subscribe for notifications
+		</a>
+		<a class="list-group-item fav-btn" ng-click="removeNotifications()" ng-show="notifications.notify"> 
+			Unubscribe from notifications 
+		</a>
 		<a href="" class="list-group-item" data-toggle="modal" data-target="#boardModal" ng-show="isAdmin">
 			Settings
 		</a>
