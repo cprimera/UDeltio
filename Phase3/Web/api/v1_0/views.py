@@ -82,10 +82,11 @@ def boards_collection():
 		return Response(BoardSerializer().serialize(Board.query.all(), many=True), mimetype='application/json')
 	elif request.method == 'POST':
 		board = Board(**(request.json))
-		subscriber = Subscribers(board=board.id, user=user_from_oauth().id, read=False, write=False, admin=True, notify=False, favorite=False)
 		db.session.add(board)
 		try:
 			db.session.commit()
+			board = Board.query.filter_by(name=request.json.get("name", None)).first_or_404()
+			subscriber = Subscribers(board=board.id, user=user_from_oauth().id, read=False, write=False, admin=True, notify=False, favorite=False)
 			db.session.add(subscriber)
 			db.session.commit()
 		except IntegrityError:
