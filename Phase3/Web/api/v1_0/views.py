@@ -84,10 +84,12 @@ def boards_collection():
 		board = Board(**(request.json))
 		subscriber = Subscribers(board=board.id, user=user_from_oauth().id, read=False, write=False, admin=True, notify=False, favorite=False)
 		db.session.add(board)
-		db.session.add(subscriber)
 		try:
 			db.session.commit()
+			db.session.add(subscriber)
+			db.session.commit()
 		except IntegrityError:
+			db.session.rollback()
 			abort(409)
 		return Response(BoardSerializer().serialize(board), status=201, mimetype='application/json')
 
@@ -157,6 +159,9 @@ def boards_users(id):
 		subscribers = Subscribers.query.filter_by(board=id).all()
 		return Response(PermissionsSerializer().serialize(subscribers, many=True), mimetype='application/json')
 	elif request.method == 'POST':
+		subscriber = Subscribers.query.filter_by(board=id, user=User.query.filter_by(username=request.json['username']).first_or_404().id).first_or_404()
+		if subscriber is not None:
+			abort(409)
 		request.json['board'] = id
 		request.json['user'] = User.query.filter_by(username=request.json['username']).first_or_404().id
 		request.json['notify'] = False
