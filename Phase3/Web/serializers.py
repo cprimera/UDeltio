@@ -15,7 +15,7 @@ class BoardSerializer(BaseSerializer):
 	tags = 'get_tags'
 
 class PostSerializer(BaseSerializer):
-	fields = ['id', 'user', 'board', 'creation_date', 'subject', 'content', 'important']
+	fields = ['id', 'user', 'board', 'creation_date', 'subject', 'content', 'important', 'offensive']
 	model = Post
 
 class TagSerializer(BaseSerializer):
