@@ -71,7 +71,7 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 	};
 
 
-	$scope.postDetails = {'important': false, 'board': $routeParams['id'], 'subject': "", 'content': ""};
+	$scope.postDetails = {'important': false, 'board': $routeParams['id'], 'subject': "", 'content': "", 'offensive': false};
 
 	// Create or update post
 	$scope.savePost = function() {
@@ -94,7 +94,7 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 
 	$scope.clearPost = function() {
 		$scope.newPost = true;
-		$scope.postDetails = {'important': false, 'board': $routeParams['id'], 'subject': "", 'content': ""};
+		$scope.postDetails = {'important': false, 'board': $routeParams['id'], 'subject': "", 'content': "", 'offensive': false};
 	}
 
 	$scope.updatePostDetails = function(post) {
@@ -136,8 +136,12 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 		Restangular.one('boards', $routeParams['id']).customDELETE('favourite');
 	}
 	
-	// Flag post
+	// Flag a post
 	$scope.flagPost = function(post) {
-		console.log("deleted post");
-	}
+		$scope.editedPost = post;
+		$scope.editedPost.offensivePost = !$scope.editedPost.offensivePost;
+		Restangular.one('posts', post.id).customPUT($scope.editedPost).then(function() {
+		});
+	};
+
 }]);
