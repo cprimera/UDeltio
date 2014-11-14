@@ -11,9 +11,21 @@ BoardCtrl.filter('localeString', function () {
 
 BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$routeParams', '$location', '$sce', function($scope, $rootScope, Restangular, $routeParams, $location, $sce) {
 	$scope.cname = "board";
+
+	// temporary variable to avoid data binding on unsaved data
+	$scope.canPost = false;
+	$scope.isAdmin = false;
+	$scope.publicBoard = false;
+	$scope.isFavourited = null;
+	$scope.notifications = null;
+
+	$scope.newuser = {'username': '', 'read': false, 'write': false, 'admin': false};
+	$scope.postDetails = {'important': false, 'board': $routeParams['id'], 'subject': "", 'content': ""};
+
+
 	Restangular.one('boards', $routeParams['id']).get().then(function (board) {
 		$scope.board = board;
-		$scope.publicBoard = board.public; // temporary variable to avoid data binding on unsaved data
+		$scope.publicBoard = board.public; 
 	});
 
 	Restangular.one('boards', $routeParams['id']).getList('posts').then(function (posts) {
@@ -28,9 +40,6 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 		$scope.users = users;
 	});
 
-
-	$scope.canPost = false;
-	$scope.isAdmin = false;
 	// Get current user permissions
 	Restangular.one('boards', $routeParams['id']).one("users", $rootScope.currentUser.id).get().then(function (user) {
 		$scope.canPost = user.write || user.admin;
@@ -67,9 +76,6 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 		});
 	};
 
-
-	$scope.newuser = {'username': '', 'read': false, 'write': false, 'admin': false};
-
 	// Add user to the board
 	$scope.saveUser = function() {
 		return Restangular.one('boards', $routeParams['id']).customPOST($scope.newuser, 'users').then(function(data) {
@@ -77,10 +83,6 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 			$scope.newuser = {'username': '', 'read': false, 'write': false, 'admin': false};
 		});
 	};
-
-
-	$scope.postDetails = {'important': false, 'board': $routeParams['id'], 'subject': "", 'content': ""};
-
 
 	// Create or update post
 	$scope.savePost = function() {
@@ -132,6 +134,11 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 		$scope.board = null;
 		$scope.newPost = null;
 		$scope.postDetails = null;
+		$scope.isFavourited = null;
+		$scope.notifications = null;
+		$scope.publicBoard = false;
+		$scope.isAdmin = false;
+		$scope.canPost = false;
 	});
 
 	// Get the board's favourite status
@@ -151,9 +158,26 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 		Restangular.one('boards', $routeParams['id']).customDELETE('favourite');
 	}
 
-    $scope.renderHTML = function(text) {
-        var html = marked(text);
-        return $sce.trustAsHtml(html);
-    }
+	$scope.renderHTML = function(text) {
+		var html = marked(text);
+	return $sce.trustAsHtml(html);
+	}
+
+	// Get the board's notification status
+	Restangular.one('boards', $routeParams['id']).customGET('notify').then(function (data) {
+		$scope.notifications = data;
+	});
+
+	// Add board to favourites
+	$scope.addNotifications = function() {
+		$scope.notifications.notify = !$scope.notifications.notify;
+		Restangular.one('boards', $routeParams['id']).customPOST($scope.notifications, 'notify');
+	}
+
+	// Unfavourite the board
+	$scope.removeNotifications = function() {
+		$scope.notifications.notify = !$scope.notifications.notify;
+		Restangular.one('boards', $routeParams['id']).customDELETE('notify');
+	}
 
 }]);
