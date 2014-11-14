@@ -95,13 +95,16 @@ class Post(db.Model):
 
 	important = db.Column(db.Boolean)
 
-	def __init__(self, user, board, subject, content, important):
+	offensive = db.Column(db.Boolean)
+
+	def __init__(self, user, board, subject, content, important, offensive):
 		self.user = user
 		self.board = board
 		self.subject = subject
 		self.content = content
 		self.important = important
 		self.creation_date = datetime.utcnow()
+		self.offensive = offensive
 
 	def save(self, **kwargs):
 		self.user = kwargs.get('user', self.user)
@@ -109,6 +112,7 @@ class Post(db.Model):
 		self.subject = kwargs.get('subject', self.subject)
 		self.content = kwargs.get('content', self.content)
 		self.important = kwargs.get('important', self.important)
+		self.offensive = kwargs.get('offensive', self.offensive)
 
 	def __repr__(self):
 		return '%s %s' % (User.query.filter_by(id=self.user).first().username, self.subject)
@@ -171,8 +175,12 @@ class Subscribers(db.Model):
 		self.read = kwargs.get('read', self.read)
 		self.write = kwargs.get('write', self.write)
 		self.admin = kwargs.get('admin', self.admin)
-		self.notify = kwargs.get('notify', self.notify)
-		self.favorite = kwargs.get('favorite', self.favorite)
+		if self.read == False and self.write == False and self.admin == False and Board.query.filter_by(id=self.board).first().public == False:
+			self.notify = False
+			self.favorite = False
+		else:
+			self.notify = kwargs.get('notify', self.notify)
+			self.favorite = kwargs.get('favorite', self.favorite)
 
 	def __repr__(self):
 		return '%s %s' % (self.user.username, self.board.name)

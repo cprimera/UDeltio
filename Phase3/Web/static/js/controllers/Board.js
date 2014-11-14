@@ -115,6 +115,12 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 		$scope.postDetails.content = post.content;
 	};
 
+	// Mark a post as important
+	$scope.markImportantPost = function(post) { 
+		post.important = !post.important;
+		Restangular.one('posts', post.id).customPUT(post);
+	}
+
 	$scope.deletePost = function(post) {
 		Restangular.one('posts', post.id).remove().then(function() {
 			$scope.posts = _.without($scope.posts, post);
