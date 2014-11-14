@@ -1,10 +1,10 @@
 <div class="left animate-switch-container" ng-switch on="cname">
 	<div class="list-group" ng-switch-when="profile">
-        <a class="list-group-item">
-            Mute all boards
+		<a class="list-group-item">
+			Mute all boards
 		</a>
 		<a class="list-group-item" ng-click="go('/board_settings')">
-            Change Display Name
+			Change Display Name
 		</a>
 		<a href="" class="list-group-item" data-toggle="modal" data-target="#createBoardModal">
 			Create Board
@@ -20,7 +20,7 @@
 		<a class="list-group-item fav-btn" ng-click="removeFavourite()" ng-show="isFavourited.favourite"> 
 			Remove from favourites 
 		</a>
-		<a href="" class="list-group-item" data-toggle="modal" data-target="#boardModal">
+		<a href="" class="list-group-item" data-toggle="modal" data-target="#boardModal" ng-show="isAdmin">
 			Settings
 		</a>
 		<a href="" class="list-group-item" data-toggle="modal" data-target="#confirmDeleteBoardModal" ng-show="isAdmin">
