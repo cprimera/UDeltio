@@ -110,6 +110,16 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 	   });
 	};
 
+	// Flag a post
+	$scope.flagPost = function(post) {
+		$scope.newPost = false;
+		$scope.flagPost = post;
+		$scope.flagPost.offensive = true;
+		Restangular.one('posts', post.id).customPUT($scope.flagPost).then(function(postedData) {
+				$scope.clearPost();
+			});
+	};
+
 	// Clean scope variables on logout
 	$scope.$on('logout', function(event) {
 			$scope.posts = null;
@@ -128,20 +138,12 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 	$scope.addFavourite = function() {
 		$scope.isFavourited.favourite = !$scope.isFavourited.favourite;
 		Restangular.one('boards', $routeParams['id']).customPOST($scope.isFavourited, 'favourite');
-	}
+	};
 
 	// Unfavourite the board
 	$scope.removeFavourite = function() {
 		$scope.isFavourited.favourite = !$scope.isFavourited.favourite;
 		Restangular.one('boards', $routeParams['id']).customDELETE('favourite');
-	}
-	
-	// Flag a post
-	$scope.flagPost = function(post) {
-		$scope.editedPost = post;
-		$scope.editedPost.offensivePost = true;
-		Restangular.one('posts', post.id).customPUT($scope.editedPost).then(function() {
-		});
 	};
-
+	
 }]);

@@ -10,7 +10,33 @@
 
         <ul class="list-group">
             <li class="list-group-item" ng-repeat="post in posts | orderBy:'creation_date':true">
-                <div class="panel panel-primary">
+                <div class="panel panel-primary" ng-if="!post.offensive">
+                    <div class="panel-heading clearfix">
+                        <div class="pull-left">
+                            <h3 class="panel-title">{{post.subject}}</h3>
+                            <div class="label">{{post.creation_date | localeString}}</div>
+                        </div>
+                        <div class="pull-right" ng-if="$root.currentUser.id == post.user">
+                            <button type="button" class="btn btn-default" ng-click="updatePostDetails(post)" data-toggle="modal" data-target="#postModal">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </button>
+                        </div>
+                        <div class="pull-right" ng-if="$root.currentUser.id == post.user || isAdmin">
+                            <button type="button" class="btn btn-default" ng-click="deletePost(post)">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </div>
+			<div class="pull-right"> <!-- ng-if="!post.user" -->
+                            <button type="button" class="btn btn-default" ng-click="flagPost(post)">
+                                <span class="glyphicon glyphicon-bullhorn"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        {{post.content}}
+                    </div>
+                </div>
+		<div class="panel panel-warning" ng-if="post.offensive">
                     <div class="panel-heading clearfix">
                         <div class="pull-left">
                             <h3 class="panel-title">{{post.subject}}</h3>
@@ -27,7 +53,7 @@
                             </button>
                         </div>
 			<div class="pull-right">
-                            <button type="button" class="btn btn-default" ng-click="flagPost(post)">
+                            <button type="button" class="btn btn-default active">
                                 <span class="glyphicon glyphicon-bullhorn"></span>
                             </button>
                         </div>
