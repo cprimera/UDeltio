@@ -9,7 +9,7 @@ BoardCtrl.filter('localeString', function () {
 });
 
 
-BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$routeParams', '$location', function($scope, $rootScope, Restangular, $routeParams, $location) {
+BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$routeParams', '$location', '$sce', function($scope, $rootScope, Restangular, $routeParams, $location, $sce) {
 	$scope.cname = "board";
 	Restangular.one('boards', $routeParams['id']).get().then(function (board) {
 		$scope.board = board;
@@ -150,5 +150,10 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 		$scope.isFavourited.favourite = !$scope.isFavourited.favourite;
 		Restangular.one('boards', $routeParams['id']).customDELETE('favourite');
 	}
+
+    $scope.renderHTML = function(text) {
+        var html = marked(text);
+        return $sce.trustAsHtml(html);
+    }
 
 }]);
