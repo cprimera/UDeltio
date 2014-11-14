@@ -98,6 +98,7 @@ ProfileCtrl.controller('ProfileCtrl', ['$scope', '$rootScope', 'Restangular', '$
 			$rootScope.authenticated = true;
 			Restangular.one('me').get().then(function (user) {
 				$rootScope.currentUser = user;
+                $cookieStore.put('currentUser', user);
 			});
 		}, function(error) {
 			$scope.incorrectCredentials = true;
