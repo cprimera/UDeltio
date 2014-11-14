@@ -139,7 +139,7 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 	// Flag a post
 	$scope.flagPost = function(post) {
 		$scope.editedPost = post;
-		$scope.editedPost.offensivePost = !$scope.editedPost.offensivePost;
+		$scope.editedPost.offensivePost = true;
 		Restangular.one('posts', post.id).customPUT($scope.editedPost).then(function() {
 		});
 	};
