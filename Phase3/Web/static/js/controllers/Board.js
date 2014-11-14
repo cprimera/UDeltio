@@ -51,10 +51,10 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 
     // Get the list of all tags
     Restangular.one('tags').getList('').then(function (tags) {
-            $scope.allTags = tags;
+        $scope.allTags = tags;
     });
 
-    // Get the list of all tags
+    // Get the list of tags for the board
     Restangular.one('boards', $routeParams['id']).getList('tags').then(function (tags) {
             $scope.tags = tags;
     });
@@ -198,6 +198,16 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
         var deferred = $q.defer();
         deferred.resolve($scope.allTags);
         return deferred.promise;
+    }
+
+    $scope.addTag = function(tag) {
+        Restangular.one('boards', $routeParams['id']).customPOST({'name': tag.name}, "tags").then(function(returnedTag){
+            tag.id = returnedTag.id;
+        });
+    }
+
+    $scope.removeTag = function(tag) {
+        Restangular.one('boards', $routeParams['id']).customDELETE("tags/"+tag.id);
     }
 
 }]);

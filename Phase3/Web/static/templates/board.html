@@ -158,7 +158,7 @@
 					</tr>
 					</tbody>
 				</table>
-                <tags-input ng-model="tags" display-property="name">
+                <tags-input ng-model="tags" display-property="name" on-tag-added="addTag($tag)" on-tag-removed="removeTag($tag)">
                     <auto-complete source="loadTags($query)"></auto-complete>
                 </tags-input>
 			</div>
