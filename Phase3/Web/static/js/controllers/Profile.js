@@ -7,6 +7,9 @@ ProfileCtrl.controller('ProfileCtrl', ['$scope', '$rootScope', 'Restangular', '$
 	$scope.username = null;
 	$scope.password = null;
 
+	$scope.newBoard = {"name":"", "public":true};
+	$scope.newuser = {'username': '', 'read': false, 'write': false, 'admin': false};
+
 	$scope.loggedIn = function() {
 		return $cookieStore.get('token') != null;
 	}
@@ -88,16 +91,18 @@ ProfileCtrl.controller('ProfileCtrl', ['$scope', '$rootScope', 'Restangular', '$
 		"access_token", {}, {}).then(function(response){
 			$cookieStore.put('token', response.access_token);
 			$http.defaults.headers.common['Authorization']  = 'Bearer ' + response.access_token;
+			$('#loginModal').modal('toggle');
+			$scope.incorrectCredentials = false;
 			getBoards();
 
 			$rootScope.authenticated = true;
 			Restangular.one('me').get().then(function (user) {
 				$rootScope.currentUser = user;
 			});
+		}, function(error) {
+			$scope.incorrectCredentials = true;
 		});
 	};
-
-	$scope.newBoard = {"name":"", "public":true};
 
 
 	$scope.saveBoard = function() {
@@ -107,8 +112,6 @@ ProfileCtrl.controller('ProfileCtrl', ['$scope', '$rootScope', 'Restangular', '$
 			$("#createBoardModal").modal("toggle");
 		});
 	}
-
-	$scope.newuser = {'username': '', 'read': false, 'write': false, 'admin': false};
 
 	$scope.saveUser = function() {
 		return Restangular.one('boards', $routeParams['id']).customPOST($scope.newuser, 'users').then(function(data) {
@@ -120,6 +123,8 @@ ProfileCtrl.controller('ProfileCtrl', ['$scope', '$rootScope', 'Restangular', '$
 
 	$scope.$on('logout', function(event) {
 		$scope.boards = null;
+		$scope.username = null;
+		$scope.password = null;
 	});
 
 }]);
