@@ -28,33 +28,33 @@ The only drawback of Kanban for our team was that we did not have frontend testi
 #### Issues Distribution
 | Issue | Type | Assignee |
 | -------- | ----- | ----- |
-| [Search and Log Out buttons touch each other](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/23) | bug | ycherenkova |
-| [Profile link appears on Nav Bar even when not logged in](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/24) | bug | ycherenkova |
-| [No error message on Login Failure](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/25) | feature | ycherenkova |
-| [I want to post pictures and videos in the board I am subscribed to.](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/29) | feature | yasith |
-| [I want to be able to edit the messages that I post.](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/30) | feature | ycherenkova |
-| [I want to be able to delete my own messages.](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/31) | feature | ycherenkova |
-| [I want to be able to delete offensive messages from the board that I administer](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/32) | feature | ycherenkova | 
-| [I want to have a board that just the members of my club can participate in.](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/33) | feature | cprimera |
-| [I want to control who could post to my board: my TAs should be able to make an announcement, but I don’t want my board to get spammed.](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/34) | feature | ycherenkova |
-| [I want to be able to delete the entire board at the end of the semester.](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/35) | feature | Willdorf |
-| [I want to be able to search for a specific board so that it’s easy to find the messages I want to view.](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/36) | feature | yasith | 
-| [I want boards to have tags.](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/37) | feature | yasith | 
-| [I want to mark some posts as important. For example, the post saying the exam room is changed should be marked as important.](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/38) | feature | Willdorf |
-| [Ordering of posts is incorrect.](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/41) | bug | cprimera |
-| [Favorite and notify boards on profile](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/42) | feature | cprimera | 
-| [Should not be able to create boards with same title](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/43) | bug | cprimera | 
-| [User can be added multiple times to board](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/44) | bug | cprimera |
-| [Create notify endpoint](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/46) | feature | cprimera |
-| [Clean menu on logout](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/47) | bug | ycherenkova |
-| [Add board creator to board users upon creation of the board](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/50) | bug | cprimera | 
-| [Add word wrap on posts.](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/51) | bug | wongleo7 |
-| [Allow posts to be flagged as inappropriate](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/53) | feature | wongleo7 | 
-| [Update backend to allow the posts to be flagged as inappropriate](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/55) | feature | cprimera |
-| [Send notifications on new posts](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/56) | feature | cprimera |
-| [Limit board settings to admins only](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/57) | bug | ycherenkova |
-| [Backend: support removing users from the board](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/59) | feature | cprimera | 
-| [Allow user to subscribe to notifications from Board page.](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/61) | feature | ycherenkova |
-| [User id gets lost on reloads](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/63) | bug | yasith |
-| [Typo in submenu](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/68) | minor bug | ycherenkova | 
-| [Search endpoint](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/71) | feature | cprimera | 
+| [Search and Log Out buttons touch each other](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/23) | bug | [ycherenkova](https://github.com/ycherenkova) |
+| [Profile link appears on Nav Bar even when not logged in](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/24) | bug | [ycherenkova](https://github.com/ycherenkova) |
+| [No error message on Login Failure](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/25) | feature | [ycherenkova](https://github.com/ycherenkova) |
+| [I want to post pictures and videos in the board I am subscribed to.](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/29) | feature | [yasith](https://github.com/yasith) |
+| [I want to be able to edit the messages that I post.](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/30) | feature | [ycherenkova](https://github.com/ycherenkova) |
+| [I want to be able to delete my own messages.](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/31) | feature | [ycherenkova](https://github.com/ycherenkova) |
+| [I want to be able to delete offensive messages from the board that I administer](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/32) | feature | [ycherenkova](https://github.com/ycherenkova) | 
+| [I want to have a board that just the members of my club can participate in.](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/33) | feature | [cprimera](https://github.com/cprimera) |
+| [I want to control who could post to my board: my TAs should be able to make an announcement, but I don’t want my board to get spammed.](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/34) | feature | [ycherenkova](https://github.com/ycherenkova) |
+| [I want to be able to delete the entire board at the end of the semester.](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/35) | feature | [Willdorf](https://github.com/Willdorf) |
+| [I want to be able to search for a specific board so that it’s easy to find the messages I want to view.](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/36) | feature | [yasith](https://github.com/yasith) | 
+| [I want boards to have tags.](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/37) | feature | [yasith](https://github.com/yasith) | 
+| [I want to mark some posts as important. For example, the post saying the exam room is changed should be marked as important.](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/38) | feature | [Willdorf](https://github.com/Willdorf) |
+| [Ordering of posts is incorrect.](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/41) | bug | [cprimera](https://github.com/cprimera) |
+| [Favorite and notify boards on profile](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/42) | feature | [cprimera](https://github.com/cprimera) | 
+| [Should not be able to create boards with same title](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/43) | bug | [cprimera](https://github.com/cprimera) | 
+| [User can be added multiple times to board](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/44) | bug | [cprimera](https://github.com/cprimera) |
+| [Create notify endpoint](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/46) | feature | [cprimera](https://github.com/cprimera) |
+| [Clean menu on logout](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/47) | bug | [ycherenkova](https://github.com/ycherenkova) |
+| [Add board creator to board users upon creation of the board](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/50) | bug | [cprimera](https://github.com/cprimera) | 
+| [Add word wrap on posts.](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/51) | bug | [wongleo7](https://github.com/wongleo7) |
+| [Allow posts to be flagged as inappropriate](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/53) | feature | [wongleo7](https://github.com/wongleo7) | 
+| [Update backend to allow the posts to be flagged as inappropriate](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/55) | feature | [cprimera](https://github.com/cprimera) |
+| [Send notifications on new posts](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/56) | feature | [cprimera](https://github.com/cprimera) |
+| [Limit board settings to admins only](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/57) | bug | [ycherenkova](https://github.com/ycherenkova) |
+| [Backend: support removing users from the board](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/59) | feature | [cprimera](https://github.com/cprimera) | 
+| [Allow user to subscribe to notifications from Board page.](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/61) | feature | [ycherenkova](https://github.com/ycherenkova) |
+| [User id gets lost on reloads](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/63) | bug | [yasith](https://github.com/yasith) |
+| [Typo in submenu](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/68) | minor bug | [ycherenkova](https://github.com/ycherenkova) | 
+| [Search endpoint](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/71) | feature | [cprimera](https://github.com/cprimera) | 
