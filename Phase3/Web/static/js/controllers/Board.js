@@ -9,7 +9,7 @@ BoardCtrl.filter('localeString', function () {
 });
 
 
-BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$routeParams', function($scope, $rootScope, Restangular, $routeParams) {
+BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$routeParams', '$location', function($scope, $rootScope, Restangular, $routeParams, $location) {
 	$scope.cname = "board";
 	Restangular.one('boards', $routeParams['id']).get().then(function (board) {
 		$scope.board = board;
@@ -20,7 +20,7 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 		$scope.posts = posts;
 		for (var i = 0; i < $scope.posts.length; i++) {
 			var d = new Date($scope.posts[i].creation_date)
-			$scope.posts[i].creation_date = d;
+		$scope.posts[i].creation_date = d;
 		}
 	});
 
@@ -36,7 +36,7 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 		$scope.canPost = user.write || user.admin;
 		$scope.isAdmin = user.admin;
 	});
-	
+
 	// Toggle user priviledges for the board
 	$scope.toggle = function(user, item) {
 		user[item] = !user[item];
@@ -58,6 +58,14 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 			$scope.publicBoard = data.public;
 		});
 	}
+
+	// Delete board
+	$scope.deleteBoard = function() {
+		Restangular.one('boards', $scope.board.id).remove().then(function() {
+			$('#confirmDeleteBoardModal').modal('toggle');
+			$location.path('/profile');
+		});
+	};
 
 
 	$scope.newuser = {'username': '', 'read': false, 'write': false, 'admin': false};
@@ -106,24 +114,24 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 
 	$scope.deletePost = function(post) {
 		Restangular.one('posts', post.id).remove().then(function() {
-	    	$scope.posts = _.without($scope.posts, post);
-	   });
+			$scope.posts = _.without($scope.posts, post);
+		});
 	};
 
 	// Clean scope variables on logout
 	$scope.$on('logout', function(event) {
-			$scope.posts = null;
-			$scope.users = null;
-			$scope.board = null;
-			$scope.newPost = null;
-			$scope.postDetails = null;
+		$scope.posts = null;
+		$scope.users = null;
+		$scope.board = null;
+		$scope.newPost = null;
+		$scope.postDetails = null;
 	});
 
 	// Get the board's favourite status
 	Restangular.one('boards', $routeParams['id']).customGET('favourite').then(function (data) {
 		$scope.isFavourited = data;
 	});
-	
+
 	// Add board to favourites
 	$scope.addFavourite = function() {
 		$scope.isFavourited.favourite = !$scope.isFavourited.favourite;
