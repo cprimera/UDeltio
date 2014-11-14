@@ -1,5 +1,6 @@
 from flask import Flask, request, Response, abort, session, Blueprint
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy import and_, or_, not_
 from flask.ext.mail import Message
 
 from udeltio import app, db, mail
@@ -99,7 +100,7 @@ def boards_collection():
 		try:
 			db.session.commit()
 			board = Board.query.filter_by(name=request.json.get("name", None)).first_or_404()
-			subscriber = Subscribers(board=board.id, user=user_from_oauth().id, read=False, write=False, admin=True, notify=False, favorite=False)
+			subscriber = Subscribers(board=board.id, user=user_from_oauth().id, read=False, write=False, admin=True, notify=False, favorite=True)
 			db.session.add(subscriber)
 			db.session.commit()
 		except IntegrityError:
@@ -292,6 +293,22 @@ def tags(id):
 		db.session.delete(tag)
 		db.session.commit()
 		return Response(status=204)
+
+
+@router.route('/search/<term>', methods=['GET'])
+@oauth_required
+def search(term):
+	if request.method == 'GET':
+		boards = Board.query.filter(Board.name.like('%' + str(term) + '%')).all()
+		tags = Tag.query.filter(Tag.name.like('%' + str(term) + '%')).all()
+		bs = []
+		for t in tags:
+			assigned = AssignedTags.query.filter_by(tag=t.id).all()
+			for a in assigned:
+				b = Board.query.filter_by(id=a.board).first()
+				bs.append(b)
+		bs.extend(list(boards))
+		return Response(BoardSerializer().serialize(bs, many=True), mimetype='application/json')
 
 
 app.register_blueprint(router, url_prefix='/api/v1.0')
