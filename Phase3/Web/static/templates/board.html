@@ -26,7 +26,7 @@
                                 <span class="glyphicon glyphicon-remove"></span>
                             </button>
                         </div>
-			<div class="pull-right"> <!-- ng-if="!post.user" -->
+			<div class="pull-right" ng-if="!post.user" >
                             <button type="button" class="btn btn-default" ng-click="flagPost(post)">
                                 <span class="glyphicon glyphicon-bullhorn"></span>
                             </button>
@@ -36,7 +36,7 @@
                         {{post.content}}
                     </div>
                 </div>
-		<div class="panel panel-warning" ng-if="post.offensive">
+		<div class="panel panel-danger" ng-if="post.offensive">
                     <div class="panel-heading clearfix">
                         <div class="pull-left">
                             <h3 class="panel-title">{{post.subject}}</h3>
@@ -52,7 +52,7 @@
                                 <span class="glyphicon glyphicon-remove"></span>
                             </button>
                         </div>
-			<div class="pull-right">
+			<div class="pull-right" ng-if="!post.user">
                             <button type="button" class="btn btn-default active">
                                 <span class="glyphicon glyphicon-bullhorn"></span>
                             </button>

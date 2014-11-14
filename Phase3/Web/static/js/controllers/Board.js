@@ -110,14 +110,12 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 	   });
 	};
 
-	// Flag a post
+	// Flags a post
 	$scope.flagPost = function(post) {
 		$scope.newPost = false;
-		$scope.flagPost = post;
-		$scope.flagPost.offensive = true;
-		Restangular.one('posts', post.id).customPUT($scope.flagPost).then(function(postedData) {
-				$scope.clearPost();
-			});
+		$scope.editedPost = post;
+		$scope.editedPost.offensive = true;
+		$scope.savePost;
 	};
 
 	// Clean scope variables on logout
