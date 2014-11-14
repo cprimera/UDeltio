@@ -1,6 +1,6 @@
 'use strict';
 
-var BoardCtrl = angular.module('BoardCtrl', ['restangular']);
+var BoardCtrl = angular.module('BoardCtrl', ['restangular', 'ngTagsInput']);
 
 BoardCtrl.filter('localeString', function () {
 	return function(input) {
@@ -21,6 +21,8 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 
 	$scope.newuser = {'username': '', 'read': false, 'write': false, 'admin': false};
 	$scope.postDetails = {'important': false, 'board': $routeParams['id'], 'subject': "", 'content': ""};
+
+    $scope.tags = [{'text': 'Tag1'}, {'text': 'Tag2'}];
 
 
 	Restangular.one('boards', $routeParams['id']).get().then(function (board) {
