@@ -2,43 +2,47 @@
 @import "bootswatch.less";
 
 .new-post-btn,.fav-btn:hover {
-    cursor: pointer;
+		cursor: pointer;
 }
 
 .add {
-  font-size: (@font-size-base * 1.5);
-  font-weight: @close-font-weight;
-  line-height: 1;
-  color: @close-color;
-  text-shadow: @close-text-shadow;
-  .opacity(.2);
+	font-size: (@font-size-base * 1.5);
+	font-weight: @close-font-weight;
+	line-height: 1;
+	color: @close-color;
+	text-shadow: @close-text-shadow;
+	.opacity(.2);
 
-  &:hover,
-  &:focus {
-    color: @close-color;
-    text-decoration: none;
-    cursor: pointer;
-    .opacity(.5);
-  }
+	&:hover,
+	&:focus {
+		color: @close-color;
+		text-decoration: none;
+		cursor: pointer;
+		.opacity(.5);
+	}
 
-  // Additional properties for button version
-  // iOS requires the button element instead of an anchor tag.
-  // If you want the anchor version, it requires `href="#"`.
-  button& {
-    padding: 0;
-    cursor: pointer;
-    background: transparent;
-    border: 0;
-    -webkit-appearance: none;
-  }
+	// Additional properties for button version
+	// iOS requires the button element instead of an anchor tag.
+	// If you want the anchor version, it requires `href="#"`.
+	button& {
+		padding: 0;
+		cursor: pointer;
+		background: transparent;
+		border: 0;
+		-webkit-appearance: none;
+	}
 }
 
 .modal-dialog {
-  z-index: 1060;
+	z-index: 1060;
 }
 
 .menu-right {
-  display: inline-block;
+	display: inline-block;
+}
+
+.custom-login-alert {
+	margin-bottom: 5%;
 }
 
 @icon-font-path: "/static/bower_components/bootstrap/dist/fonts/";
