@@ -135,7 +135,8 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 		$scope.isFavourited.favourite = !$scope.isFavourited.favourite;
 		Restangular.one('boards', $routeParams['id']).customDELETE('favourite');
 	}
-
+	
+	// Flag post
 	$scope.flagPost = function(post) {
 		console.log("deleted post");
 	}
