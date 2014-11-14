@@ -11,10 +11,11 @@ The team decided to adjust initial WIP later in the Phase to match our workload 
 This could be adjusted a bit more with respect to Testing column, as it was mostly used either as an intermediate stage to make sure everything is working, or for bugfixes. However, the new limit is small enough by itself, and we plan to focus more on testing later, so we have decided to keep new limit for testing as well.
 
 #### GitHub Issues Conventions:
-- Kanban columns (except for TODO) had corresponding labels on GitHub. TODO was implicit and consisted of open issues assigned to Phase3 that did not enter Development.
+- Kanban columns (except for TODO) had corresponding labels on GitHub. TODO was implicit and consisted of open issues assigned to Phase 3 that did not enter Development.
 - Branches naming conventions:
   - feature/branchName for features
   - bug/branchName for bugs
+- All issues / bugs corresponding to Phase 3 are assigned to [Phase 3](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/milestones/Phase%203) milestone.
 - WIP limits were enforced with pure observation and calculation. That is, if there are 10 issues labeled with ‘Development’, no new issues can be grabbed.
 - Closing the issues by commit messages: since we were using GitFlow, did not work: all issues would be closed only on merging `develop` branch into `master`, which is done in the end of the phase. Instead, we have used commit messages to have the issue reference respective pull request. 
 
