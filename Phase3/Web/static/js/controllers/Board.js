@@ -9,7 +9,7 @@ BoardCtrl.filter('localeString', function () {
 });
 
 
-BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$routeParams', '$location', function($scope, $rootScope, Restangular, $routeParams, $location) {
+BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$routeParams', '$location', '$sce', function($scope, $rootScope, Restangular, $routeParams, $location, $sce) {
 	$scope.cname = "board";
 
 	// temporary variable to avoid data binding on unsaved data
@@ -156,6 +156,11 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 	$scope.removeFavourite = function() {
 		$scope.isFavourited.favourite = !$scope.isFavourited.favourite;
 		Restangular.one('boards', $routeParams['id']).customDELETE('favourite');
+	}
+
+	$scope.renderHTML = function(text) {
+		var html = marked(text);
+	return $sce.trustAsHtml(html);
 	}
 
 	// Get the board's notification status

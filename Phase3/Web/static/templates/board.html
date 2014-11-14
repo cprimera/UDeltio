@@ -32,9 +32,7 @@
 						</button>
 					</div>
 				</div>
-				<div class="panel-body">
-					{{post.content}}
-				</div>
+				<div ng-bind-html="renderHTML(post.content)"></div>
 			</div>
 			<div class="panel panel-warning" ng-if="post.important">
 				<div class="panel-heading clearfix">
