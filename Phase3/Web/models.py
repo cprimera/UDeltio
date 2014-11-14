@@ -171,8 +171,12 @@ class Subscribers(db.Model):
 		self.read = kwargs.get('read', self.read)
 		self.write = kwargs.get('write', self.write)
 		self.admin = kwargs.get('admin', self.admin)
-		self.notify = kwargs.get('notify', self.notify)
-		self.favorite = kwargs.get('favorite', self.favorite)
+		if self.read == False and self.write == False and self.admin == False and Board.query.filter_by(id=self.board).first().public == False:
+			self.notify = False
+			self.favorite = False
+		else:
+			self.notify = kwargs.get('notify', self.notify)
+			self.favorite = kwargs.get('favorite', self.favorite)
 
 	def __repr__(self):
 		return '%s %s' % (self.user.username, self.board.name)
