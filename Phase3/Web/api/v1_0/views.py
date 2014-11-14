@@ -232,6 +232,43 @@ def boards_notify(id):
 		return Response(status=204)
 
 
+@router.route('/boards/<int:id>/tags', methods=['GET', 'POST'])
+@oauth_required
+def boards_tags(id):
+	if request.method == 'GET':
+		assigned_tags = AssignedTags.query.filter_by(board=id).all()
+		tags = []
+		for t in assigned_tags:
+			tags.append(Tag.query.filter_by(id=t.tag).first_or_404())
+		return Response(TagSerializer().serialize(tags, many=True), mimetype='application/json')
+	elif request.method == 'POST':
+		tag = Tag(**(request.json))
+		db.session.add(tag)
+		try:
+			db.session.commit()
+		except IntegrityError:
+			db.session.rollback()
+		tag = Tag.query.filter_by(name=request.json.get('name', None)).first()
+		assigned_tag = AssignedTags(board=id, tag=tag.id)
+		db.session.add(assigned_tag)
+		db.session.commit()
+		return Response(TagSerializer().serialize(tag), status=201, mimetype='application/json')
+
+
+@router.route('/boards/<int:id>/tags/<int:tagid>', methods=['GET', 'DELETE'])
+@oauth_required
+def boards_tags_id(id, tagid):
+	if request.method == 'GET':
+		assigned_tag = AssignedTags.query.filter_by(board=id, tag=tagid).first_or_404()
+		tag = Tag.query.filter_by(id=assigned_tag.tag).first_or_404()
+		return Response(TagSerializer().serialize(tag), mimetype='application/json')
+	elif request.method == 'DELETE':
+		assigned_tag = AssignedTags.query.filter_by(board=id, tag=tagid).first_or_404()
+		db.session.delete(assigned_tag)
+		db.session.commit()
+		return Response(status=204)
+
+
 @router.route('/users', methods=['GET', 'POST'])
 @oauth_required
 def users_collection():
