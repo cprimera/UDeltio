@@ -186,7 +186,7 @@ def boards_users(id):
 		db.session.commit()
 		return Response(PermissionsSerializer().serialize(subscriber), status=201, mimetype='application/json')
 
-@router.route('/boards/<int:id>/users/<int:userid>', methods=['GET', 'PUT'])
+@router.route('/boards/<int:id>/users/<int:userid>', methods=['GET', 'PUT', 'DELETE'])
 @oauth_required
 def boards_users_id(id, userid):
 	if request.method == 'GET':
@@ -197,6 +197,11 @@ def boards_users_id(id, userid):
 		subscriber.save(**(request.json))
 		db.session.commit()
 		return Response(PermissionsSerializer().serialize(subscriber), mimetype='application/json')
+	elif request.method == 'DELETE':
+		subscriber = Subscribers.query.filter_by(board=id, user=userid).first_or_404()
+		db.session.delete(subscriber)
+		db.session.commit()
+		return Response(status=204)
 
 
 @router.route('/boards/<int:id>/notify', methods=['GET', 'POST', 'DELETE'])
