@@ -307,7 +307,7 @@ def search(term):
 			for a in assigned:
 				b = Board.query.filter_by(id=a.board).first()
 				bs.append(b)
-		bs.extend(list(baords))
+		bs.extend(list(boards))
 		return Response(BoardSerializer().serialize(bs, many=True), mimetype='application/json')
 
 
