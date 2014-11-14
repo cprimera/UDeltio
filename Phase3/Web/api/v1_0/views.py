@@ -1,7 +1,8 @@
 from flask import Flask, request, Response, abort, session, Blueprint
 from sqlalchemy.exc import IntegrityError
+from flask.ext.mail import Message
 
-from udeltio import app, db
+from udeltio import app, db, mail
 
 from models import *
 from serializers import *
@@ -53,6 +54,18 @@ def posts_collection():
 		post = Post(**(request.json))
 		db.session.add(post)
 		db.session.commit()
+		subscribers = Subscribers.query.filter_by(board=post.board, notify=True).all()
+		with mail.connect() as conn:
+			for subscriber in subscribers:
+				if subscriber.user == user.id:
+					continue
+				message = user.username + " posted a new message.\n\n" + post.content
+				subject = Board.query.filter_by(id=post.board).first_or_404().name + ": " + post.subject
+				msg = Message(recipients=[User.query.filter_by(id=subscriber.user).first_or_404().email],
+						body = message,
+						subject = subject,
+						sender=("Udeltio", "***REMOVED***"))
+				conn.send(msg)
 		return Response(PostSerializer().serialize(post), status=201, mimetype='application/json')
 
 @router.route('/posts/<int:id>', methods=['GET', 'PUT', 'DELETE'])
@@ -160,7 +173,7 @@ def boards_users(id):
 		subscribers = Subscribers.query.filter_by(board=id).all()
 		return Response(PermissionsSerializer().serialize(subscribers, many=True), mimetype='application/json')
 	elif request.method == 'POST':
-		subscriber = Subscribers.query.filter_by(board=id, user=User.query.filter_by(username=request.json['username']).first_or_404().id).first_or_404()
+		subscriber = Subscribers.query.filter_by(board=id, user=User.query.filter_by(username=request.json['username']).first_or_404().id).first()
 		if subscriber is not None:
 			abort(409)
 		request.json['board'] = id
