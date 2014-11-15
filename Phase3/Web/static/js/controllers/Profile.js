@@ -134,7 +134,9 @@ ProfileCtrl.controller('ProfileCtrl', ['$scope', '$rootScope', 'Restangular', '$
         if ($scope.loggedIn()) {
 
             Restangular.all('search/'+term).getList().then(function (boards) {
-                $scope.boards = boards;
+                $scope.boards = _.uniq(boards, function(item){
+                    return JSON.stringify(item);
+                });
 
                 // Set the favourite tag
                 Restangular.all('me/favourites').getList().then(function (boards) {
