@@ -1,0 +1,44 @@
+<div class="left animate-switch-container" ng-switch on="cname">
+	<div class="list-group" ng-switch-when="profile">
+		<a class="list-group-item">
+			Mute all boards
+		</a>
+		<a class="list-group-item" ng-click="go('/board_settings')">
+			Change Display Name
+		</a>
+		<a href="" class="list-group-item" data-toggle="modal" data-target="#createBoardModal">
+			Create Board
+		</a>
+	</div>
+	<div class="list-group" ng-switch-when="board" ng-switch on="cname">
+		<a class="list-group-item new-post-btn" ng-if="publicBoard || canPost" data-toggle="modal" data-target="#postModal" ng-click="clearPost()">
+			New Post
+		</a>
+		<a class="list-group-item fav-btn" ng-click="addFavourite()" ng-show="!(isFavourited.favourite)"> 
+			Add to favourites 
+		</a>
+		<a class="list-group-item fav-btn" ng-click="removeFavourite()" ng-show="isFavourited.favourite"> 
+			Remove from favourites 
+		</a>
+		<a class="list-group-item fav-btn" ng-click="addNotifications()" ng-show="!(notifications.notify)"> 
+			Subscribe for notifications
+		</a>
+		<a class="list-group-item fav-btn" ng-click="removeNotifications()" ng-show="notifications.notify"> 
+			Unsubscribe from notifications 
+		</a>
+		<a href="" class="list-group-item" data-toggle="modal" data-target="#boardModal" ng-show="isAdmin">
+			Settings
+		</a>
+		<a href="" class="list-group-item" data-toggle="modal" data-target="#confirmDeleteBoardModal" ng-show="isAdmin">
+			Delete Board
+		</a>
+	</div>
+	<div class="animate-switch" ng-switch-when="create_board">
+		<div>Create board</div>
+	</div>
+	<div class="animate-switch" ng-switch-when="board_settings">
+		<div>Save changes</div>
+		<div>Add post</div>
+	</div>
+	<div class="animate-switch" ng-switch-default></div>
+</div>
