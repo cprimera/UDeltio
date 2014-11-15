@@ -1,6 +1,6 @@
 'use strict';
 
-var BoardCtrl = angular.module('BoardCtrl', ['restangular']);
+var BoardCtrl = angular.module('BoardCtrl', ['restangular', 'ngTagsInput']);
 
 BoardCtrl.filter('localeString', function () {
 	return function(input) {
@@ -9,18 +9,33 @@ BoardCtrl.filter('localeString', function () {
 });
 
 
-BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$routeParams', function($scope, $rootScope, Restangular, $routeParams) {
+BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$routeParams', '$location', '$sce', '$q', function($scope, $rootScope, Restangular, $routeParams, $location, $sce, $q) {
 	$scope.cname = "board";
+
+	// temporary variable to avoid data binding on unsaved data
+	$scope.canPost = false;
+	$scope.isAdmin = false;
+	$scope.publicBoard = false;
+	$scope.isFavourited = null;
+	$scope.notifications = null;
+
+	$scope.newuser = {'username': '', 'read': false, 'write': false, 'admin': false};
+	$scope.postDetails = {'important': false, 'board': $routeParams['id'], 'subject': "", 'content': ""};
+
+    $scope.allTags = [];
+    $scope.tags = [];
+
+
 	Restangular.one('boards', $routeParams['id']).get().then(function (board) {
 		$scope.board = board;
-		$scope.publicBoard = board.public; // temporary variable to avoid data binding on unsaved data
+		$scope.publicBoard = board.public; 
 	});
 
 	Restangular.one('boards', $routeParams['id']).getList('posts').then(function (posts) {
 		$scope.posts = posts;
 		for (var i = 0; i < $scope.posts.length; i++) {
 			var d = new Date($scope.posts[i].creation_date)
-			$scope.posts[i].creation_date = d;
+		$scope.posts[i].creation_date = d;
 		}
 	});
 
@@ -28,15 +43,22 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 		$scope.users = users;
 	});
 
-
-	$scope.canPost = false;
-	$scope.isAdmin = false;
 	// Get current user permissions
 	Restangular.one('boards', $routeParams['id']).one("users", $rootScope.currentUser.id).get().then(function (user) {
 		$scope.canPost = user.write || user.admin;
 		$scope.isAdmin = user.admin;
 	});
-	
+
+    // Get the list of all tags
+    Restangular.one('tags').getList('').then(function (tags) {
+        $scope.allTags = tags;
+    });
+
+    // Get the list of tags for the board
+    Restangular.one('boards', $routeParams['id']).getList('tags').then(function (tags) {
+            $scope.tags = tags;
+    });
+
 	// Toggle user priviledges for the board
 	$scope.toggle = function(user, item) {
 		user[item] = !user[item];
@@ -59,8 +81,13 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 		});
 	}
 
-
-	$scope.newuser = {'username': '', 'read': false, 'write': false, 'admin': false};
+	// Delete board
+	$scope.deleteBoard = function() {
+		Restangular.one('boards', $scope.board.id).remove().then(function() {
+			$('#confirmDeleteBoardModal').modal('toggle');
+			$location.path('/profile');
+		});
+	};
 
 	// Add user to the board
 	$scope.saveUser = function() {
@@ -103,10 +130,16 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 		$scope.postDetails.content = post.content;
 	};
 
+	// Mark a post as important
+	$scope.markImportantPost = function(post) { 
+		post.important = !post.important;
+		Restangular.one('posts', post.id).customPUT(post);
+	}
+
 	$scope.deletePost = function(post) {
 		Restangular.one('posts', post.id).remove().then(function() {
-	    	$scope.posts = _.without($scope.posts, post);
-	   });
+			$scope.posts = _.without($scope.posts, post);
+		});
 	};
 
 	// Flags a post
@@ -120,18 +153,23 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 
 	// Clean scope variables on logout
 	$scope.$on('logout', function(event) {
-			$scope.posts = null;
-			$scope.users = null;
-			$scope.board = null;
-			$scope.newPost = null;
-			$scope.postDetails = null;
+		$scope.posts = null;
+		$scope.users = null;
+		$scope.board = null;
+		$scope.newPost = null;
+		$scope.postDetails = null;
+		$scope.isFavourited = null;
+		$scope.notifications = null;
+		$scope.publicBoard = false;
+		$scope.isAdmin = false;
+		$scope.canPost = false;
 	});
 
 	// Get the board's favourite status
 	Restangular.one('boards', $routeParams['id']).customGET('favourite').then(function (data) {
 		$scope.isFavourited = data;
 	});
-	
+
 	// Add board to favourites
 	$scope.addFavourite = function() {
 		$scope.isFavourited.favourite = !$scope.isFavourited.favourite;
@@ -142,6 +180,45 @@ BoardCtrl.controller('BoardCtrl', ['$scope', '$rootScope', 'Restangular', '$rout
 	$scope.removeFavourite = function() {
 		$scope.isFavourited.favourite = !$scope.isFavourited.favourite;
 		Restangular.one('boards', $routeParams['id']).customDELETE('favourite');
-	};
-	
+	}
+
+	$scope.renderHTML = function(text) {
+		var html = marked(text);
+	return $sce.trustAsHtml(html);
+	}
+
+	// Get the board's notification status
+	Restangular.one('boards', $routeParams['id']).customGET('notify').then(function (data) {
+		$scope.notifications = data;
+	});
+
+	// Add board to favourites
+	$scope.addNotifications = function() {
+		$scope.notifications.notify = !$scope.notifications.notify;
+		Restangular.one('boards', $routeParams['id']).customPOST($scope.notifications, 'notify');
+	}
+
+	// Unfavourite the board
+	$scope.removeNotifications = function() {
+		$scope.notifications.notify = !$scope.notifications.notify;
+		Restangular.one('boards', $routeParams['id']).customDELETE('notify');
+	}
+
+    $scope.loadTags = function(query) {
+        // TODO(yasith: Use bloodhound and typeahead to filter the list further
+        var deferred = $q.defer();
+        deferred.resolve($scope.allTags);
+        return deferred.promise;
+    }
+
+    $scope.addTag = function(tag) {
+        Restangular.one('boards', $routeParams['id']).customPOST({'name': tag.name}, "tags").then(function(returnedTag){
+            tag.id = returnedTag.id;
+        });
+    }
+
+    $scope.removeTag = function(tag) {
+        Restangular.one('boards', $routeParams['id']).customDELETE("tags/"+tag.id);
+    }
+
 }]);

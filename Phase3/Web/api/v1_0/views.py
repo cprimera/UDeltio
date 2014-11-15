@@ -1,7 +1,9 @@
 from flask import Flask, request, Response, abort, session, Blueprint
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy import and_, or_, not_
+from flask.ext.mail import Message
 
-from udeltio import app, db
+from udeltio import app, db, mail
 
 from models import *
 from serializers import *
@@ -53,6 +55,18 @@ def posts_collection():
 		post = Post(**(request.json))
 		db.session.add(post)
 		db.session.commit()
+		subscribers = Subscribers.query.filter_by(board=post.board, notify=True).all()
+		with mail.connect() as conn:
+			for subscriber in subscribers:
+				if subscriber.user == user.id:
+					continue
+				message = user.username + " posted a new message.\n\n" + post.content
+				subject = Board.query.filter_by(id=post.board).first_or_404().name + ": " + post.subject
+				msg = Message(recipients=[User.query.filter_by(id=subscriber.user).first_or_404().email],
+						body = message,
+						subject = subject,
+						sender=("Udeltio", "***REMOVED***"))
+				conn.send(msg)
 		return Response(PostSerializer().serialize(post), status=201, mimetype='application/json')
 
 @router.route('/posts/<int:id>', methods=['GET', 'PUT', 'DELETE'])
@@ -82,12 +96,15 @@ def boards_collection():
 		return Response(BoardSerializer().serialize(Board.query.all(), many=True), mimetype='application/json')
 	elif request.method == 'POST':
 		board = Board(**(request.json))
-		subscriber = Subscribers(board=board.id, user=user_from_oauth().id, read=False, write=False, admin=True, notify=False, favorite=False)
 		db.session.add(board)
-		db.session.add(subscriber)
 		try:
 			db.session.commit()
+			board = Board.query.filter_by(name=request.json.get("name", None)).first_or_404()
+			subscriber = Subscribers(board=board.id, user=user_from_oauth().id, read=False, write=False, admin=True, notify=False, favorite=True)
+			db.session.add(subscriber)
+			db.session.commit()
 		except IntegrityError:
+			db.session.rollback()
 			abort(409)
 		return Response(BoardSerializer().serialize(board), status=201, mimetype='application/json')
 
@@ -157,6 +174,9 @@ def boards_users(id):
 		subscribers = Subscribers.query.filter_by(board=id).all()
 		return Response(PermissionsSerializer().serialize(subscribers, many=True), mimetype='application/json')
 	elif request.method == 'POST':
+		subscriber = Subscribers.query.filter_by(board=id, user=User.query.filter_by(username=request.json['username']).first_or_404().id).first()
+		if subscriber is not None:
+			abort(409)
 		request.json['board'] = id
 		request.json['user'] = User.query.filter_by(username=request.json['username']).first_or_404().id
 		request.json['notify'] = False
@@ -167,7 +187,7 @@ def boards_users(id):
 		db.session.commit()
 		return Response(PermissionsSerializer().serialize(subscriber), status=201, mimetype='application/json')
 
-@router.route('/boards/<int:id>/users/<int:userid>', methods=['GET', 'PUT'])
+@router.route('/boards/<int:id>/users/<int:userid>', methods=['GET', 'PUT', 'DELETE'])
 @oauth_required
 def boards_users_id(id, userid):
 	if request.method == 'GET':
@@ -178,6 +198,11 @@ def boards_users_id(id, userid):
 		subscriber.save(**(request.json))
 		db.session.commit()
 		return Response(PermissionsSerializer().serialize(subscriber), mimetype='application/json')
+	elif request.method == 'DELETE':
+		subscriber = Subscribers.query.filter_by(board=id, user=userid).first_or_404()
+		db.session.delete(subscriber)
+		db.session.commit()
+		return Response(status=204)
 
 
 @router.route('/boards/<int:id>/notify', methods=['GET', 'POST', 'DELETE'])
@@ -204,6 +229,43 @@ def boards_notify(id):
 		if subscriber is not None:
 			subscriber.notify = False
 			db.session.commit()
+		return Response(status=204)
+
+
+@router.route('/boards/<int:id>/tags', methods=['GET', 'POST'])
+@oauth_required
+def boards_tags(id):
+	if request.method == 'GET':
+		assigned_tags = AssignedTags.query.filter_by(board=id).all()
+		tags = []
+		for t in assigned_tags:
+			tags.append(Tag.query.filter_by(id=t.tag).first_or_404())
+		return Response(TagSerializer().serialize(tags, many=True), mimetype='application/json')
+	elif request.method == 'POST':
+		tag = Tag(**(request.json))
+		db.session.add(tag)
+		try:
+			db.session.commit()
+		except IntegrityError:
+			db.session.rollback()
+		tag = Tag.query.filter_by(name=request.json.get('name', None)).first()
+		assigned_tag = AssignedTags(board=id, tag=tag.id)
+		db.session.add(assigned_tag)
+		db.session.commit()
+		return Response(TagSerializer().serialize(tag), status=201, mimetype='application/json')
+
+
+@router.route('/boards/<int:id>/tags/<int:tagid>', methods=['GET', 'DELETE'])
+@oauth_required
+def boards_tags_id(id, tagid):
+	if request.method == 'GET':
+		assigned_tag = AssignedTags.query.filter_by(board=id, tag=tagid).first_or_404()
+		tag = Tag.query.filter_by(id=assigned_tag.tag).first_or_404()
+		return Response(TagSerializer().serialize(tag), mimetype='application/json')
+	elif request.method == 'DELETE':
+		assigned_tag = AssignedTags.query.filter_by(board=id, tag=tagid).first_or_404()
+		db.session.delete(assigned_tag)
+		db.session.commit()
 		return Response(status=204)
 
 
@@ -268,6 +330,22 @@ def tags(id):
 		db.session.delete(tag)
 		db.session.commit()
 		return Response(status=204)
+
+
+@router.route('/search/<term>', methods=['GET'])
+@oauth_required
+def search(term):
+	if request.method == 'GET':
+		boards = Board.query.filter(Board.name.like('%' + str(term) + '%')).all()
+		tags = Tag.query.filter(Tag.name.like('%' + str(term) + '%')).all()
+		bs = []
+		for t in tags:
+			assigned = AssignedTags.query.filter_by(tag=t.id).all()
+			for a in assigned:
+				b = Board.query.filter_by(id=a.board).first()
+				bs.append(b)
+		bs.extend(list(boards))
+		return Response(BoardSerializer().serialize(bs, many=True), mimetype='application/json')
 
 
 app.register_blueprint(router, url_prefix='/api/v1.0')

@@ -1,19 +1,19 @@
 <nav class="navbar navbar-default" role="navigation" ng-controller="MenuCtrl">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">UDeltio</a>
-        </div>
-        <div class='navbar-text navbar-link' ng-if="$root.authenticated"><a href="#/profile">Profile</a></div>
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#">UDeltio</a>
+		</div>
+		<div class='navbar-text navbar-link' ng-if="$root.authenticated"><a href="#/profile">Profile</a></div>
 
-        <div class="navbar-right">
-            <form class="navbar-form menu-right" role="search">
-                <div class="form-group">
-                    <input id="search" type="text" class="form-control" placeholder="Search"/>
-                </div>
-                <button class="btn btn-default">Search</button>
-            </form>
-            <button ng-hide="loggedIn()" type="button" class="btn btn-primary navbar-btn menu-right" data-toggle="modal" data-target="#myModal">Log In</button>
-            <button ng-show="loggedIn()" type="button" class="btn btn-danger navbar-btn menu-right" ng-click="logOut()">Log Out</button>
-        </div>
-    </div>
+		<div class="navbar-right">
+			<form class="navbar-form menu-right" role="search">
+				<div class="form-group">
+					<input id="search" type="text" class="form-control" placeholder="Search" ng-model="searchStr"/>
+				</div>
+				<button class="btn btn-default" ng-click="search()">Search</button>
+			</form>
+			<button ng-hide="loggedIn()" type="button" class="btn btn-primary navbar-btn menu-right" data-toggle="modal" data-target="#loginModal">Log In</button>
+			<button ng-show="loggedIn()" type="button" class="btn btn-danger navbar-btn menu-right" ng-click="logOut()">Log Out</button>
+		</div>
+	</div>
 </nav>

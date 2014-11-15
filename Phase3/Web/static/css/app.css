@@ -6552,3 +6552,6 @@ button.add {
 .menu-right {
   display: inline-block;
 }
+.custom-login-alert {
+  margin-bottom: 5%;
+}
