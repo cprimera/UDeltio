@@ -8,9 +8,9 @@
 		<div class="navbar-right">
 			<form class="navbar-form menu-right" role="search">
 				<div class="form-group">
-					<input id="search" type="text" class="form-control" placeholder="Search"/>
+					<input id="search" type="text" class="form-control" placeholder="Search" ng-model="searchStr"/>
 				</div>
-				<button class="btn btn-default">Search</button>
+				<button class="btn btn-default" ng-click="search()">Search</button>
 			</form>
 			<button ng-hide="loggedIn()" type="button" class="btn btn-primary navbar-btn menu-right" data-toggle="modal" data-target="#loginModal">Log In</button>
 			<button ng-show="loggedIn()" type="button" class="btn btn-danger navbar-btn menu-right" ng-click="logOut()">Log Out</button>

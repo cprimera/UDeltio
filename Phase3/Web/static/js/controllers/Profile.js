@@ -128,4 +128,53 @@ ProfileCtrl.controller('ProfileCtrl', ['$scope', '$rootScope', 'Restangular', '$
 		$scope.password = null;
 	});
 
+    $scope.$on('search', function(event, args){
+        var term = args.term;
+        $scope.boards = [];
+        if ($scope.loggedIn()) {
+
+            Restangular.all('search/'+term).getList().then(function (boards) {
+                $scope.boards = boards;
+
+                // Set the favourite tag
+                Restangular.all('me/favourites').getList().then(function (boards) {
+                    for (var i = 0; i < boards.length; i++) {
+                        var found = false;
+                        var idx = -1;
+                        for (var j = 0; j < $scope.boards.length; j++) {
+                            if ($scope.boards[j].id == boards[i].id) {
+                                console.log("Found " + boards[i].name);
+                                found = true;
+                                idx = j;
+                                break;
+                            }
+                        }
+                        if (found) {
+                            $scope.boards[idx].favorite = true;
+                        }
+                    }
+                });
+
+
+                // Set the notify tag
+                Restangular.all('me/notify').getList().then(function (boards) {
+                    for (var i = 0; i < boards.length; i++) {
+                        var found = false;
+                        var idx = -1;
+                        for (var j = 0; j < $scope.boards.length; j++) {
+                            if ($scope.boards[j].id == boards[i].id) {
+                                found = true;
+                                idx = j;
+                                break;
+                            }
+                        }
+                        if (found) {
+                            $scope.boards[idx].notify = true;
+                        }
+                    }
+                });
+            });
+		    }
+    });
+
 }]);
