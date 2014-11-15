@@ -54,8 +54,6 @@ In the beginning of the phase, team had a meeting where we went through the issu
 | [Create notify endpoint](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/46) | feature | [cprimera](https://github.com/cprimera) |
 | [Clean menu on logout](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/47) | bug | [ycherenkova](https://github.com/ycherenkova) |
 | [Add board creator to board users upon creation of the board](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/50) | bug | [cprimera](https://github.com/cprimera) | 
-| [Add word wrap on posts.](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/51) | bug | [wongleo7](https://github.com/wongleo7) |
-| [Allow posts to be flagged as inappropriate](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/53) | feature | [wongleo7](https://github.com/wongleo7) | 
 | [Update backend to allow the posts to be flagged as inappropriate](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/55) | feature | [cprimera](https://github.com/cprimera) |
 | [Send notifications on new posts](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/56) | feature | [cprimera](https://github.com/cprimera) |
 | [Limit board settings to admins only](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/57) | bug | [ycherenkova](https://github.com/ycherenkova) |
