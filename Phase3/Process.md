@@ -64,3 +64,6 @@ In the beginning of the phase, team had a meeting where we went through the issu
 | [User id gets lost on reloads](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/63) | bug | [yasith](https://github.com/yasith) |
 | [Typo in submenu](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/68) | minor bug | [ycherenkova](https://github.com/ycherenkova) | 
 | [Search endpoint](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/issues/71) | feature | [cprimera](https://github.com/cprimera) | 
+
+#### Timeline
+The timeline reflecting issues going through Kanban can be found [here](https://docs.google.com/spreadsheets/d/19OXcc_CWyqECPU-1pBpJxJZehAVMOGac_aCxs_oKIbo/edit#gid=103406073).
