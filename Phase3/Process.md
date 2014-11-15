@@ -25,6 +25,12 @@ One thing that we seemed to carry from Scrum-like process to this phase was that
 Another thing that we liked about Kanban was much less documentation that had to be created in the middle of the phase. This has allowed us to focus more on code and thus we were able to complete more issues by far, comparing to previous phase. 
 The only drawback of Kanban for our team was that we did not have frontend testing set up, so a much more efficient setup for a frontend would be to have just two columns (Development and Merging). However, we felt like Testing was necessary at least for bugfixes, but, since those are short, issues usually stayed in it for at most ten minutes, and we think we should have been allowed to skip columns instead of assigning labels to Testing back and forth to follow the process.
 
+### More about Phase 3
+
+#### Phase Planning
+In the beginning of the phase, team had a meeting where we went through the issues we would like to include in this phase and analyzed their implementation details on whiteboard. [Image1](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/blob/develop/Phase3/project_board_drawings/10608918_10153269932270968_123839506_n.jpg) and [Image2](https://github.com/csc301-fall2014/Proj-UTM-Team3-repo/blob/develop/Phase3/project_board_drawings/10744535_10153269892255968_948764844_n.jpg) are the examples of how the process was done. 
+
+
 #### Issues Distribution
 | Issue | Type | Assignee |
 | -------- | ----- | ----- |
