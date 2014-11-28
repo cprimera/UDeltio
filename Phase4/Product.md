@@ -25,6 +25,6 @@ Say you are a student in MAT2045 at a university which is using UDeltio for disc
 
 Say you are Domingo Montoya and your friend invites you to join a fencing class at McMaster University over the Summer. You are not a student at McMaster, however, you would still benefit from being able to see information in regards to the fencing class you are signing up for This is an example of where you are a member of a university community but you are not a student at the school. Since you are not a student at the school but would still benefit from viewing the discussion board, you are given a generic username and password that allows you read access to the ‘PrincessBrideFencing’ board. Once logged into the sight you open the ‘PrincessBrideFencing’ board from your profile page.  You see that another user, ‘SixFingeredMan’, has posted on the board. As a response to this you post ‘‘I am Domingo Montoya, you killed my father, prepare to die/see you in class!!’.
 
-(This is a funny version of a real scenario where one of team members took a fencing class at the university but was not a student there at the time. He feels he would have benefited from having access to a message board like UDeltio for that course)
+(This is a funny version of a real scenario where one of team members took a fencing class at the university but was not a student there at the time. He feels he would have benefited from having access to a message board like UDeltio for that course).
 
 
