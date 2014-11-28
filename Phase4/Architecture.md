@@ -12,6 +12,7 @@ We used [Angular.js](https://angularjs.org) to implement the front end of UDelti
 * Board controller
 * Menu controller
 * Profile controller
+
 The Main controller took care of the routing to different urls of the website, while the other controllers were responsible for their respective entities.
 
 As an interface to the RESTful API on the backend, we used [Restangular](https://github.com/mgonto/restangular) on the frontend as a layer of abstraction for the requests we were making.
