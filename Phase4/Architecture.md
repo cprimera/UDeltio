@@ -4,7 +4,7 @@ Our system incorporated two main components a RESTful API and a Javascript web c
 ## Backend
 The RESTful API was implemented in Python using the [Flask framework](http://flask.pocoo.org). This allowed us to implement the system using MVC patterns by providing easy ways to split the model and controller. We also used the [SQLAlchemy](http://www.sqlalchemy.org) [ORM](http://en.wikipedia.org/wiki/Object-relational_mapping) to abstract away the database interactions and to provide a clean Python interface to our data. This also allows us to easily change database technologies without changing our implementation.
 
-![Database Schema](DB Schema.png)
+![Database Schema](../DB Schema.png)
 
 ## Frontend
 We used [Angular.js](https://angularjs.org) to implement the front end of UDeltio. Angular separates views and controllers which made it easier for us to distribute the work among team members. We had the following controllers for the front end:
