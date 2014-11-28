@@ -1,6 +1,6 @@
 # Product Report
 
-## Features we focused on that weren’t in the original handout 
+## Features we focused on that were not in the original handout 
 * Get email notifications on new posts
 * Token based authentication for all interactions between client and server
 * Search (by tags and names)
@@ -11,9 +11,9 @@
 * Public and private boards
 * Mobile accessibility
 
-The product is available at [udeltio.com](udeltio.com) to use right now.
+The product is available at [udeltio.com](udeltio.com).
 
-## Two Scenarios of how typical users would use UDeltio:
+## Two scenarios of how typical users would use UDeltio:
 
 ### Scenario 1 (Typical use case for a student using a class board):
 
