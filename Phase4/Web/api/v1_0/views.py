@@ -347,7 +347,7 @@ def search(term):
 		tags = []
 
 		for t in terms:
-			brds = Board.query.filter(and_(Board.name.like('%' + str(t) + '%')).all(), Board.public == True)
+			brds = Board.query.filter(and_(Board.name.like('%' + str(t) + '%'), Board.public == True)).all()
 			for b in brds:
 				if b not in boards:
 					boards.append(b)
