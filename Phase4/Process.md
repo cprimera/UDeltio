@@ -6,7 +6,7 @@
  
 ####Things that didn’t work well:
 
-  We had a lot of things go well for us this project and a lot of it was due to good planning beforehand. However, the was one main problem that didn’t work well for us which was following the scrum process. This was because by following scrum, we had to meet frequently throughout the development process but as we have many other responsibilities and that many of us were taking some course at a different campus, it was very difficult for us to meet together and coordinate our busy schedules. Also, by assigning pull requests, we were bottlenecking our process because since we worked on different schedules, we may need to wait for another team member to pull before we could continue working.
+  We had a lot of things go well for us this project and a lot of it was due to good planning beforehand. However, the was one main problem that didn’t work well for us which was following the Scrum-like process. This was because by following Scrum, we had to meet frequently throughout the development process but as we have many other responsibilities and that many of us were taking some course at a different campus, it was very difficult for us to meet together and coordinate our busy schedules. Also, by assigning pull requests, we were bottlenecking our process because since we worked on different schedules, we may need to wait for another team member to pull before we could continue working.
  
 ####Ideal Development Process:
 
