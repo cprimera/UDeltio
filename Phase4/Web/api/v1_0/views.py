@@ -129,6 +129,11 @@ def boards(id):
 			db.session.delete(s)
 		db.session.commit()
 
+		assigned_tags = AssignedTags.query.filter_by(board=id).all()
+		for a in assigned_tags:
+			db.session.delete(a)
+		db.session.commit()
+
 		db.session.delete(board)
 		db.session.commit()
 		return Response(status=204)
