@@ -341,16 +341,31 @@ def tags(id):
 @oauth_required
 def search(term):
 	if request.method == 'GET':
-		boards = Board.query.filter(Board.name.like('%' + str(term) + '%')).all()
-		tags = Tag.query.filter(Tag.name.like('%' + str(term) + '%')).all()
+		terms = term.split()
+
+		boards = []
+		tags = []
+
+		for t in terms:
+			brds = Board.query.filter(and_(Board.name.like('%' + str(t) + '%')).all(), Board.public == True)
+			for b in brds:
+				if b not in boards:
+					boards.append(b)
+
+			tags.extend(Tag.query.filter(Tag.name.like('%' + str(t) + '%')).all())
+
 		bs = []
 		for t in tags:
 			assigned = AssignedTags.query.filter_by(tag=t.id).all()
 			for a in assigned:
-				b = Board.query.filter_by(id=a.board).first()
+				b = Board.query.filter_by(id=a.board, public=True).first()
 				bs.append(b)
-		bs.extend(list(boards))
-		return Response(BoardSerializer().serialize(bs, many=True), mimetype='application/json')
+
+		for b in bs:
+			if b not in boards:
+				boards.append(b)
+
+		return Response(BoardSerializer().serialize(boards, many=True), mimetype='application/json')
 
 
 app.register_blueprint(router, url_prefix='/api/v1.0')
